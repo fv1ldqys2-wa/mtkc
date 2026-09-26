@@ -149,7 +149,47 @@ function isEndedPhone(phone){return !!phone&&db.revenues.some(r=>r.phone===phone
 function reminderItems(){let out=[];[...db.ops.map(x=>({...x,_src:'通常'})),...db.external.map(x=>({...x,_src:'外部'}))].forEach(o=>{if(isEndedPhone(o.phone))return;(o.reminders||[]).forEach(day=>{let due=addDaysLocal(o.at,+day),today=new Date();today.setHours(0,0,0,0);let dd=new Date(due);dd.setHours(0,0,0,0);let delta=Math.round((dd-today)/864e5),status=delta===0?'今日':delta<0?'未処理・超過':delta===1?'明日':delta+'日後';out.push({...o,day:+day,due,status,delta})})});return out.sort((a,b)=>a.due-b.due)}
 function reminderLabel(o){return (o.reminders&&o.reminders.length)?o.reminders.join('・')+'日':'なし'}
 function editReminderDays(current){let v=ask('リマインド日（5,7,10,14からカンマ区切り。なしは空欄）',(current||[]).join(','));if(v===null)return null;if(!v.trim())return [];let a=[...new Set(v.split(',').map(x=>+x.trim()).filter(x=>[5,7,10,14].includes(x)))].sort((a,b)=>a-b);return a}
-function saveInvite(){let p=iPhone.value.trim(),no=(iDeviceNo.value||'').trim();if(!p)return alert('電話番号を入力してください');if(!no)return alert('端末通し番号を入力してください');if(!iCarrier.value)return alert('キャリアを選択してください');if(!db.sims[p]){let now=new Date().toISOString();db.sims[p]={carrier:iCarrier.value,base:{Lite:{h:0,at:now},'本家':{h:0,at:now}},created:now}}else db.sims[p].carrier=iCarrier.value;let pi=pinfo(iParent.value);let pr=iResult.value==='成功'?(+iParentRevenue.value||0):0;let opAt=iAt.value||nowLocal(),simElapsed=simSuccessElapsedAt(p,iType.value,opAt),devElapsed=deviceNoSuccessElapsedAt(no,iType.value,opAt);db.ops.push({id:crypto.randomUUID(),phone:p,carrier:db.sims[p].carrier,type:iType.value,device:iDevice.value,deviceNo:no,parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,event:iEvent.value,result:iResult.value,at:opAt,parentRevenue:pr,reminders:reminderVals('i'),simSuccessElapsedAt:simElapsed,deviceSuccessElapsedAt:devElapsed});iParentRevenue.value=0;setReminderVals('i',[]);persist();render();alert('通常招待を登録しました')}
+function saveInvite(){
+ try{
+  const $id=id=>document.getElementById(id);
+  const p=($id('iPhone')?.value||'').trim();
+  const no=($id('iDeviceNo')?.value||'').trim();
+  const carrier=$id('iCarrier')?.value||'';
+  const type=$id('iType')?.value||'Lite';
+  const device=$id('iDevice')?.value||'';
+  const parentId=$id('iParent')?.value||'';
+  const event=$id('iEvent')?.value||'';
+  const result=$id('iResult')?.value||'失敗';
+  const opAt=$id('iAt')?.value||nowLocal();
+  if(!p){alert('電話番号を入力してください');return}
+  if(!no){alert('端末通し番号を入力してください');return}
+  if(!carrier){alert('キャリアを選択してください');return}
+  if(!db.sims[p]){
+    const now=new Date().toISOString();
+    db.sims[p]={carrier,base:{Lite:{h:0,at:now},'本家':{h:0,at:now}},created:now};
+  }else db.sims[p].carrier=carrier;
+  const pi=pinfo(parentId);
+  const pr=result==='成功'?(Number($id('iParentRevenue')?.value)||0):0;
+  const simElapsed=simSuccessElapsedAt(p,type,opAt);
+  const devElapsed=deviceNoSuccessElapsedAt(no,type,opAt);
+  db.ops.push({
+    id:(globalThis.crypto&&crypto.randomUUID)?crypto.randomUUID():'op_'+Date.now()+'_'+Math.random().toString(36).slice(2),
+    phone:p,carrier,type,device,deviceNo:no,parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,
+    event,result,at:opAt,parentRevenue:pr,reminders:reminderVals('i'),
+    simSuccessElapsedAt:simElapsed,deviceSuccessElapsedAt:devElapsed
+  });
+  if($id('iParentRevenue'))$id('iParentRevenue').value=0;
+  setReminderVals('i',[]);
+  localStorage.setItem('mtkc_final_v1',JSON.stringify(db));
+  setSyncStatus('保存中…');
+  clearTimeout(syncTimer);syncTimer=setTimeout(cloudSave,180);
+  alert('通常招待を登録しました');
+  try{render()}catch(renderErr){console.error('render after invite',renderErr)}
+ }catch(e){
+  console.error('saveInvite failed',e);
+  alert('招待登録エラー: '+(e&&e.message?e.message:String(e)));
+ }
+}
 function saveExternal(){if(eType.value==='Lite'){let pi=pinfo(eParent.value),gross=+eParentRevenue.value||0,ok=eResult.value==='成功',half=ok?gross/2:0;db.external.push({id:crypto.randomUUID(),type:'Lite',parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,externalAccount:eExternalAccount.value,event:eEvent.value,at:eAt.value||nowLocal(),result:eResult.value,externalGross:ok?gross:0,externalPayout:half,parentRevenue:half,reminders:reminderVals('e')});eParentRevenue.value=0;updateExternalHalf()}else{let p=eMainPhone.value;if(!p)return alert('登録済み子SIMを選択してください');db.external.push({id:crypto.randomUUID(),type:'本家',phone:p,carrier:db.sims[p].carrier,event:eMainEvent.value,at:eMainAt.value||nowLocal(),result:'成功',reminders:reminderVals('e')})}setReminderVals('e',[]);persist();render();alert('外部結果を登録しました')}
 function feeCalc(){if(!feePreview)return;let a=+rLiteChild.value||0,c=+rMain.value||0,g=a+c,f=fee(a)+fee(c);feePreview.innerHTML=`入力額 <b>${fmtY(g)}</b> ／ 手数料 <b>${fmtY(f)}</b> ／ 手数料後 <b>${fmtY(g-f)}</b><div class="muted">各収益：5,000円未満は15%、5,000円以上は0%</div>`};[rLiteChild,rMain].forEach(x=>x.oninput=feeCalc);
 function saveRevenue(){let p=rPhone.value;if(!p)return alert('SIMを選択してください');let a=+rLiteChild.value||0,c=+rMain.value||0;if(a+c<=0)return alert('収益を入力してください');db.revenues.push({id:crypto.randomUUID(),phone:p,date:rDate.value||nowLocal().slice(0,10),liteChild:a,main:c});persist();rLiteChild.value=rMain.value=0;render();alert('収益を登録しました')}
