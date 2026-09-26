@@ -1,0 +1,1082 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MTKC Operations Dashboard V43 EXTERNAL PAYOUT CORE FIX</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f6f7f9;color:#171a22;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#fff 0,#fff2f6 50%,#eefcff 100%)}.loginbox{width:min(420px,90vw);background:#fff;padding:34px;border-radius:26px;box-shadow:0 20px 70px #0001}.brand{font-weight:900;font-size:28px;letter-spacing:-1px}.brand small{display:block;font-size:10px;letter-spacing:2px;color:#7a7f8b}.loginbox input{width:100%;padding:14px;margin:8px 0;border:1px solid #dfe2e8;border-radius:12px;font-size:16px}.btn{border:0;border-radius:12px;background:#111827;color:#fff;padding:12px 18px;font-weight:800;cursor:pointer}.btn.pink{background:#fe2c55}.btn.cyan{background:#25f4ee;color:#111}.btn.ghost{background:#fff;color:#111;border:1px solid #d9dde5}.btn.danger{background:#fff0f2;color:#d7193f;border:1px solid #ffc5d0}.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}.side{background:#11151d;color:#fff;padding:22px 14px}.side .brand{padding:0 10px 18px}.nav button{width:100%;border:0;background:transparent;color:#aeb4c0;text-align:left;padding:13px;border-radius:11px;margin:3px 0;font-weight:700;cursor:pointer}.nav button.active,.nav button:hover{background:#252b36;color:#fff}.main{padding:24px;overflow:hidden}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.title{font-size:24px;font-weight:900}.muted{color:#7a808c;font-size:13px}.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.card{background:#fff;border:1px solid #e7e9ee;border-radius:18px;padding:18px;box-shadow:0 4px 16px #1111;position:relative}.kpi .num{font-size:32px;font-weight:900;margin-top:8px}.pinkline{border-top:4px solid #fe2c55}.cyanline{border-top:4px solid #25f4ee}.goldline{border-top:4px solid #f2b84b}.greenline{border-top:4px solid #44c38b}.ref{position:absolute;right:12px;top:12px;border:0;background:#f1f3f6;border-radius:9px;padding:6px 9px;font-size:12px;font-weight:800;cursor:pointer}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.toolbar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.formsec{background:#fff;border-radius:18px;padding:18px;margin:12px 0;border:1px solid #e5e7eb}.formsec.sim{border-left:6px solid #25f4ee}.formsec.device{border-left:6px solid #f2b84b}.formsec.parent{border-left:6px solid #b58cff}.formsec.op{border-left:6px solid #fe2c55}.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}input,select{width:100%;padding:11px;border:1px solid #d9dde5;border-radius:10px;background:#fff;font-size:14px}.actions{display:flex;gap:8px;margin-top:14px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid #eceef2;text-align:left;white-space:nowrap}th{color:#707684;font-size:11px}.tag{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.ok{background:#dcfff1;color:#08754b}.wait{background:#fff3d7;color:#956300}.set{background:#e7fbff;color:#087a83}.barrow{display:grid;grid-template-columns:100px 1fr 55px;gap:8px;align-items:center;margin:10px 0}.track{height:12px;background:#eef0f3;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#25f4ee,#fe2c55);border-radius:9px}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:5vh 3vw}.modal.show{display:block}.modalbox{background:#fff;border-radius:20px;padding:20px;max-width:1100px;margin:auto;max-height:90vh;overflow:auto}.modaltop{display:flex;justify-content:space-between;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap}.bigchoice{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{padding:24px;border-radius:18px;border:1px solid #e1e4ea;background:#fff;cursor:pointer}.choice b{font-size:18px}.daily{display:flex;align-items:end;gap:8px;height:150px;padding-top:10px}.daycol{flex:1;text-align:center;font-size:10px}.daybar{background:linear-gradient(#fe2c55,#25f4ee);border-radius:7px 7px 0 0;min-height:4px}.search{display:flex;gap:8px}.search input{max-width:360px}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:5;padding:8px}.side .brand{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.main{padding:14px}.grid{grid-template-columns:1fr 1fr}.two,.three,.formgrid{grid-template-columns:1fr}.bigchoice{grid-template-columns:1fr}.title{font-size:20px}}
+
+.modebar{display:flex;gap:10px;margin:10px 0 18px}.modebtn{flex:1;padding:16px;border:2px solid #e1e4ea;background:#fff;border-radius:14px;font-weight:900;cursor:pointer}.modebtn.active{border-color:#fe2c55;background:#fff2f5}.hidden{display:none!important}.stepnote{font-weight:900;font-size:14px;margin-bottom:10px}.net{font-weight:900;color:#08754b}.editrow input,.editrow select{min-width:120px}.feeBox{margin-top:12px;padding:12px;border-radius:12px;background:#f7f8fa}.sectiontitle{font-size:17px;font-weight:900;margin-bottom:4px}.remindchecks{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.remindchecks label{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#f7f8fa;border:1px solid #e2e5ea;border-radius:10px;margin:0}.remindchecks input{width:auto}.dueToday{background:#fff7e6}.overdue{background:#fff0f2}</style></head><body>
+<div id="login" class="login"><div class="loginbox"><div class="brand">MTKC<small>OPERATIONS DASHBOARD</small></div><h2>ログイン</h2><input id="uid" value="owner" placeholder="ID"><input id="upw" value="mtkc" type="password" placeholder="パスワード"><button class="btn pink" style="width:100%;margin-top:8px" onclick="login()">ログイン</button><div class="muted" style="margin-top:10px">owner / mtkc</div></div></div>
+<div id="app" class="app" style="display:none"><aside class="side"><div class="brand">MTKC<small>OPERATIONS DASHBOARD</small></div><div class="nav"><button class="active" data-p="home">ダッシュボード</button><button data-p="analysis">分析</button><button data-p="setpage">① 端末セット</button><button data-p="invite">② 招待登録</button><button data-p="revenue">③ 収益入力</button><button data-p="registered">登録済み一覧</button><button data-p="sim">途中から登録</button><button data-p="masters">設定</button></div></aside><main class="main"><div class="top"><div><div class="title">MTKC Operations Dashboard <small style="font-size:11px;color:#888">V43 EXTERNAL PAYOUT CORE FIX</small></div><div class="muted">SIM単位で Lite / 本家を追跡</div></div><div style="text-align:right"><div id="syncStatus" class="muted">復旧データ読込済み：SIM 115 / 通常招待 22件</div><div id="clock" class="muted"></div></div></div>
+<section id="home" class="page active"><div class="grid">
+<div class="card kpi pinkline"><button class="ref" onclick="ref('revenue')">参照</button><div class="muted">今月収益（手数料後）</div><div class="num" id="kRev">¥0</div></div>
+<div class="card kpi goldline"><button class="ref" onclick="ref('day14')">参照</button><div class="muted">14日目・終了対象</div><div class="num" id="kDay14">0</div><div class="muted">Lite子端末・今日上がり</div></div>
+<div class="card kpi cyanline"><button class="ref" onclick="ref('liteSet')">参照</button><div class="muted">Lite セット待ちSIM</div><div class="num" id="kLiteSet">0</div><div class="muted">350h到達・端末未セット</div></div>
+<div class="card kpi pinkline"><button class="ref" onclick="ref('liteReady')">参照</button><div class="muted">Lite 招待可能SIM</div><div class="num" id="kLiteReady">0</div><div class="muted">端末セット後50h</div></div>
+<div class="card kpi cyanline"><button class="ref" onclick="ref('mainSet')">参照</button><div class="muted">本家 セット待ちSIM</div><div class="num" id="kMainSet">0</div><div class="muted">350h到達・端末未セット</div></div>
+<div class="card kpi pinkline"><button class="ref" onclick="ref('mainReady')">参照</button><div class="muted">本家 招待可能SIM</div><div class="num" id="kMainReady">0</div><div class="muted">端末セット後50h</div></div></div>
+<div class="card" style="margin-top:14px;border-top:4px solid #f2b84b"><div class="toolbar"><div><h3 style="margin:0">14日稼働管理</h3><div class="muted">Lite通常招待の翌日を1日目として管理。Lite子機収益を入力すると終了扱いになり、リマインドから外れます。</div></div><button class="btn ghost" onclick="ref('day14all')">稼働中を参照</button></div><div class="tablewrap"><table><thead><tr><th>電話番号</th><th>招待結果</th><th>招待日時</th><th>現在</th><th>14日目</th></tr></thead><tbody id="day14Rows"></tbody></table></div></div>
+<div class="card" style="margin-top:14px;border-top:4px solid #b58cff"><div class="toolbar"><div><h3 style="margin:0">作業リマインド</h3><div class="muted">今日作業する対象だけ表示。設定した5・7・10・14日間は、招待翌日を1日目として毎日表示し、最終日は「本日終了」。</div></div><button class="btn ghost" onclick="ref('reminders')">すべて参照</button></div><div class="tablewrap"><table><thead><tr><th>日数</th><th>電話番号 / 親</th><th>種別</th><th>イベント</th><th>進捗 / 終了日</th><th>今日</th></tr></thead><tbody id="reminderRows"></tbody></table></div></div>
+<div class="card" style="margin-bottom:14px"><h3>本日の結果</h3><div class="kpis" style="grid-template-columns:repeat(4,1fr)"><div><div class="muted">チャレンジ数</div><div class="num" id="todayChallenges">0</div></div><div><div class="muted">成功数</div><div class="num" id="todaySuccesses">0</div></div><div><div class="muted">本日の収支</div><div class="num" id="todayNet">¥0</div></div><div><div class="muted">成功率</div><div class="num" id="todayRate">0%</div></div></div><div style="margin-top:14px"><b>本日の外部還元</b><div id="todayExternalPayouts"></div>
+<div id="M54monthPayoutBlock" style="margin-top:14px">
+  <h3 style="margin:0 0 6px">今月の外部還元</h3>
+  <div id="M54monthExternalPayouts"></div>
+</div></div><div style="margin-top:14px"><b>今月の外部還元</b><div id="M55_legacy_monthExternalPayouts_disabled"></div></div></div><div class="three"><div class="card"><button class="ref" onclick="ref('daily')">参照</button><h3>デイリー招待数・成功率</h3><div class="quick"><button class="btn ghost" onclick="dailyMode='all';render()">全体</button><button class="btn ghost" onclick="dailyMode='own';render()">通常</button><button class="btn ghost" onclick="dailyMode='ext';render()">外部</button></div><div id="dailyChart" class="daily"></div></div><div class="card"><button class="ref" onclick="ref('simrate')">参照</button><h3>SIM別成功率</h3><div id="simRate"></div></div><div class="card"><button class="ref" onclick="ref('parent')">参照</button><h3>親別 Lite 成功率</h3><div id="parentRate"></div></div><div class="card"><button class="ref" onclick="ref('parentRevenue')">参照</button><h3>親別収益</h3><div id="parentRevenue"></div></div></div>
+<div class="two"><div class="card"><button class="ref" onclick="ref('interval')">参照</button><h3>本家 成功間隔</h3><div id="interval"></div></div><div class="card"><button class="ref" onclick="ref('compat')">参照</button><h3>親キャリア × 子キャリア 相性</h3><div id="compat"></div></div></div>
+<div class="two"><div class="card"><h3>親別 成功分析</h3><div class="quick"><button class="btn ghost" onclick="analysisType='Lite';render()">Lite</button><button class="btn ghost" onclick="analysisType='本家';render()">本家</button></div><div id="parentAnalysis"></div></div></div>
+<div class="two"><div class="card"><h3>時間帯別 成功率</h3><div id="hourAnalysis"></div></div><div class="card"><h3>曜日 × 時間帯</h3><div class="muted">実施日時から自動集計</div><div id="weekdayHourAnalysis"></div></div></div>
+<div class="two"><div class="card"><h3>成功起点経過時間別</h3><div class="muted">招待時点の経過時間を固定保存して分析</div><div id="elapsedAnalysis"></div></div><div class="card"><h3>SIM / 端末 切り分け</h3><div class="muted">SIM単体・端末単体の成功率を比較</div><div id="causeAnalysis"></div></div></div></section>
+
+<section id="analysis" class="page"><div class="toolbar"><div><b>分析</b><div class="muted">日ごと・月ごとに確認して、SIM / 端末 / 親 / 時間帯の差を切り分けます。</div></div></div>
+<div class="card"><div class="quick"><button id="anDayBtn" class="btn" onclick="analysisPeriod='day';renderAnalysisPage()">日別</button><button id="anMonthBtn" class="btn ghost" onclick="analysisPeriod='month';renderAnalysisPage()">月別</button><button id="anAllBtn" class="btn ghost" onclick="analysisPeriod='all';renderAnalysisPage()">全期間</button><select id="anType" onchange="analysisType=this.value;renderAnalysisPage()" style="max-width:120px"><option>Lite</option><option>本家</option></select><input id="anDate" type="date" onchange="renderAnalysisPage()" style="max-width:170px"><input id="anMonth" type="month" onchange="renderAnalysisPage()" style="max-width:170px"></div></div>
+<div id="analysisSummary" class="grid" style="margin-top:14px"></div>
+<div class="card" style="margin-top:14px"><div class="quick" id="analysisViews"><button class="btn" data-av="daily">日ごと</button><button class="btn ghost" data-av="parent">親</button><button class="btn ghost" data-av="sim">SIM</button><button class="btn ghost" data-av="device">端末</button><button class="btn ghost" data-av="cross">SIM / 端末通し番号</button><button class="btn ghost" data-av="time">時間帯</button><button class="btn ghost" data-av="weekday">曜日×時間</button><button class="btn ghost" data-av="elapsed">成功起点時間</button></div><div id="analysisBody" style="margin-top:14px"></div></div></section><section id="setpage" class="page"><div class="toolbar"><div><b>① 端末セット</b><div class="muted">登録済みSIMから選択。350h到達後にセットし、セット日時から50hで招待可能。</div></div></div><div class="formsec device"><h3>入力順</h3><div class="formgrid"><div><label>① 登録済みSIM</label><select id="setPhone"></select></div><div><label>② 種別</label><select id="setType"><option>Lite</option><option>本家</option></select></div><div><label>③ 端末</label><select id="setDevice"></select></div><div><label>④ 端末通し番号</label><input id="setDeviceNo" placeholder="例：001"></div><div><label>⑤ セット日時</label><input id="setAt" type="datetime-local"></div></div><div id="setEligibility" class="muted" style="margin-top:8px"></div><div class="actions"><button class="btn cyan" onclick="saveSet()">端末セットを登録</button><button class="btn ghost" onclick="setAt.value=nowLocal()">現在時刻</button></div></div><div class="card"><h3>現在のセット状況</h3><div class="tablewrap"><table><thead><tr><th>電話番号</th><th>種別</th><th>端末</th><th>セット後</th><th>サーバー保存</th><th>状態</th><th></th></tr></thead><tbody id="setRows"></tbody></table></div></div></section>
+
+<section id="invite" class="page"><div class="toolbar"><div><b>② 招待登録</b><div class="muted">最初に「通常 / 外部」を選択。選ばなかった側には何も登録されません。</div></div></div><div class="modebar"><button id="modeNormal" class="modebtn active" onclick="setInviteMode('normal')">通常</button><button id="modeExternal" class="modebtn" onclick="setInviteMode('external')">外部</button></div>
+<div id="normalForm"><div class="formsec sim"><h3>① SIM</h3><div class="formgrid"><div><label>電話番号</label><input id="iPhone" list="phones" placeholder="電話番号"></div><div><label>キャリア</label><select id="iCarrier"></select></div><div><label>種別</label><select id="iType"><option>Lite</option><option>本家</option></select></div></div><div id="eligibility" class="muted" style="margin-top:8px"></div></div><div class="formsec device"><h3>② 端末</h3><div class="formgrid"><div><label>機種</label><select id="iDevice"></select></div><div><label>端末通し番号</label><input id="iDeviceNo" placeholder="例：001"></div></div><div id="deviceElapsedPreview" class="muted" style="margin-top:8px"></div></div><div class="formsec parent"><h3>③ 親</h3><div class="formgrid"><div><label>親</label><select id="iParent"></select></div><div><label>親キャリア</label><input id="iParentCarrier" readonly></div><div><label>アカウント作成日</label><input id="iParentDate" readonly></div></div></div><div class="formsec op"><h3>④ 結果</h3><div class="formgrid"><div><label>イベント</label><select id="iEvent"></select></div><div><label>成否</label><select id="iResult"><option>成功</option><option>失敗</option></select></div><div><label>日時</label><input id="iAt" type="datetime-local"></div></div><div id="normalParentRevenue" style="margin-top:14px"><label>⑤ 親側収益（成功時）</label><input id="iParentRevenue" type="number" min="0" value="0" placeholder="親に入った還元額"><div class="muted" style="margin-top:6px">招待成功時に親へ入る収益。全体収益・親別収益へ反映します。</div></div></div><div class="formsec op"><h3>⑥ 作業リマインド</h3><div class="formgrid"><div><label>リマインド</label><select id="iReminderOn" onchange="toggleReminderUI()"><option value="なし">なし</option><option value="あり">あり</option></select></div></div><div id="iReminderDays" class="remindchecks hidden"><label><input type="checkbox" value="5">5日</label><label><input type="checkbox" value="7">7日</label><label><input type="checkbox" value="10">10日</label><label><input type="checkbox" value="14">14日</label></div></div><div class="actions"><button class="btn pink" onclick="saveInvite()">通常招待を登録</button><button class="btn ghost" onclick="iAt.value=nowLocal()">現在時刻</button></div></div>
+<div id="externalForm" class="hidden"><div class="formsec sim"><h3>① 種別</h3><select id="eType"><option>Lite</option><option>本家</option></select></div><div id="extLite"><div class="formsec parent"><h3>② 親・外部アカウント</h3><div class="formgrid"><div><label>こちらの親</label><select id="eParent"></select></div><div><label>外部アカウント</label><select id="eExternalAccount"><option>諒</option><option>哲也</option></select></div></div></div><div class="formsec op"><h3>③ イベント・結果・日時</h3><div class="formgrid"><div><label>イベント</label><select id="eEvent"></select></div><div><label>成否</label><select id="eResult"><option>成功</option><option>失敗</option></select></div><div><label>日時</label><input id="eAt" type="datetime-local"></div></div><div id="externalLiteRevenue" style="margin-top:14px"><label>④ 還元元金額（満額を入力）</label><input id="eParentRevenue" type="number" min="0" value="0" oninput="updateExternalHalf()"><div class="feeBox">こちらの親収益：<b id="eOwnHalf">¥0</b> ／ <span id="eExtAccountLabel">諒</span>への還元：<b id="eExternalHalf">¥0</b><div class="muted" style="margin-top:5px">入力金額を自動で半分ずつに計算します。親収益には手数料はかかりません。</div></div></div></div></div><div id="extMain" class="hidden"><div class="formsec sim"><h3>② 子SIM</h3><select id="eMainPhone"></select><div class="muted" style="margin-top:8px">本家外部は成功した時だけ登録。成功日時からこのSIMの本家サーバー時間を0hで再スタートします。</div></div><div class="formsec op"><h3>③ イベント・成功日時</h3><div class="formgrid"><div><label>イベント</label><select id="eMainEvent"><option>QR</option><option>相互</option></select></div><div><label>成功日時</label><input id="eMainAt" type="datetime-local"></div></div></div></div><div class="formsec op"><h3>④ 作業リマインド</h3><div class="formgrid"><div><label>リマインド</label><select id="eReminderOn" onchange="toggleReminderUI()"><option value="なし">なし</option><option value="あり">あり</option></select></div></div><div id="eReminderDays" class="remindchecks hidden"><label><input type="checkbox" value="5">5日</label><label><input type="checkbox" value="7">7日</label><label><input type="checkbox" value="10">10日</label><label><input type="checkbox" value="14">14日</label></div></div><div class="actions"><button class="btn pink" onclick="saveExternal()">外部結果を登録</button></div></div><div class="card" style="margin-top:14px"><h3>通常招待履歴</h3><div class="muted" style="margin-bottom:8px">通常招待だけを表示します。</div><div class="tablewrap"><table><thead><tr><th>SIM</th><th>種別</th><th>イベント</th><th>結果</th><th>日時</th><th>親</th><th>親収益</th><th>リマインド</th><th></th></tr></thead><tbody id="normalHistoryRows"></tbody></table></div></div>
+<div class="card" style="margin-top:14px"><h3>Lite外部履歴</h3><div class="muted" style="margin-bottom:8px">Lite外部だけを表示します。</div><div class="tablewrap"><table><thead><tr><th>親</th><th>外部アカウント</th><th>イベント</th><th>結果</th><th>日時</th><th>親収益</th><th>外部還元</th><th>リマインド</th><th></th></tr></thead><tbody id="extLiteHistoryRows"></tbody></table></div></div>
+<div class="card" style="margin-top:14px"><h3>本家外部履歴</h3><div class="muted" style="margin-bottom:8px">本家外部だけを表示します。通常招待・Lite外部とは混ざりません。</div><div class="tablewrap"><table><thead><tr><th>子SIM</th><th>イベント</th><th>成功日時</th><th>リマインド</th><th></th></tr></thead><tbody id="extMainHistoryRows"></tbody></table></div></div></section>
+
+<section id="revenue" class="page"><div class="toolbar"><div><b>③ 収益入力</b><div class="muted">収益はここだけに集約。登録済みSIMを選び、Lite・本家の両方を入力できます。Lite子機収益を入力すると、そのSIMの14日稼働リマインドは終了扱いになります。</div></div></div><div class="formsec op"><div class="formgrid"><div><label>① SIM検索</label><input id="rPhone" list="phones" autocomplete="off" placeholder="電話番号を途中まで入力"><div class="muted" style="margin-top:6px">登録済みSIMだけ候補表示。途中まで入力すると該当番号を選べます。</div></div><div><label>② 収益日</label><input id="rDate" type="date"></div></div><h3 style="margin-top:18px">③ 金額</h3><div class="formgrid"><div><label>Lite 子機収益</label><input id="rLiteChild" type="number" min="0" value="0"></div><div><label>本家収益</label><input id="rMain" type="number" min="0" value="0"></div></div><div id="feePreview" class="feeBox"></div><div class="actions"><button class="btn pink" onclick="saveRevenue()">収益を登録</button></div></div><div class="card"><h3>収益履歴</h3><div class="tablewrap"><table><thead><tr><th>日付</th><th>SIM</th><th>Lite子機</th><th>Lite親</th><th>本家</th><th>手数料</th><th>手数料後</th><th></th></tr></thead><tbody id="rRows"></tbody></table></div></div></section>
+
+
+<section id="registered" class="page"><div class="toolbar"><div><b>登録済み一覧</b><div class="muted">項目別に確認・編集できます。サーバー保存時間は秒単位でリアルタイム更新。</div></div><div><select id="regType"><option value="sim">SIM一覧</option><option value="deviceTime">端末稼働状況</option><option value="normal">通常招待</option><option value="extLite">Lite外部</option><option value="extMain">本家外部</option><option value="sets">端末セット履歴</option><option value="revLite">Lite子機収益</option><option value="revMain">本家収益</option><option value="revParent">親収益</option><option value="payoutRyo">外部還元（諒）</option><option value="payoutTetsuya">外部還元（哲也）</option><option value="parents">親一覧</option><option value="devices">端末一覧</option><option value="carriers">キャリア一覧</option></select></div></div><div class="card"><div class="tablewrap"><table><thead id="regHead"></thead><tbody id="regRows"></tbody></table></div></div></section>
+<section id="sim" class="page"><div class="toolbar"><div><b>途中から登録</b><div class="muted">既に運用途中のSIMだけを移行登録。通常の①②③フローとは別です。</div></div></div><div class="formsec sim"><h3>① SIM情報</h3><div class="formgrid"><div><label>電話番号</label><input id="sPhone"></div><div><label>キャリア</label><select id="sCarrier"></select></div></div></div><div class="formsec op"><h3>② 最低サーバー保存期間</h3><div class="formgrid"><div><label>Lite 最低保存時間(h)</label><input id="sLite" type="number" min="0" value="0"></div><div><label>本家 最低保存時間(h)</label><input id="sMain" type="number" min="0" value="0"></div></div></div><button class="btn pink" onclick="saveSim()">途中から登録</button><div class="card" style="margin-top:14px"><h3>登録済みSIM</h3><div class="tablewrap"><table><thead><tr><th>電話番号</th><th>キャリア</th><th>Lite 成功起点</th><th>Lite 失敗から</th><th>本家 成功起点</th><th>本家 失敗から</th><th></th></tr></thead><tbody id="simRows"></tbody></table></div></div></section>
+
+<section id="masters" class="page"><div class="card" style="margin-bottom:14px;border-top:4px solid #22d3ee"><h3>クラウド接続</h3><div class="net">自動接続</div><div class="muted">Mac・iPhoneとも設定不要。同じSupabaseデータを使用します。</div></div><div class="toolbar"><div><b>設定・マスター管理</b><div class="muted">親・端末・キャリアを追加・編集できます。</div></div></div><div class="three"><div class="card"><h3>親を追加</h3><input id="mParent" placeholder="親名"><select id="mParentCarrier" style="margin-top:8px"></select><label style="margin-top:8px">アカウント作成日</label><input id="mParentDate" type="date"><button class="btn" style="margin-top:8px;width:100%" onclick="addParent()">追加</button></div><div class="card"><h3>端末を追加</h3><input id="mDevice" placeholder="端末名"><button class="btn" style="margin-top:8px;width:100%" onclick="addDevice()">追加</button><div id="deviceList" class="muted" style="margin-top:10px"></div></div><div class="card"><h3>キャリアを追加</h3><input id="mCarrier" placeholder="キャリア名"><button class="btn" style="margin-top:8px;width:100%" onclick="addCarrier()">追加</button><div id="carrierList" class="muted" style="margin-top:10px"></div></div></div><div class="card" style="margin-top:14px"><h3>既存の親を編集</h3><div class="tablewrap"><table><thead><tr><th>親名</th><th>キャリア</th><th>作成日</th><th></th></tr></thead><tbody id="parentRows"></tbody></table></div></div></section>
+<datalist id="phones"></datalist><div id="modal" class="modal" onclick="if(event.target===this)this.classList.remove('show')"><div class="modalbox"><div class="modaltop"><h2 id="modalTitle"></h2><button class="btn ghost" onclick="modal.classList.remove('show')">閉じる</button></div><div id="modalBody"></div></div></div></main></div>
+<script>
+const D={parents:["一寿", "美結", "真弓", "ひびき", "一颯", "tkc01", "tkc02", "赤P1", "赤P2", "青P", "白P", "黒P", "紫ギャラ", "水ギャラ", "黒ギャラ", "tkc03", "tkc04", "tkc05", "tkc06", "tkc07"],carriers:["IIJ", "NURO", "excite", "YOUME", "ANA", "mineo", "LIBMO", "QT", "イオンモバイル", "楽天プリペイドSIM", "docomo", "UQ", "SoftBank", "Y!mobile", "LINEMO", "その他"],devices:["OPPO A5", "OPPO A3", "TORQUE G04", "REDMI 15", "RENO13", "Android One", "DIGNO", "moto G05", "moto G06", "66y"]};
+const RECOVERY_SNAPSHOT={"ops":[{"at":"2026-09-24T13:20","id":"aab45114-d6c3-4d0a-9f4f-bb7db65f32ce","type":"Lite","event":"豚","phone":"07094124921","device":"moto G06","result":"成功","carrier":"楽天プリペイドSIM","parentId":"658627b3-e486-4685-bfbf-db662910c404","reminders":[],"parentName":"一寿","parentCarrier":"UQ","parentRevenue":4500},{"at":"2026-09-24T13:20","id":"75a1cbf0-3363-4596-bcf8-b2a7a531b734","type":"Lite","event":"豚","phone":"07094124252","device":"moto G06","result":"成功","carrier":"楽天プリペイドSIM","parentId":"cfbf805f-97b3-458d-b561-3ac77b67cc14","parentName":"かず2","parentCarrier":"Y!mobile","parentRevenue":5000},{"at":"2026-09-24T16:31","id":"f949e2b0-be56-4100-aca0-3dc37f674a59","type":"Lite","event":"豚","phone":"07094127864","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"658627b3-e486-4685-bfbf-db662910c404","reminders":[],"parentName":"一寿","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-24T16:31","id":"1c1ee21d-081b-4e00-932f-54f527526325","type":"Lite","event":"豚","phone":"07094127864","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"cfbf805f-97b3-458d-b561-3ac77b67cc14","reminders":[],"parentName":"かず2","parentCarrier":"Y!mobile","parentRevenue":0},{"at":"2026-09-24T16:50","id":"df81424c-d104-422e-a217-a22cf6992ac4","type":"Lite","event":"豚","phone":"07094125009","device":"OPPO A5","result":"成功","carrier":"楽天プリペイドSIM","parentId":"cfbf805f-97b3-458d-b561-3ac77b67cc14","reminders":[],"parentName":"かず2","parentCarrier":"Y!mobile","parentRevenue":5000},{"at":"2026-09-24T16:50","id":"e08db72b-96f9-4964-a15a-3e70832148bd","type":"Lite","event":"豚","phone":"07094127864","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"658627b3-e486-4685-bfbf-db662910c404","reminders":[],"parentName":"一寿","parentCarrier":"UQ","parentRevenue":0},{"at":"2026-09-24T20:29","id":"ff8e3e68-7922-4662-af76-e555fe89a937","type":"Lite","event":"ルーレット","phone":"07084135528","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"1e95031f-7a09-4ace-a617-55a5954af563","reminders":[],"parentName":"美結","parentCarrier":"UQ","parentRevenue":0},{"at":"2026-09-24T20:29","id":"927e717f-ee34-41f3-9c57-9637d96ec977","type":"Lite","event":"豚","phone":"07084135362","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"c26750b1-7964-42a5-9406-d7a74f869415","reminders":[],"parentName":"tkc05","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T13:47","id":"f72daa4b-b5a5-47d3-9502-ccc3b92f2efb","type":"Lite","event":"豚","phone":"07094142437","device":"OPPO A5","result":"成功","carrier":"楽天プリペイドSIM","parentId":"b329260b-6777-4a12-8ed8-6c88c329e9a2","reminders":[],"parentName":"tkc04","parentCarrier":"未設定","parentRevenue":5100},{"at":"2026-09-25T13:47","id":"9f9aa237-cfa8-4f87-bc07-4c9f7bfd28e9","type":"Lite","event":"豚","phone":"07064590746","device":"OPPO A5","result":"失敗","carrier":"UQ","parentId":"67314be9-a1b9-4fa7-a5ea-14fd03989276","reminders":[],"parentName":"tkc02","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T14:56","id":"81a391a9-3d5c-449b-b318-20e45ce6500c","type":"Lite","event":"豚","phone":"07094111652","device":"OPPO A5","result":"成功","carrier":"楽天プリペイドSIM","parentId":"9ecfaaf2-279f-4d5e-b636-63bc6860a662","reminders":[],"parentName":"黒P","parentCarrier":"未設定","parentRevenue":5000},{"at":"2026-09-25T14:56","id":"8f9406d2-3bff-4b51-b321-f4df1c36dea6","type":"Lite","event":"相互","phone":"07093836047","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"f11f924d-4fee-416a-9ef0-aa79f70fa039","reminders":[],"parentName":"赤P2","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T14:56","id":"89d97dd5-b8c9-418d-a51b-576e18994499","type":"Lite","event":"豚","phone":"07094122722","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"92d53bf5-c4cf-4057-9cec-9f78ad765706","reminders":[],"parentName":"白P","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T14:56","id":"cba8bfbe-cdd2-49ee-a2d0-4bb421c8acda","type":"Lite","event":"豚","phone":"07094116181","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"cd855e30-628f-4685-ba1f-238ebeb8cfd1","reminders":[],"parentName":"青P","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T16:02","id":"8cc49769-00f9-4929-af61-308deed32462","type":"Lite","event":"相互","phone":"07083938174","device":"OPPO A5","result":"成功","carrier":"楽天プリペイドSIM","parentId":"87a5e905-b638-4989-9277-0991ac404653","reminders":[14],"parentName":"tkc06","parentCarrier":"未設定","parentRevenue":2750},{"at":"2026-09-25T16:02","id":"73624822-c71c-45fe-9a9c-2ad89f0c5c54","type":"Lite","event":"豚","phone":"07084018923","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"c32c0dc9-7148-4083-b399-947641135464","reminders":[],"parentName":"tkc01","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T16:02","id":"ffd31cce-5632-47cf-a924-0e2aaf2629c4","type":"Lite","event":"豚","phone":"07092443807","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"67314be9-a1b9-4fa7-a5ea-14fd03989276","reminders":[],"parentName":"tkc02","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T16:02","id":"e2c393fc-5f83-46d2-b85f-26185b45945a","type":"Lite","event":"豚","phone":"07083317073","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"c26750b1-7964-42a5-9406-d7a74f869415","reminders":[],"parentName":"tkc05","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T16:02","id":"7bb7f658-f1ea-4719-b569-031606fdce88","type":"Lite","event":"相互","phone":"07084134326","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"40d15bf7-523c-472b-a676-d1806366c808","reminders":[],"parentName":"tkc03","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T16:02","id":"aa308c07-ace5-4722-8c0f-19af30603954","type":"Lite","event":"相互","phone":"07083953948","device":"OPPO A5","result":"失敗","carrier":"楽天プリペイドSIM","parentId":"ef939113-2569-494a-a354-260ec4732d33","reminders":[],"parentName":"tkc07","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T19:40","id":"e49fcd63-48e8-41e6-b149-3ceed5e474b0","type":"本家","event":"QR","phone":"07015146862","device":"OPPO A5","result":"失敗","carrier":"LINEMO","parentId":"c717afba-fbbb-4f7d-a63d-5e297e7415d0","reminders":[],"parentName":"ひびき","parentCarrier":"未設定","parentRevenue":0},{"at":"2026-09-25T19:40","id":"868b1d83-3e14-4ddf-94a0-92553874fbc8","type":"本家","event":"QR","phone":"07095178121","device":"OPPO A5","result":"失敗","carrier":"楽天","parentId":"52796e8c-814e-40f8-ae94-d9316917f9d9","reminders":[],"parentName":"一颯","parentCarrier":"未設定","parentRevenue":0}],"sets":[],"sims":{"0706479904":{"base":{"Lite":{"h":115,"at":"2026-09-24T11:57:37.198Z"},"本家":{"h":115,"at":"2026-09-24T11:57:37.198Z"}},"carrier":"SoftBank","created":"2026-09-24T11:57:37.198Z"},"07012601636":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:58:49.278Z"},"本家":{"h":219,"at":"2026-09-24T08:58:49.278Z"}},"carrier":"LINEMO","created":"2026-09-24T08:58:49.278Z"},"07013897127":{"base":{"Lite":{"h":217,"at":"2026-09-24T09:09:13.322Z"},"本家":{"h":217,"at":"2026-09-24T09:09:13.322Z"}},"carrier":"UQ","created":"2026-09-24T09:09:13.322Z"},"07014111835":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:44:15.040Z"},"本家":{"h":242,"at":"2026-09-24T07:44:15.040Z"}},"carrier":"LIBMO","created":"2026-09-24T07:44:15.040Z"},"07014705973":{"base":{"Lite":{"h":217,"at":"2026-09-24T09:05:25.176Z"},"本家":{"h":217,"at":"2026-09-24T09:05:25.176Z"}},"carrier":"LINEMO","created":"2026-09-24T09:05:25.176Z"},"07015146862":{"base":{"Lite":{"h":360,"at":"2026-09-25T11:18:18.155Z"},"本家":{"h":1,"at":"2026-09-25T11:18:18.155Z"}},"carrier":"LINEMO","created":"2026-09-25T11:11:50.728Z"},"07015775081":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:45:31.886Z"},"本家":{"h":241,"at":"2026-09-24T06:45:31.886Z"}},"carrier":"Y!mobile","created":"2026-09-24T06:45:31.886Z"},"07018706511":{"base":{"Lite":{"h":216,"at":"2026-09-25T04:31:37.050Z"},"本家":{"h":216,"at":"2026-09-25T04:31:37.050Z"}},"carrier":"UQ","created":"2026-09-25T04:31:37.050Z"},"07032207297":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:37:24.613Z"},"本家":{"h":241,"at":"2026-09-24T06:37:24.613Z"}},"carrier":"UQ","created":"2026-09-24T06:37:24.613Z"},"07033575245":{"base":{"Lite":{"h":80,"at":"2026-09-24T11:32:15.913Z"},"本家":{"h":80,"at":"2026-09-24T11:32:15.913Z"}},"carrier":"QT","created":"2026-09-24T11:32:15.913Z"},"07054457753":{"base":{"Lite":{"h":217,"at":"2026-09-24T08:43:51.544Z"},"本家":{"h":217,"at":"2026-09-24T08:43:51.544Z"}},"carrier":"LINEMO","created":"2026-09-24T08:43:51.544Z"},"07055568878":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:57:18.102Z"},"本家":{"h":219,"at":"2026-09-24T08:57:18.102Z"}},"carrier":"docomo","created":"2026-09-24T08:57:18.102Z"},"07055658467":{"base":{"Lite":{"h":237,"at":"2026-09-25T03:46:07.589Z"},"本家":{"h":237,"at":"2026-09-25T03:46:07.589Z"}},"carrier":"mineo","created":"2026-09-25T03:46:07.589Z"},"07064590746":{"base":{"Lite":{"h":209,"at":"2026-09-25T02:26:05.026Z"},"本家":{"h":209,"at":"2026-09-25T02:26:05.026Z"}},"carrier":"UQ","created":"2026-09-25T02:26:05.026Z"},"07064759904":{"base":{"Lite":{"h":110,"at":"2026-09-24T07:58:29.417Z"},"本家":{"h":110,"at":"2026-09-24T07:58:29.417Z"}},"carrier":"SoftBank","created":"2026-09-24T07:58:29.417Z"},"07083144595":{"base":{"Lite":{"h":237,"at":"2026-09-25T03:44:52.173Z"},"本家":{"h":237,"at":"2026-09-25T03:44:52.173Z"}},"carrier":"楽天","created":"2026-09-25T03:44:52.173Z"},"07083149547":{"base":{"Lite":{"h":237,"at":"2026-09-25T03:43:57.174Z"},"本家":{"h":237,"at":"2026-09-25T03:43:57.174Z"}},"carrier":"楽天","created":"2026-09-25T03:43:57.174Z"},"07083181877":{"base":{"Lite":{"h":242,"at":"2026-09-24T06:49:54.002Z"},"本家":{"h":242,"at":"2026-09-24T06:49:54.002Z"}},"carrier":"楽天","created":"2026-09-24T06:49:54.002Z"},"07083303187":{"base":{"Lite":{"h":226,"at":"2026-09-25T04:04:32.318Z"},"本家":{"h":226,"at":"2026-09-25T04:04:32.318Z"}},"carrier":"楽天","created":"2026-09-25T04:04:32.318Z"},"07083317073":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:07:19.606Z"},"本家":{"h":0,"at":"2026-09-25T07:07:19.606Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:07:19.606Z"},"07083788327":{"base":{"Lite":{"h":226,"at":"2026-09-25T04:05:24.706Z"},"本家":{"h":226,"at":"2026-09-25T04:05:24.706Z"}},"carrier":"楽天","created":"2026-09-25T04:05:24.706Z"},"07083938174":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:04:15.168Z"},"本家":{"h":0,"at":"2026-09-25T07:04:15.168Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:04:15.168Z"},"07083953948":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:08:29.168Z"},"本家":{"h":0,"at":"2026-09-25T07:08:29.168Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:08:29.168Z"},"07084018923":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:05:27.478Z"},"本家":{"h":0,"at":"2026-09-25T07:05:27.478Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:05:27.478Z"},"07084134326":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:07:58.501Z"},"本家":{"h":0,"at":"2026-09-25T07:07:58.501Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:07:58.501Z"},"07084135362":{"base":{"Lite":{"h":0,"at":"2026-09-24T11:48:01.490Z"},"本家":{"h":0,"at":"2026-09-24T11:48:01.490Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T11:48:01.490Z"},"07084135528":{"base":{"Lite":{"h":0,"at":"2026-09-24T11:47:28.037Z"},"本家":{"h":0,"at":"2026-09-24T11:47:28.037Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T11:47:28.037Z"},"07084751092":{"base":{"Lite":{"h":167,"at":"2026-09-25T04:30:05.998Z"},"本家":{"h":167,"at":"2026-09-25T04:30:05.998Z"}},"carrier":"UQ","created":"2026-09-25T04:30:05.998Z"},"07085365985":{"base":{"Lite":{"h":236,"at":"2026-09-25T03:57:37.856Z"},"本家":{"h":236,"at":"2026-09-25T03:57:37.856Z"}},"carrier":"LIBMO","created":"2026-09-25T03:57:37.856Z"},"07089450836":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:17:43.113Z"},"本家":{"h":237,"at":"2026-09-25T04:17:43.113Z"}},"carrier":"UQ","created":"2026-09-25T04:17:43.113Z"},"07090715601":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:16:58.797Z"},"本家":{"h":237,"at":"2026-09-25T04:16:58.797Z"}},"carrier":"mineo","created":"2026-09-25T04:16:58.797Z"},"07090813096":{"base":{"Lite":{"h":65,"at":"2026-09-24T06:04:43.824Z"},"本家":{"h":65,"at":"2026-09-24T06:04:43.824Z"}},"carrier":"UQ","created":"2026-09-24T06:04:43.824Z"},"07090995881":{"base":{"Lite":{"h":238,"at":"2026-09-25T04:21:51.122Z"},"本家":{"h":238,"at":"2026-09-25T04:21:51.122Z"}},"carrier":"ANA","created":"2026-09-25T04:21:51.122Z"},"07091235779":{"base":{"Lite":{"h":216,"at":"2026-09-24T08:53:27.487Z"},"本家":{"h":216,"at":"2026-09-24T08:53:27.487Z"}},"carrier":"LIBMO","created":"2026-09-24T08:53:27.487Z"},"07091623615":{"base":{"Lite":{"h":192,"at":"2026-09-25T04:37:10.238Z"},"本家":{"h":192,"at":"2026-09-25T04:37:10.238Z"}},"carrier":"UQ","created":"2026-09-25T04:37:10.238Z"},"07092086191":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:41:21.176Z"},"本家":{"h":242,"at":"2026-09-24T07:41:21.176Z"}},"carrier":"楽天","created":"2026-09-24T07:41:21.176Z"},"07092443807":{"base":{"Lite":{"h":0,"at":"2026-09-25T07:06:38.408Z"},"本家":{"h":0,"at":"2026-09-25T07:06:38.408Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T07:06:38.408Z"},"07092538960":{"base":{"Lite":{"h":230,"at":"2026-09-24T06:51:32.620Z"},"本家":{"h":230,"at":"2026-09-24T06:51:32.620Z"}},"carrier":"楽天","created":"2026-09-24T06:51:32.620Z"},"07092632670":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:08:06.432Z"},"本家":{"h":219,"at":"2026-09-24T09:08:06.432Z"}},"carrier":"楽天","created":"2026-09-24T09:08:06.432Z"},"07092632708":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:48:08.518Z"},"本家":{"h":242,"at":"2026-09-24T07:48:08.518Z"}},"carrier":"楽天","created":"2026-09-24T07:46:56.512Z"},"07092651917":{"base":{"Lite":{"h":110,"at":"2026-09-24T07:59:07.877Z"},"本家":{"h":110,"at":"2026-09-24T07:59:07.877Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T07:59:07.877Z"},"07092916893":{"base":{"Lite":{"h":139,"at":"2026-09-24T04:05:13.592Z"},"本家":{"h":139,"at":"2026-09-24T04:05:13.592Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T04:05:13.592Z"},"07092936832":{"base":{"Lite":{"h":107,"at":"2026-09-24T04:05:50.908Z"},"本家":{"h":107,"at":"2026-09-24T04:05:50.908Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T04:05:50.908Z"},"07092946412":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:18:59.485Z"},"本家":{"h":237,"at":"2026-09-25T04:18:59.485Z"}},"carrier":"楽天","created":"2026-09-25T04:18:59.485Z"},"07093079812":{"base":{"Lite":{"h":201,"at":"2026-09-25T04:28:03.684Z"},"本家":{"h":201,"at":"2026-09-25T04:28:03.684Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T04:28:03.684Z"},"07093085209":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:41:07.369Z"},"本家":{"h":241,"at":"2026-09-24T06:41:07.369Z"}},"carrier":"楽天","created":"2026-09-24T06:41:07.369Z"},"07093342365":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:11:28.670Z"},"本家":{"h":219,"at":"2026-09-24T09:11:28.670Z"}},"carrier":"楽天","created":"2026-09-24T09:11:28.670Z"},"07093346617":{"base":{"Lite":{"h":239,"at":"2026-09-24T04:21:42.809Z"},"本家":{"h":0,"at":"2026-09-24T04:21:42.809Z"}},"carrier":"楽天","created":"2026-09-24T04:21:42.809Z"},"07093351740":{"base":{"Lite":{"h":209,"at":"2026-09-25T02:25:31.681Z"},"本家":{"h":209,"at":"2026-09-25T02:25:31.681Z"}},"carrier":"楽天","created":"2026-09-25T02:25:31.681Z"},"07093836047":{"base":{"Lite":{"h":0,"at":"2026-09-25T06:00:47.722Z"},"本家":{"h":0,"at":"2026-09-25T06:00:47.722Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T06:00:47.722Z"},"07093895258":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:10:33.182Z"},"本家":{"h":219,"at":"2026-09-24T09:10:33.182Z"}},"carrier":"楽天","created":"2026-09-24T09:10:33.182Z"},"07094104436":{"base":{"Lite":{"h":123,"at":"2026-09-24T09:58:17.792Z"},"本家":{"h":123,"at":"2026-09-24T09:58:17.792Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T09:58:17.792Z"},"07094111652":{"base":{"Lite":{"h":0,"at":"2026-09-25T05:58:31.720Z"},"本家":{"h":0,"at":"2026-09-25T05:58:31.720Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T05:58:31.720Z"},"07094116181":{"base":{"Lite":{"h":0,"at":"2026-09-25T06:02:20.922Z"},"本家":{"h":0,"at":"2026-09-25T06:02:20.922Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T06:02:20.922Z"},"07094122722":{"base":{"Lite":{"h":0,"at":"2026-09-25T06:01:42.102Z"},"本家":{"h":0,"at":"2026-09-25T06:01:42.102Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T06:01:42.102Z"},"07094124252":{"base":{"Lite":{"h":0,"at":"2026-09-24T05:03:42.198Z"},"本家":{"h":0,"at":"2026-09-24T05:03:42.198Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T05:03:42.198Z"},"07094124921":{"base":{"Lite":{"h":0,"at":"2026-09-24T05:03:12.843Z"},"本家":{"h":0,"at":"2026-09-24T05:03:12.843Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T05:03:12.843Z"},"07094125009":{"base":{"Lite":{"h":0,"at":"2026-09-24T08:49:20.446Z"},"本家":{"h":0,"at":"2026-09-24T08:49:20.446Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T08:49:20.446Z"},"07094127864":{"base":{"Lite":{"h":0,"at":"2026-09-24T07:33:11.400Z"},"本家":{"h":0,"at":"2026-09-24T07:33:11.400Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-24T07:33:11.400Z"},"07094142437":{"base":{"Lite":{"h":0,"at":"2026-09-25T04:51:14.622Z"},"本家":{"h":0,"at":"2026-09-25T04:51:14.622Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T04:51:14.622Z"},"07094258213":{"base":{"Lite":{"h":238,"at":"2026-09-24T05:02:00.839Z"},"本家":{"h":0,"at":"2026-09-24T05:02:00.839Z"}},"carrier":"楽天","created":"2026-09-24T04:21:01.272Z"},"07094339235":{"base":{"Lite":{"h":220,"at":"2026-09-25T11:27:22.775Z"},"本家":{"h":126,"at":"2026-09-25T11:27:22.775Z"}},"carrier":"楽天","created":"2026-09-25T11:27:22.775Z"},"07094387850":{"base":{"Lite":{"h":203,"at":"2026-09-25T04:26:19.826Z"},"本家":{"h":203,"at":"2026-09-25T04:26:19.826Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T04:26:19.826Z"},"07094606228":{"base":{"Lite":{"h":202,"at":"2026-09-25T04:26:58.168Z"},"本家":{"h":202,"at":"2026-09-25T04:26:58.168Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T04:26:58.168Z"},"07094646973":{"base":{"Lite":{"h":202,"at":"2026-09-25T04:27:24.363Z"},"本家":{"h":202,"at":"2026-09-25T04:27:24.363Z"}},"carrier":"楽天プリペイドSIM","created":"2026-09-25T04:27:24.363Z"},"07095174506":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:47:02.395Z"},"本家":{"h":241,"at":"2026-09-24T06:47:02.395Z"}},"carrier":"楽天","created":"2026-09-24T06:47:02.395Z"},"07095178121":{"base":{"Lite":{"h":384,"at":"2026-09-25T11:19:43.329Z"},"本家":{"h":1,"at":"2026-09-25T11:19:43.329Z"}},"carrier":"楽天","created":"2026-09-25T11:13:33.423Z"},"07095198852":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:47:28.774Z"},"本家":{"h":219,"at":"2026-09-24T08:47:28.774Z"}},"carrier":"楽天","created":"2026-09-24T08:47:28.774Z"},"08015272066":{"base":{"Lite":{"h":226,"at":"2026-09-25T03:53:25.195Z"},"本家":{"h":226,"at":"2026-09-25T03:53:25.195Z"}},"carrier":"excite","created":"2026-09-25T03:53:25.195Z"},"08015835635":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:56:17.186Z"},"本家":{"h":242,"at":"2026-09-24T07:56:17.186Z"}},"carrier":"IIJ","created":"2026-09-24T07:56:17.186Z"},"08019024984":{"base":{"Lite":{"h":238,"at":"2026-09-25T04:23:04.132Z"},"本家":{"h":238,"at":"2026-09-25T04:23:04.132Z"}},"carrier":"mineo","created":"2026-09-25T04:23:04.132Z"},"08024554354":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:03:13.411Z"},"本家":{"h":237,"at":"2026-09-25T04:03:13.411Z"}},"carrier":"mineo","created":"2026-09-25T04:03:13.411Z"},"08027803964":{"base":{"Lite":{"h":263,"at":"2026-09-25T04:31:00.868Z"},"本家":{"h":263,"at":"2026-09-25T04:31:00.868Z"}},"carrier":"UQ","created":"2026-09-25T04:31:00.868Z"},"08029409084":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:07:03.608Z"},"本家":{"h":219,"at":"2026-09-24T09:07:03.608Z"}},"carrier":"YOUME","created":"2026-09-24T09:07:03.608Z"},"08029424750":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:50:19.030Z"},"本家":{"h":219,"at":"2026-09-24T08:50:19.030Z"}},"carrier":"IIJ","created":"2026-09-24T08:50:19.030Z"},"08033336444":{"base":{"Lite":{"h":239,"at":"2026-09-24T04:22:31.399Z"},"本家":{"h":0,"at":"2026-09-24T04:22:31.399Z"}},"carrier":"docomo","created":"2026-09-24T04:22:31.399Z"},"08037134855":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:21:03.461Z"},"本家":{"h":237,"at":"2026-09-25T04:21:03.461Z"}},"carrier":"LINEMO","created":"2026-09-25T04:21:03.461Z"},"08046531844":{"base":{"Lite":{"h":239,"at":"2026-09-24T04:45:33.214Z"},"本家":{"h":0,"at":"2026-09-24T04:45:33.214Z"}},"carrier":"LINEMO","created":"2026-09-24T04:45:33.214Z"},"08048457908":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:38:44.172Z"},"本家":{"h":241,"at":"2026-09-24T06:38:44.172Z"}},"carrier":"LINEMO","created":"2026-09-24T06:38:44.172Z"},"08048503949":{"base":{"Lite":{"h":65,"at":"2026-09-24T06:04:12.580Z"},"本家":{"h":65,"at":"2026-09-24T06:04:12.580Z"}},"carrier":"LIBMO","created":"2026-09-24T06:04:12.580Z"},"08049383018":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:15:46.574Z"},"本家":{"h":237,"at":"2026-09-25T04:15:46.574Z"}},"carrier":"QT","created":"2026-09-25T04:15:46.574Z"},"08049924601":{"base":{"Lite":{"h":237,"at":"2026-09-25T03:56:44.593Z"},"本家":{"h":237,"at":"2026-09-25T03:56:44.593Z"}},"carrier":"UQ","created":"2026-09-25T03:56:44.593Z"},"08061000054":{"base":{"Lite":{"h":257,"at":"2026-09-24T07:34:18.211Z"},"本家":{"h":257,"at":"2026-09-24T07:34:18.211Z"}},"carrier":"ANA","created":"2026-09-24T07:34:18.211Z"},"08062443861":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:57:39.110Z"},"本家":{"h":242,"at":"2026-09-24T07:57:39.110Z"}},"carrier":"excite","created":"2026-09-24T07:57:39.110Z"},"08071555448":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:20:19.129Z"},"本家":{"h":237,"at":"2026-09-25T04:20:19.129Z"}},"carrier":"Y!mobile","created":"2026-09-25T04:20:19.129Z"},"08082934798":{"base":{"Lite":{"h":217,"at":"2026-09-25T04:36:16.779Z"},"本家":{"h":217,"at":"2026-09-25T04:36:16.779Z"}},"carrier":"UQ","created":"2026-09-25T04:36:16.779Z"},"08085015844":{"base":{"Lite":{"h":218,"at":"2026-09-24T08:37:34.798Z"},"本家":{"h":218,"at":"2026-09-24T08:37:34.798Z"}},"carrier":"NURO","created":"2026-09-24T08:37:34.798Z"},"08088376449":{"base":{"Lite":{"h":241,"at":"2026-09-24T06:43:55.084Z"},"本家":{"h":241,"at":"2026-09-24T06:43:55.084Z"}},"carrier":"Y!mobile","created":"2026-09-24T06:43:55.084Z"},"08091619772":{"base":{"Lite":{"h":265,"at":"2026-09-24T07:49:45.798Z"},"本家":{"h":265,"at":"2026-09-24T07:49:45.798Z"}},"carrier":"LINEMO","created":"2026-09-24T07:49:45.798Z"},"08092793354":{"base":{"Lite":{"h":96,"at":"2026-09-25T12:01:19.393Z"},"本家":{"h":96,"at":"2026-09-25T12:01:19.393Z"}},"carrier":"YOUME","created":"2026-09-25T12:01:19.393Z"},"08096884332":{"base":{"Lite":{"h":242,"at":"2026-09-24T06:48:37.902Z"},"本家":{"h":242,"at":"2026-09-24T06:48:37.902Z"}},"carrier":"docomo","created":"2026-09-24T06:48:37.902Z"},"09011658369":{"base":{"Lite":{"h":227,"at":"2026-09-25T04:06:00.281Z"},"本家":{"h":227,"at":"2026-09-25T04:06:00.281Z"}},"carrier":"Y!mobile","created":"2026-09-25T04:06:00.281Z"},"09012775240":{"base":{"Lite":{"h":216,"at":"2026-09-25T04:32:40.894Z"},"本家":{"h":216,"at":"2026-09-25T04:32:40.894Z"}},"carrier":"UQ","created":"2026-09-25T04:32:40.894Z"},"09020210602":{"base":{"Lite":{"h":217,"at":"2026-09-24T08:55:58.556Z"},"本家":{"h":217,"at":"2026-09-24T08:55:58.556Z"}},"carrier":"IIJ","created":"2026-09-24T08:55:58.556Z"},"09020497327":{"base":{"Lite":{"h":236,"at":"2026-09-25T03:59:18.841Z"},"本家":{"h":236,"at":"2026-09-25T03:59:18.841Z"}},"carrier":"SoftBank","created":"2026-09-25T03:59:18.841Z"},"09021640043":{"base":{"Lite":{"h":80,"at":"2026-09-24T11:31:46.077Z"},"本家":{"h":80,"at":"2026-09-24T11:31:46.077Z"}},"carrier":"IIJ","created":"2026-09-24T11:31:46.077Z"},"09022292375":{"base":{"Lite":{"h":236,"at":"2026-09-25T03:58:36.836Z"},"本家":{"h":236,"at":"2026-09-25T03:58:36.836Z"}},"carrier":"YOUME","created":"2026-09-25T03:58:36.836Z"},"09023564766":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:42:42.014Z"},"本家":{"h":219,"at":"2026-09-24T08:42:42.014Z"}},"carrier":"mineo","created":"2026-09-24T08:42:42.014Z"},"09041109558":{"base":{"Lite":{"h":283,"at":"2026-09-25T03:54:18.125Z"},"本家":{"h":283,"at":"2026-09-25T03:54:18.125Z"}},"carrier":"excite","created":"2026-09-25T03:54:18.125Z"},"09043016465":{"base":{"Lite":{"h":236,"at":"2026-09-25T03:45:28.665Z"},"本家":{"h":236,"at":"2026-09-25T03:45:28.665Z"}},"carrier":"NURO","created":"2026-09-25T03:45:28.665Z"},"09043529702":{"base":{"Lite":{"h":236,"at":"2026-09-25T04:16:21.004Z"},"本家":{"h":236,"at":"2026-09-25T04:16:21.004Z"}},"carrier":"IIJ","created":"2026-09-25T04:16:21.004Z"},"09043671211":{"base":{"Lite":{"h":258,"at":"2026-09-24T07:35:13.309Z"},"本家":{"h":258,"at":"2026-09-24T07:35:13.309Z"}},"carrier":"Y!mobile","created":"2026-09-24T07:35:13.309Z"},"09051531326":{"base":{"Lite":{"h":226,"at":"2026-09-25T03:52:42.157Z"},"本家":{"h":226,"at":"2026-09-25T03:52:42.157Z"}},"carrier":"excite","created":"2026-09-25T03:52:42.157Z"},"09052849036":{"base":{"Lite":{"h":242,"at":"2026-09-24T07:39:42.394Z"},"本家":{"h":242,"at":"2026-09-24T07:39:42.394Z"}},"carrier":"IIJ","created":"2026-09-24T07:39:42.394Z"},"09054308494":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:38:38.021Z"},"本家":{"h":219,"at":"2026-09-24T08:38:38.021Z"}},"carrier":"YOUME","created":"2026-09-24T08:38:38.021Z"},"09056926528":{"base":{"Lite":{"h":237,"at":"2026-09-25T04:19:38.602Z"},"本家":{"h":237,"at":"2026-09-25T04:19:38.602Z"}},"carrier":"YOUME","created":"2026-09-25T04:19:38.602Z"},"09056997509":{"base":{"Lite":{"h":219,"at":"2026-09-24T08:54:15.314Z"},"本家":{"h":219,"at":"2026-09-24T08:54:15.314Z"}},"carrier":"YOUME","created":"2026-09-24T08:54:15.314Z"},"09058789119":{"base":{"Lite":{"h":145,"at":"2026-09-24T08:03:14.266Z"},"本家":{"h":145,"at":"2026-09-24T08:03:14.266Z"}},"carrier":"IIJ","created":"2026-09-24T08:03:14.266Z"},"09067736656":{"base":{"Lite":{"h":145,"at":"2026-09-24T08:02:51.136Z"},"本家":{"h":145,"at":"2026-09-24T08:02:51.136Z"}},"carrier":"IIJ","created":"2026-09-24T08:02:51.136Z"},"09070225213":{"base":{"Lite":{"h":227,"at":"2026-09-25T04:03:56.028Z"},"本家":{"h":227,"at":"2026-09-25T04:03:56.028Z"}},"carrier":"excite","created":"2026-09-25T04:03:56.028Z"},"09072286161":{"base":{"Lite":{"h":238,"at":"2026-09-24T04:23:27.893Z"},"本家":{"h":0,"at":"2026-09-24T04:23:27.893Z"}},"carrier":"IIJ","created":"2026-09-24T04:23:27.893Z"},"09072975047":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:01:50.652Z"},"本家":{"h":219,"at":"2026-09-24T09:01:50.652Z"}},"carrier":"IIJ","created":"2026-09-24T09:01:50.652Z"},"09073130215":{"base":{"Lite":{"h":219,"at":"2026-09-24T09:03:24.821Z"},"本家":{"h":219,"at":"2026-09-24T09:03:24.821Z"}},"carrier":"mineo","created":"2026-09-24T09:03:24.821Z"},"09077071754":{"base":{"Lite":{"h":227,"at":"2026-09-25T04:28:42.706Z"},"本家":{"h":227,"at":"2026-09-25T04:28:42.706Z"}},"carrier":"SoftBank","created":"2026-09-25T04:28:42.706Z"},"09086685914":{"base":{"Lite":{"h":360,"at":"2026-09-25T11:27:54.826Z"},"本家":{"h":126,"at":"2026-09-25T11:27:54.826Z"}},"carrier":"Y!mobile","created":"2026-09-25T11:27:54.826Z"}},"deleted":{"ops":[],"sets":[],"sims":[],"devices":[],"parents":[],"carriers":[],"external":["ac3f87b6-e45b-4619-a3a0-f7cad2e0a702","5a2852ba-0887-4f95-94df-4b02301b6703"],"revenues":[]},"devices":["OPPO A5","OPPO A3","TORQUE G04","REDMI 15","RENO13","Android One","DIGNO","moto G05","moto G06","66y"],"parents":[{"id":"658627b3-e486-4685-bfbf-db662910c404","name":"一寿","carrier":"UQ","created":""},{"id":"1e95031f-7a09-4ace-a617-55a5954af563","name":"美結","carrier":"UQ","created":""},{"id":"731cb7bb-1c53-485e-926c-e50a0d32fb75","name":"真弓","carrier":"楽天","created":""},{"id":"c717afba-fbbb-4f7d-a63d-5e297e7415d0","name":"ひびき","carrier":"未設定","created":""},{"id":"52796e8c-814e-40f8-ae94-d9316917f9d9","name":"一颯","carrier":"未設定","created":""},{"id":"c32c0dc9-7148-4083-b399-947641135464","name":"tkc01","carrier":"未設定","created":""},{"id":"67314be9-a1b9-4fa7-a5ea-14fd03989276","name":"tkc02","carrier":"未設定","created":""},{"id":"0f721c9a-afc3-4624-af02-0f861b9cf9e9","name":"赤P1","carrier":"未設定","created":""},{"id":"f11f924d-4fee-416a-9ef0-aa79f70fa039","name":"赤P2","carrier":"未設定","created":""},{"id":"cd855e30-628f-4685-ba1f-238ebeb8cfd1","name":"青P","carrier":"未設定","created":""},{"id":"92d53bf5-c4cf-4057-9cec-9f78ad765706","name":"白P","carrier":"未設定","created":""},{"id":"9ecfaaf2-279f-4d5e-b636-63bc6860a662","name":"黒P","carrier":"未設定","created":""},{"id":"51eb085e-7710-4151-8b44-11052b647a1b","name":"紫ギャラ","carrier":"未設定","created":""},{"id":"f8e7e4e6-a282-4d27-8444-9048c8e97073","name":"水ギャラ","carrier":"未設定","created":""},{"id":"79813d31-0421-4eaf-bb89-2631c76cded9","name":"黒ギャラ","carrier":"未設定","created":""},{"id":"40d15bf7-523c-472b-a676-d1806366c808","name":"tkc03","carrier":"未設定","created":""},{"id":"b329260b-6777-4a12-8ed8-6c88c329e9a2","name":"tkc04","carrier":"未設定","created":""},{"id":"c26750b1-7964-42a5-9406-d7a74f869415","name":"tkc05","carrier":"未設定","created":""},{"id":"87a5e905-b638-4989-9277-0991ac404653","name":"tkc06","carrier":"未設定","created":""},{"id":"ef939113-2569-494a-a354-260ec4732d33","name":"tkc07","carrier":"未設定","created":""},{"id":"cfbf805f-97b3-458d-b561-3ac77b67cc14","name":"かず2","carrier":"Y!mobile","created":""}],"carriers":["IIJ","NURO","excite","YOUME","ANA","mineo","LIBMO","QT","イオンモバイル","楽天プリペイドSIM","docomo","UQ","SoftBank","Y!mobile","LINEMO","その他","楽天"],"external":[{"at":"2026-09-24T16:31","id":"899d8a9b-0f5e-48ad-9c69-0195c43e4bf5","type":"Lite","event":"ルーレット","result":"成功","parentId":"1e95031f-7a09-4ace-a617-55a5954af563","reminders":[5],"parentName":"美結","externalGross":5800,"parentCarrier":"UQ","parentRevenue":2900,"externalPayout":2900,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"836a6ee3-3f58-4757-84b2-56db7a33d701","type":"Lite","event":"豚","result":"成功","parentId":"67314be9-a1b9-4fa7-a5ea-14fd03989276","reminders":[],"parentName":"tkc02","externalGross":5100,"parentCarrier":"未設定","parentRevenue":2550,"externalPayout":2550,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"353c9ed2-3ad4-4e03-be7a-6f357e7f22d9","type":"Lite","event":"豚","result":"成功","parentId":"c26750b1-7964-42a5-9406-d7a74f869415","reminders":[],"parentName":"tkc05","externalGross":5000,"parentCarrier":"未設定","parentRevenue":2500,"externalPayout":2500,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"b9c94b42-594b-418b-999a-4ed51c52d4f0","type":"Lite","event":"豚","result":"成功","parentId":"9ecfaaf2-279f-4d5e-b636-63bc6860a662","reminders":[],"parentName":"黒P","externalGross":5000,"parentCarrier":"未設定","parentRevenue":2500,"externalPayout":2500,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"80b310da-3f5e-402e-bb95-7fab358c1b7a","type":"Lite","event":"豚","result":"成功","parentId":"92d53bf5-c4cf-4057-9cec-9f78ad765706","reminders":[],"parentName":"白P","externalGross":5100,"parentCarrier":"未設定","parentRevenue":2550,"externalPayout":2550,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"0828bfa6-c086-46ab-909b-4f0f026899a8","type":"Lite","event":"相互","result":"成功","parentId":"40d15bf7-523c-472b-a676-d1806366c808","reminders":[14],"parentName":"tkc03","externalGross":5500,"parentCarrier":"未設定","parentRevenue":2750,"externalPayout":2750,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"c92e0a36-6035-4dde-a3b7-39c797e6219f","type":"Lite","event":"相互","result":"成功","parentId":"87a5e905-b638-4989-9277-0991ac404653","reminders":[14],"parentName":"tkc06","externalGross":5500,"parentCarrier":"未設定","parentRevenue":2750,"externalPayout":2750,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"de66e96f-5730-4248-9a17-aa3638c5ab95","type":"Lite","event":"相互","result":"成功","parentId":"731cb7bb-1c53-485e-926c-e50a0d32fb75","reminders":[14],"parentName":"真弓","externalGross":5500,"parentCarrier":"未設定","parentRevenue":2750,"externalPayout":2750,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"add6c79a-e6e5-4860-9647-6db515e770c7","type":"Lite","event":"豚","result":"失敗","parentId":"c717afba-fbbb-4f7d-a63d-5e297e7415d0","reminders":[],"parentName":"ひびき","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"11c06cb6-6def-4d0d-a9f4-bf89e702f31c","type":"Lite","event":"豚","result":"失敗","parentId":"52796e8c-814e-40f8-ae94-d9316917f9d9","reminders":[],"parentName":"一颯","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"6940f7c3-e6d1-45d8-8aa9-17faa366d536","type":"Lite","event":"豚","result":"失敗","parentId":"c32c0dc9-7148-4083-b399-947641135464","reminders":[],"parentName":"tkc01","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"7f51c86f-579e-44f8-87fa-878e76c5213e","type":"Lite","event":"豚","result":"失敗","parentId":"b329260b-6777-4a12-8ed8-6c88c329e9a2","reminders":[],"parentName":"tkc04","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"a3dfeae2-36f9-4ab2-ae9d-41c42daabb96","type":"Lite","event":"豚","result":"失敗","parentId":"ef939113-2569-494a-a354-260ec4732d33","reminders":[],"parentName":"tkc07","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-24T16:31","id":"42e58ac1-c25b-4b5c-852a-33087e682312","type":"Lite","event":"豚","result":"失敗","parentId":"cd855e30-628f-4685-ba1f-238ebeb8cfd1","reminders":[],"parentName":"青P","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"6f65a138-3d4a-4a48-9064-a49defad8279","type":"Lite","event":"豚","result":"成功","parentId":"658627b3-e486-4685-bfbf-db662910c404","reminders":[],"parentName":"一寿","externalGross":4500,"parentCarrier":"UQ","parentRevenue":2250,"externalPayout":2250,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"c2bc85f9-0033-4367-be0b-5dab90c6b5e0","type":"Lite","event":"豚","result":"成功","parentId":"cfbf805f-97b3-458d-b561-3ac77b67cc14","reminders":[],"parentName":"かず2","externalGross":5000,"parentCarrier":"Y!mobile","parentRevenue":2500,"externalPayout":2500,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"ffe76d1e-b052-479d-8221-c8a5303393f4","type":"Lite","event":"豚","result":"成功","parentId":"cfbf805f-97b3-458d-b561-3ac77b67cc14","reminders":[],"parentName":"かず2","externalGross":5000,"parentCarrier":"Y!mobile","parentRevenue":2500,"externalPayout":2500,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"b1a9ac93-6eb4-4ba2-8f15-d8296f4ae1a4","type":"Lite","event":"ルーレット","result":"成功","parentId":"1e95031f-7a09-4ace-a617-55a5954af563","reminders":[5],"parentName":"美結","externalGross":5800,"parentCarrier":"UQ","parentRevenue":2900,"externalPayout":2900,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"782ea53e-5c35-4275-8921-d62ef2ca4d7a","type":"Lite","event":"相互","result":"成功","parentId":"f11f924d-4fee-416a-9ef0-aa79f70fa039","reminders":[14],"parentName":"赤P2","externalGross":5500,"parentCarrier":"未設定","parentRevenue":2750,"externalPayout":2750,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"45f7a182-a783-43b8-9cff-c712c3290118","type":"Lite","event":"豚","result":"失敗","parentId":"92d53bf5-c4cf-4057-9cec-9f78ad765706","reminders":[],"parentName":"白P","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"98cee654-fe52-4a3b-8e5b-7cea3277f4b3","type":"Lite","event":"豚","result":"成功","parentId":"9ecfaaf2-279f-4d5e-b636-63bc6860a662","reminders":[],"parentName":"黒P","externalGross":5000,"parentCarrier":"未設定","parentRevenue":2500,"externalPayout":2500,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"c4e990a8-7cbe-492b-b6f2-2900459ed15e","type":"Lite","event":"豚","result":"成功","parentId":"cd855e30-628f-4685-ba1f-238ebeb8cfd1","reminders":[],"parentName":"青P","externalGross":4500,"parentCarrier":"未設定","parentRevenue":2250,"externalPayout":2250,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"99aff026-ce29-440a-af78-80eef739cafe","type":"Lite","event":"相互","result":"失敗","parentId":"731cb7bb-1c53-485e-926c-e50a0d32fb75","reminders":[],"parentName":"真弓","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"ac361b97-6f53-48f9-8b1b-e7e6b4bb4d07","type":"Lite","event":"豚","result":"失敗","parentId":"67314be9-a1b9-4fa7-a5ea-14fd03989276","reminders":[],"parentName":"tkc02","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"e2a6ea45-f8ec-4813-84b0-1c8a0551b5a4","type":"Lite","event":"豚","result":"失敗","parentId":"c26750b1-7964-42a5-9406-d7a74f869415","reminders":[],"parentName":"tkc05","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"a5b927e7-0605-4348-ac7d-e7049faf4716","type":"Lite","event":"豚","result":"成功","parentId":"c32c0dc9-7148-4083-b399-947641135464","reminders":[],"parentName":"tkc01","externalGross":4500,"parentCarrier":"未設定","parentRevenue":2250,"externalPayout":2250,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"e6fd690a-479f-4a8e-ae95-bbb3e1c4aeb5","type":"Lite","event":"豚","result":"失敗","parentId":"c717afba-fbbb-4f7d-a63d-5e297e7415d0","reminders":[],"parentName":"ひびき","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"dda1912f-4511-48ea-a320-bbd828a77900","type":"Lite","event":"豚","result":"失敗","parentId":"b329260b-6777-4a12-8ed8-6c88c329e9a2","reminders":[],"parentName":"tkc04","externalGross":0,"parentCarrier":"未設定","parentRevenue":0,"externalPayout":0,"externalAccount":"諒"},{"at":"2026-09-25T18:14","id":"b8defad6-eaae-4d37-a617-3fc41bad50cd","type":"Lite","event":"相互","result":"成功","parentId":"87a5e905-b638-4989-9277-0991ac404653","reminders":[14],"parentName":"tkc06","externalGross":5500,"parentCarrier":"未設定","parentRevenue":2750,"externalPayout":2750,"externalAccount":"諒"}],"revenues":[{"id":"ad5a642c-4c8f-45c3-8f8f-8c9e076d2c56","date":"2026-09-25","main":0,"phone":"09086685914","liteChild":6961},{"id":"b91d0bd9-f5f5-4754-acf3-fbc76028bf04","date":"2026-09-25","main":0,"phone":"07094339235","liteChild":3675},{"id":"99022bc9-d0d8-46d6-8d7c-ca9ba52ebe0f","date":"2026-09-25","main":0,"phone":"07095178121","liteChild":7133},{"id":"6b0dbf75-38c2-478a-b11d-b32df4a8f0d7","date":"2026-09-25","main":0,"phone":"07015146862","liteChild":6758}]};
+const SUPABASE_URL="https://ohxzhublgyrbqfvbtypg.supabase.co", SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeHpodWJsZ3lyYnFmdmJ0eXBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwNjY0ODgsImV4cCI6MjEwMjY0MjQ4OH0.SQp9YkOLFyrSTZ1PfCFz1cxc4qf_BeGo6ruwYnyk7fA";
+const DEFAULT_DB=()=>({parents:D.parents.map(n=>({id:crypto.randomUUID(),name:n,carrier:'未設定',created:''})),carriers:[...D.carriers],devices:[...D.devices],sims:{},ops:[],sets:[],external:[],revenues:[],deleted:{parents:[],sims:[],ops:[],sets:[],external:[],revenues:[],devices:[],carriers:[]}});
+let db=DEFAULT_DB(),dailyMode='all',inviteMode='normal',analysisType='Lite',syncing=false,syncTimer=null;const $=id=>document.getElementById(id);
+function normalizeDB(x){let d=DEFAULT_DB();x=(x&&typeof x==='object')?x:{};let z=x.deleted&&typeof x.deleted==='object'?x.deleted:{};return {parents:Array.isArray(x.parents)?x.parents:d.parents,carriers:Array.isArray(x.carriers)?x.carriers:d.carriers,devices:Array.isArray(x.devices)?x.devices:d.devices,sims:x.sims&&typeof x.sims==='object'&&!Array.isArray(x.sims)?x.sims:{},ops:Array.isArray(x.ops)?x.ops:[],sets:Array.isArray(x.sets)?x.sets:[],external:Array.isArray(x.external)?x.external:[],revenues:Array.isArray(x.revenues)?x.revenues:[],deleted:{parents:z.parents||[],sims:z.sims||[],ops:z.ops||[],sets:z.sets||[],external:z.external||[],revenues:z.revenues||[],devices:z.devices||[],carriers:z.carriers||[]}}}
+function applyDeletedOnly(x){x=normalizeDB(x);let d=x.deleted||{};let sims={...x.sims};(d.sims||[]).forEach(k=>delete sims[k]);return {...x,parents:x.parents.filter(v=>!(d.parents||[]).includes(v.id)),carriers:x.carriers.filter(v=>!(d.carriers||[]).includes(v)),devices:x.devices.filter(v=>!(d.devices||[]).includes(v)),sims,ops:x.ops.filter(v=>!(d.ops||[]).includes(v.id)),sets:x.sets.filter(v=>!(d.sets||[]).includes(v.id)),external:x.external.filter(v=>!(d.external||[]).includes(v.id)),revenues:x.revenues.filter(v=>!(d.revenues||[]).includes(v.id))}}
+try{db=applyDeletedOnly(JSON.parse(JSON.stringify(RECOVERY_SNAPSHOT)));localStorage.setItem('mtkc_recovery_original_v25',JSON.stringify(RECOVERY_SNAPSHOT));localStorage.setItem('mtkc_final_v1',JSON.stringify(db))}catch(e){db=normalizeDB(RECOVERY_SNAPSHOT)}
+function setSyncStatus(t,ok=true){syncStatus.textContent=t;syncStatus.style.color=ok?'#08754b':'#d7193f'}
+function mergeById(remote,local){let m=new Map();(remote||[]).forEach(x=>m.set(x.id||JSON.stringify(x),x));(local||[]).forEach(x=>m.set(x.id||JSON.stringify(x),x));return [...m.values()]}
+function mergeDB(remote,local){remote=normalizeDB(remote);local=normalizeDB(local);let deleted={};for(let k of ['parents','sims','ops','sets','external','revenues','devices','carriers'])deleted[k]=[...new Set([...(remote.deleted[k]||[]),...(local.deleted[k]||[])])];let sims={...(remote.sims||{}),...(local.sims||{})};deleted.sims.forEach(k=>delete sims[k]);return {parents:mergeById(remote.parents,local.parents).filter(x=>!deleted.parents.includes(x.id)),carriers:[...new Set([...(remote.carriers||[]),...(local.carriers||[])])].filter(x=>!deleted.carriers.includes(x)),devices:[...new Set([...(remote.devices||[]),...(local.devices||[])])].filter(x=>!deleted.devices.includes(x)),sims,ops:mergeById(remote.ops,local.ops).filter(x=>!deleted.ops.includes(x.id)),sets:mergeById(remote.sets,local.sets).filter(x=>!deleted.sets.includes(x.id)),external:mergeById(remote.external,local.external).filter(x=>!deleted.external.includes(x.id)),revenues:mergeById(remote.revenues,local.revenues).filter(x=>!deleted.revenues.includes(x.id)),deleted}}
+function hasUserData(x){return Object.keys(x.sims||{}).length+(x.ops||[]).length+(x.sets||[]).length+(x.external||[]).length+(x.revenues||[]).length>0}
+async function fetchCloud(){let r=await fetch(SUPABASE_URL+'/rest/v1/mtkc_state?id=eq.1&select=data,updated_at',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY},cache:'no-store'});if(!r.ok)throw new Error(await r.text());let a=await r.json();return a.length?a[0]:null}
+async function cloudLoad(){try{
+ let row=await fetchCloud();
+ if(row&&row.data){
+   localStorage.setItem('mtkc_cloud_backup_v31',JSON.stringify(row.data));
+   db=applyDeletedOnly(mergeDB(RECOVERY_SNAPSHOT,row.data));
+   localStorage.setItem('mtkc_final_v1',JSON.stringify(db));
+ }
+ render();V26renderRecovery();V27renderLower();V28render();V40refresh();V42refresh();
+ setSyncStatus('クラウド最新反映：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件');
+}catch(e){
+ console.error(e);V40refresh();V42refresh();
+ setSyncStatus('復旧データ表示中（クラウド読込失敗）',false);
+}}
+async function cloudSave(){if(syncing)return;syncing=true;try{
+let current=applyDeletedOnly(db);
+let row=await fetchCloud();
+if(row&&row.data)localStorage.setItem('mtkc_cloud_backup_before_v25_save',JSON.stringify(row.data));
+let merged=mergeDB(row&&row.data?row.data:{},current);
+if(Object.keys(merged.sims||{}).length<115||(merged.ops||[]).length<22)throw new Error('復旧データ保護');
+db=merged;
+let r=await fetch(SUPABASE_URL+'/rest/v1/mtkc_state?id=eq.1',{method:'PATCH',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({data:db,updated_at:new Date().toISOString()})});
+if(!r.ok)throw new Error(await r.text());
+localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('クラウド保存済み：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件')
+}catch(e){console.error(e);setSyncStatus('復旧データ保持中（クラウド保存失敗）',false)}finally{syncing=false}}
+function persist(){localStorage.setItem('mtkc_final_v1',JSON.stringify(db));setSyncStatus('保存中…');clearTimeout(syncTimer);syncTimer=setTimeout(cloudSave,180)}
+function nowLocal(){let d=new Date();d=new Date(d-d.getTimezoneOffset()*60000);return d.toISOString().slice(0,16)}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fmtH(v){if(v==null)return '—';let sec=Math.max(0,Math.floor(v*3600)),h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),ss=sec%60;return h+'時間 '+String(m).padStart(2,'0')+'分 '+String(ss).padStart(2,'0')+'秒'}function fmtY(v){return '¥'+Math.round(v||0).toLocaleString()}function hoursSince(t){return t?Math.max(0,(Date.now()-new Date(t))/36e5):0}
+function login(){const loginEl=document.getElementById('login'),appEl=document.getElementById('app'),uidEl=document.getElementById('uid'),upwEl=document.getElementById('upw');if(uidEl.value==='owner'&&upwEl.value==='mtkc'){loginEl.style.display='none';appEl.style.display='grid';render();V26renderRecovery();V40refresh();V42refresh();cloudLoad()}else alert('IDまたはパスワードが違います')}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));function show(p){
+ const page=document.getElementById(p);
+ if(!page)return;
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ page.classList.add('active');
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.p===p));
+ render();
+ if(p==='analysis'&&typeof M53_renderAnalytics==='function')M53_renderAnalytics();
+ if(p==='analysis'&&typeof V57_renderHistory==='function'){
+   const card=document.getElementById('v57HistoryCard');
+   if(card)card.style.display='';
+ }
+}
+function opts(el,a,val=x=>x,label=x=>x){if(!el)return;let cur=el.value;el.innerHTML=a.map(x=>`<option value="${esc(val(x))}">${esc(label(x))}</option>`).join('');if([...el.options].some(o=>o.value===cur))el.value=cur}
+function pinfo(id){return db.parents.find(p=>p.id===id)||{name:'—',carrier:'未設定',created:''}}
+function ownSuccesses(phone,type){return db.ops.filter(o=>o.phone===phone&&o.type===type&&o.result==='成功').map(o=>({at:o.at}))}
+function externalMainSuccesses(phone){return db.external.filter(o=>o.type==='本家'&&o.phone===phone&&o.result==='成功').map(o=>({at:o.at}))}
+function lastSuccess(phone,type){let a=ownSuccesses(phone,type);if(type==='本家')a=a.concat(externalMainSuccesses(phone));return a.sort((a,b)=>new Date(b.at)-new Date(a.at))[0]}
+function serverH(phone,type){let s=db.sims[phone];if(!s)return null;let last=lastSuccess(phone,type);if(last)return hoursSince(last.at);let b=s.base?.[type];return b?(+b.h||0)+hoursSince(b.at):0}
+function lastFailure(phone,type){return db.ops.filter(o=>o.phone===phone&&o.type===type&&o.result==='失敗').sort((a,b)=>new Date(b.at)-new Date(a.at))[0]||null}
+function failH(phone,type){let x=lastFailure(phone,type);return x?hoursSince(x.at):null}
+function deviceOps(device,type){return db.ops.filter(o=>o.device===device&&o.type===type).sort((a,b)=>new Date(a.at)-new Date(b.at))}
+function deviceLast(device,type,result){return deviceOps(device,type).filter(o=>o.result===result).sort((a,b)=>new Date(b.at)-new Date(a.at))[0]||null}
+function deviceSuccessH(device,type){let x=deviceLast(device,type,'成功');return x?hoursSince(x.at):null}
+function deviceFailH(device,type){let x=deviceLast(device,type,'失敗');return x?hoursSince(x.at):null}
+function hoursBetween(a,b){return Math.max(0,(new Date(b)-new Date(a))/36e5)}
+function simSuccessElapsedAt(phone,type,at){let prev=db.ops.filter(o=>o.phone===phone&&o.type===type&&o.result==='成功'&&new Date(o.at)<new Date(at));if(type==='本家')prev=prev.concat(db.external.filter(o=>o.type==='本家'&&o.phone===phone&&o.result==='成功'&&new Date(o.at)<new Date(at)));prev.sort((a,b)=>new Date(b.at)-new Date(a.at));if(prev[0])return hoursBetween(prev[0].at,at);let b=db.sims[phone]?.base?.[type];return b?Math.max(0,(+b.h||0)+hoursBetween(b.at,at)):0}
+function deviceSuccessElapsedAt(device,type,at){let prev=db.ops.filter(o=>o.device===device&&o.type===type&&o.result==='成功'&&new Date(o.at)<new Date(at)).sort((a,b)=>new Date(b.at)-new Date(a.at));if(prev[0])return hoursBetween(prev[0].at,at);let first=db.ops.filter(o=>o.device===device&&o.type===type&&new Date(o.at)<new Date(at)).sort((a,b)=>new Date(a.at)-new Date(b.at))[0];return first?hoursBetween(first.at,at):0}
+function attemptElapsed(o){return o.simSuccessElapsedAt!=null?+o.simSuccessElapsedAt:simSuccessElapsedAt(o.phone,o.type,o.at)}
+
+function currentSet(phone,type){return db.sets.filter(x=>x.phone===phone&&x.type===type).sort((a,b)=>new Date(b.at)-new Date(a.at))[0]}function setH(phone,type){let s=currentSet(phone,type);return s?hoursSince(s.at):null}function state(phone,type){let sh=serverH(phone,type),th=setH(phone,type);if(th!=null&&th>=50)return '招待可能';if(th!=null)return '50h待機中';if(sh>=350)return '端末にセットしてください';return '保存中'}
+function dayStart(v){let d=new Date(v);return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function addDays(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}
+function fmtDate(d){return d.toLocaleDateString('ja-JP',{year:'numeric',month:'numeric',day:'numeric'})}
+function hasLiteRevenueAfter(phone,at){let t=dayStart(at).getTime();return db.revenues.some(r=>r.phone===phone&&(+r.liteChild||0)>0&&dayStart(r.date+'T00:00').getTime()>=t)}
+function active14(){let latest={};db.ops.filter(o=>o.type==='Lite'&&o.phone).forEach(o=>{if(!latest[o.phone]||new Date(o.at)>new Date(latest[o.phone].at))latest[o.phone]=o});let today=dayStart(new Date());return Object.values(latest).filter(o=>!hasLiteRevenueAfter(o.phone,o.at)).map(o=>{let inv=dayStart(o.at),end=addDays(inv,14),day=Math.floor((today-inv)/86400000);return {...o,_end:end,_day:day,_due:today.getTime()>=end.getTime()}}).filter(o=>o._day>=0)}
+function day14Label(o){if(o._due)return o._day===14?'今日14日目':'14日目超過';if(o._day===0)return '招待日';return o._day+'日目'}
+function fee(v){v=+v||0;return v>0&&v<5000?v*.15:0}function net(v){return (+v||0)-fee(v)}function revGross(r){return (+r.liteChild||0)+(+r.main||0)}function revFee(r){return fee(r.liteChild)+fee(r.main)}function revNet(r){return revGross(r)-revFee(r)}
+function updateExternalHalf(){if(!window.eParentRevenue)return;let gross=+eParentRevenue.value||0,half=gross/2,acc=window.eExternalAccount?eExternalAccount.value:'諒';if(window.eOwnHalf)eOwnHalf.textContent=fmtY(half);if(window.eExternalHalf)eExternalHalf.textContent=fmtY(half);if(window.eExtAccountLabel)eExtAccountLabel.textContent=acc}if(window.eExternalAccount)eExternalAccount.addEventListener('change',updateExternalHalf);
+function setInviteMode(m){inviteMode=m;modeNormal.classList.toggle('active',m==='normal');modeExternal.classList.toggle('active',m==='external');normalForm.classList.toggle('hidden',m!=='normal');externalForm.classList.toggle('hidden',m!=='external')}
+function events(){opts(iEvent,iType.value==='Lite'?['豚','ルーレット','相互','QR']:['QR','相互'])}function extSwitch(){let main=eType.value==='本家';extLite.classList.toggle('hidden',main);extMain.classList.toggle('hidden',!main);opts(eEvent,['豚','ルーレット','相互','QR'])}
+function syncControls(){opts(sCarrier,db.carriers);opts(iCarrier,db.carriers);opts(iDevice,db.devices);opts(setDevice,db.devices);opts(iParent,db.parents,p=>p.id,p=>p.name);opts(eParent,db.parents,p=>p.id,p=>p.name);opts(mParentCarrier,db.carriers);let ph=Object.keys(db.sims);phones.innerHTML=ph.map(p=>`<option value="${esc(p)}" label="${esc(db.sims[p].carrier||'')}"></option>`).join('');let t=setType.value||'Lite';let ordered=[...ph].sort((a,b)=>{let sa=state(a,t)==='端末にセットしてください'?0:1,sb=state(b,t)==='端末にセットしてください'?0:1;return sa-sb||serverH(b,t)-serverH(a,t)});opts(setPhone,ordered,p=>p,p=>`${p}｜${db.sims[p].carrier}｜${fmtH(serverH(p,t))}｜${state(p,t)}`);opts(eMainPhone,ph,p=>p,p=>`${p}｜${db.sims[p].carrier}`);/* 収益SIMは入力検索 + datalist を使用 */let known=db.sims[iPhone.value];if(known)iCarrier.value=known.carrier;let pi=pinfo(iParent.value);iParentCarrier.value=pi.carrier;iParentDate.value=pi.created||'';events();extSwitch();elig();setElig();feeCalc();toggleParentRevenue();toggleReminderUI();updateExternalHalf()}
+function elig(){let p=iPhone.value.trim(),t=iType.value;if(!db.sims[p]){eligibility.innerHTML=p?'未登録SIMです。<b>この招待登録と同時に新規SIMとして登録します。</b>':'電話番号を入力してください';return}eligibility.innerHTML=`サーバー保存 <b>${fmtH(serverH(p,t))}</b> ／ セット後 <b>${fmtH(setH(p,t))}</b> ／ <span class="tag ${state(p,t)==='招待可能'?'ok':state(p,t)==='端末にセットしてください'?'set':'wait'}">${state(p,t)}</span>`}
+function setElig(){let p=setPhone.value,t=setType.value;if(!p){setEligibility.textContent='登録済みSIMがありません';return}setEligibility.innerHTML=`サーバー保存 <b>${fmtH(serverH(p,t))}</b> ／ ${state(p,t)}`}
+iPhone.oninput=()=>{let k=db.sims[iPhone.value.trim()];if(k)iCarrier.value=k.carrier;elig()};iType.onchange=()=>{events();elig()};iParent.onchange=()=>{let p=pinfo(iParent.value);iParentCarrier.value=p.carrier;iParentDate.value=p.created||''};eType.onchange=extSwitch;setType.onchange=()=>{syncControls();setElig()};setPhone.onchange=setElig;
+function saveSim(){let p=sPhone.value.trim();if(!p)return alert('電話番号を入力してください');if(db.sims[p]&&!confirm('登録済みSIMです。情報を更新しますか？'))return;let old=db.sims[p]||{},now=new Date().toISOString();db.sims[p]={...old,carrier:sCarrier.value,base:{Lite:{h:+sLite.value||0,at:now},'本家':{h:+sMain.value||0,at:now}},created:old.created||now};persist();sPhone.value='';sLite.value=sMain.value=0;render();alert('途中から登録しました')}
+function saveSet(){let p=setPhone.value,t=setType.value,no=(setDeviceNo.value||'').trim();if(!p||!db.sims[p])return alert('登録済みSIMを選択してください');if(!no)return alert('端末通し番号を入力してください');if(serverH(p,t)<350)return alert('このSIMはまだサーバー保存350hに到達していません');db.sets.push({id:crypto.randomUUID(),phone:p,type:t,device:setDevice.value,deviceNo:no,at:setAt.value||nowLocal()});persist();render();alert('端末セットを登録しました')}
+
+function toggleParentRevenue(){if(normalParentRevenue)normalParentRevenue.style.display=iResult.value==='成功'?'block':'none';if(externalLiteRevenue)externalLiteRevenue.style.display=(eType.value==='Lite'&&eResult.value==='成功')?'block':'none'}
+iResult.onchange=toggleParentRevenue;eResult.onchange=toggleParentRevenue;eType.addEventListener('change',toggleParentRevenue);
+function reminderVals(prefix){let on=$(prefix+'ReminderOn');if(!on||on.value!=='あり')return [];return [...document.querySelectorAll('#'+prefix+'ReminderDays input:checked')].map(x=>+x.value).sort((a,b)=>a-b)}
+function setReminderVals(prefix,days){days=Array.isArray(days)?days:[];let on=$(prefix+'ReminderOn');if(on)on.value=days.length?'あり':'なし';document.querySelectorAll('#'+prefix+'ReminderDays input').forEach(x=>x.checked=days.includes(+x.value));toggleReminderUI()}
+function toggleReminderUI(){if(window.iReminderDays)iReminderDays.classList.toggle('hidden',iReminderOn.value!=='あり');if(window.eReminderDays)eReminderDays.classList.toggle('hidden',eReminderOn.value!=='あり')}
+function addDaysLocal(at,n){let d=new Date(at);d.setDate(d.getDate()+n);return d}
+function isEndedPhone(phone){return !!phone&&db.revenues.some(r=>r.phone===phone&&((+r.liteChild||0)>0||(+r.main||0)>0))}
+function reminderItems(){let out=[];[...db.ops.map(x=>({...x,_src:'通常'})),...db.external.map(x=>({...x,_src:'外部'}))].forEach(o=>{if(isEndedPhone(o.phone))return;(o.reminders||[]).forEach(day=>{let due=addDaysLocal(o.at,+day),today=new Date();today.setHours(0,0,0,0);let dd=new Date(due);dd.setHours(0,0,0,0);let delta=Math.round((dd-today)/864e5),status=delta===0?'今日':delta<0?'未処理・超過':delta===1?'明日':delta+'日後';out.push({...o,day:+day,due,status,delta})})});return out.sort((a,b)=>a.due-b.due)}
+function reminderLabel(o){return (o.reminders&&o.reminders.length)?o.reminders.join('・')+'日':'なし'}
+function editReminderDays(current){let v=ask('リマインド日（5,7,10,14からカンマ区切り。なしは空欄）',(current||[]).join(','));if(v===null)return null;if(!v.trim())return [];let a=[...new Set(v.split(',').map(x=>+x.trim()).filter(x=>[5,7,10,14].includes(x)))].sort((a,b)=>a-b);return a}
+function saveInvite(){let p=iPhone.value.trim(),no=(iDeviceNo.value||'').trim();if(!p)return alert('電話番号を入力してください');if(!no)return alert('端末通し番号を入力してください');if(!iCarrier.value)return alert('キャリアを選択してください');if(!db.sims[p]){let now=new Date().toISOString();db.sims[p]={carrier:iCarrier.value,base:{Lite:{h:0,at:now},'本家':{h:0,at:now}},created:now}}else db.sims[p].carrier=iCarrier.value;let pi=pinfo(iParent.value);let pr=iResult.value==='成功'?(+iParentRevenue.value||0):0;let opAt=iAt.value||nowLocal(),simElapsed=simSuccessElapsedAt(p,iType.value,opAt),devElapsed=V41deviceElapsedAt(no,iType.value,opAt);db.ops.push({id:crypto.randomUUID(),phone:p,carrier:db.sims[p].carrier,type:iType.value,device:iDevice.value,deviceNo:no,parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,event:iEvent.value,result:iResult.value,at:opAt,parentRevenue:pr,reminders:reminderVals('i'),simSuccessElapsedAt:simElapsed,deviceSuccessElapsedAt:devElapsed});iParentRevenue.value=0;setReminderVals('i',[]);persist();render();alert('通常招待を登録しました')}
+function saveExternal(){if(eType.value==='Lite'){let pi=pinfo(eParent.value),gross=+eParentRevenue.value||0,ok=eResult.value==='成功',half=ok?gross/2:0;db.external.push({id:crypto.randomUUID(),type:'Lite',parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,externalAccount:eExternalAccount.value,event:eEvent.value,at:eAt.value||nowLocal(),result:eResult.value,externalGross:ok?gross:0,externalPayout:half,parentRevenue:half,reminders:reminderVals('e')});eParentRevenue.value=0;updateExternalHalf()}else{let p=eMainPhone.value;if(!p)return alert('登録済み子SIMを選択してください');db.external.push({id:crypto.randomUUID(),type:'本家',phone:p,carrier:db.sims[p].carrier,event:eMainEvent.value,at:eMainAt.value||nowLocal(),result:'成功',reminders:reminderVals('e')})}setReminderVals('e',[]);persist();render();alert('外部結果を登録しました')}
+function feeCalc(){if(!feePreview)return;let a=+rLiteChild.value||0,c=+rMain.value||0,g=a+c,f=fee(a)+fee(c);feePreview.innerHTML=`入力額 <b>${fmtY(g)}</b> ／ 手数料 <b>${fmtY(f)}</b> ／ 手数料後 <b>${fmtY(g-f)}</b><div class="muted">各収益：5,000円未満は15%、5,000円以上は0%</div>`};[rLiteChild,rMain].forEach(x=>x.oninput=feeCalc);
+function saveRevenue(){let p=rPhone.value;if(!p)return alert('SIMを選択してください');let a=+rLiteChild.value||0,c=+rMain.value||0;if(a+c<=0)return alert('収益を入力してください');db.revenues.push({id:crypto.randomUUID(),phone:p,date:rDate.value||nowLocal().slice(0,10),liteChild:a,main:c});persist();rLiteChild.value=rMain.value=0;render();alert('収益を登録しました')}
+function tomb(k,id){db.deleted??=DEFAULT_DB().deleted;(db.deleted[k]??=[]);if(!db.deleted[k].includes(id))db.deleted[k].push(id)}async function deleteItem(kind,id){if(!confirm('この記録を削除しますか？'))return;if(kind==='set'){tomb('sets',id);db.sets=db.sets.filter(x=>x.id!==id)}else if(kind==='sim'){tomb('sims',id);delete db.sims[id]}else if(kind==='rev'){tomb('revenues',id);db.revenues=db.revenues.filter(x=>x.id!==id)}else return;localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('削除を保存中…');clearTimeout(syncTimer);await cloudSave();}
+function addParent(){let n=mParent.value.trim();if(!n)return;db.parents.push({id:crypto.randomUUID(),name:n,carrier:mParentCarrier.value,created:mParentDate.value});mParent.value='';persist();render()}function addDevice(){let n=mDevice.value.trim();if(n&&!db.devices.includes(n)){db.devices.push(n);mDevice.value='';persist();render()}}function addCarrier(){let n=mCarrier.value.trim();if(n&&!db.carriers.includes(n)){db.carriers.push(n);mCarrier.value='';persist();render()}}
+function saveParent(id){let p=db.parents.find(x=>x.id===id);if(!p)return;p.name=$('pn'+id).value.trim()||p.name;p.carrier=$('pc'+id).value;p.created=$('pd'+id).value;db.ops.forEach(o=>{if(o.parentId===id){o.parentName=p.name;o.parentCarrier=p.carrier}});db.external.forEach(o=>{if(o.parentId===id){o.parentName=p.name;o.parentCarrier=p.carrier}});persist();render();alert('親情報を更新しました')}
+function editParentPrompt(id){let p=db.parents.find(x=>x.id===id);if(!p)return;let n=ask('親名',p.name);if(n===null||!n.trim())return;let c=ask('親キャリア',p.carrier);if(c===null)return;let d=ask('アカウント作成日 YYYY-MM-DD',p.created||'');if(d===null)return;p.name=n.trim();p.carrier=c;p.created=d;db.ops.forEach(o=>{if(o.parentId===id){o.parentName=p.name;o.parentCarrier=p.carrier}});db.external.forEach(o=>{if(o.parentId===id){o.parentName=p.name;o.parentCarrier=p.carrier}});persist();render()}
+async function hideParent(id){if(!confirm('この親を新規入力候補から削除しますか？ 過去履歴は残ります。'))return;tomb('parents',id);db.parents=db.parents.filter(p=>p.id!==id);localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('削除を保存中…');clearTimeout(syncTimer);await cloudSave();}async function hideMaster(kind,val){if(!confirm('入力候補から削除しますか？'))return;if(kind==='device'){tomb('devices',val);db.devices=db.devices.filter(x=>x!==val)}else if(kind==='carrier'){tomb('carriers',val);db.carriers=db.carriers.filter(x=>x!==val)}else return;localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('削除を保存中…');clearTimeout(syncTimer);await cloudSave();}
+function ask(label,val){let v=prompt(label,val??'');return v===null?null:v.trim()}
+function editSim(phone){let x=db.sims[phone];if(!x)return;let np=ask('電話番号',phone);if(np===null||!np)return;let c=ask('キャリア',x.carrier);if(c===null)return;let lh=ask('Lite 最低保存時間(h) ※現在値を基準に再設定',Math.floor(serverH(phone,'Lite')||0));if(lh===null)return;let mh=ask('本家 最低保存時間(h) ※現在値を基準に再設定',Math.floor(serverH(phone,'本家')||0));if(mh===null)return;let now=new Date().toISOString();x.carrier=c;x.base={Lite:{h:+lh||0,at:now},'本家':{h:+mh||0,at:now}};if(np!==phone){db.sims[np]=x;delete db.sims[phone];[db.ops,db.sets,db.external,db.revenues].forEach(a=>a.forEach(o=>{if(o.phone===phone)o.phone=np}))}persist();render()}
+function editSet(id){let x=db.sets.find(o=>o.id===id);if(!x)return;let p=ask('登録済みSIM',x.phone);if(p===null||!db.sims[p])return alert('登録済みSIMを指定してください');let t=ask('種別（Lite / 本家）',x.type);if(t===null||!['Lite','本家'].includes(t))return alert('Lite または 本家');let d=ask('端末',x.device);if(d===null)return;let a=ask('セット日時 YYYY-MM-DDTHH:MM',x.at);if(a===null)return;Object.assign(x,{phone:p,type:t,device:d,at:a});persist();render()}
+function editRevenue(id){let x=db.revenues.find(o=>o.id===id);if(!x)return;let p=ask('SIM',x.phone);if(p===null||!db.sims[p])return alert('登録済みSIMを指定してください');let d=ask('収益日 YYYY-MM-DD',x.date);if(d===null)return;let l=ask('Lite 子機収益',x.liteChild||0);if(l===null)return;let m=ask('本家収益',x.main||0);if(m===null)return;Object.assign(x,{phone:p,date:d,liteChild:+l||0,main:+m||0});persist();render()}
+function editOp(id){let x=db.ops.find(o=>o.id===id);if(!x)return;let p=ask('SIM',x.phone);if(p===null||!db.sims[p])return alert('登録済みSIMを指定してください');let t=ask('種別（Lite / 本家）',x.type);if(t===null||!['Lite','本家'].includes(t))return;let dev=ask('端末',x.device);if(dev===null)return;let par=ask('親名',x.parentName);if(par===null)return;let pi=db.parents.find(q=>q.name===par);if(!pi)return alert('設定に登録済みの親名を入力してください');let ev=ask('イベント',x.event);if(ev===null)return;let res=ask('結果（成功 / 失敗）',x.result);if(res===null||!['成功','失敗'].includes(res))return;let at=ask('日時 YYYY-MM-DDTHH:MM',x.at);if(at===null)return;let pr=ask('親側収益',x.parentRevenue||0);if(pr===null)return;let rem=editReminderDays(x.reminders);if(rem===null)return;Object.assign(x,{phone:p,carrier:db.sims[p].carrier,type:t,device:dev,parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,event:ev,result:res,at,parentRevenue:res==='成功'?(+pr||0):0,reminders:rem});persist();render()}
+function editExternal(id){let x=db.external.find(o=>o.id===id);if(!x)return;if(x.type==='Lite'){let par=ask('親名',x.parentName);if(par===null)return;let pi=db.parents.find(q=>q.name===par);if(!pi)return alert('登録済み親を入力してください');let ev=ask('イベント',x.event);if(ev===null)return;let res=ask('結果（成功 / 失敗）',x.result);if(res===null||!['成功','失敗'].includes(res))return;let at=ask('日時 YYYY-MM-DDTHH:MM',x.at);if(at===null)return;let acc=ask('外部アカウント（諒 / 哲也）',x.externalAccount||'諒');if(acc===null||!['諒','哲也'].includes(acc))return alert('諒 または 哲也 を入力してください');let gross=ask('還元元金額（満額）',x.externalGross!=null?x.externalGross:(+x.parentRevenue||0)*2);if(gross===null)return;let rem=editReminderDays(x.reminders);if(rem===null)return;let half=res==='成功'?(+gross||0)/2:0;Object.assign(x,{parentId:pi.id,parentName:pi.name,parentCarrier:pi.carrier,externalAccount:acc,event:ev,result:res,at,externalGross:res==='成功'?(+gross||0):0,externalPayout:half,parentRevenue:half,reminders:rem})}else{let p=ask('子SIM',x.phone);if(p===null||!db.sims[p])return alert('登録済みSIMを指定してください');let ev=ask('イベント（QR / 相互）',x.event);if(ev===null)return;let at=ask('成功日時 YYYY-MM-DDTHH:MM',x.at);if(at===null)return;let rem=editReminderDays(x.reminders);if(rem===null)return;Object.assign(x,{phone:p,carrier:db.sims[p].carrier,event:ev,at,result:'成功',reminders:rem})}persist();render()}
+async function deleteRecord(kind,id){if(!confirm('この記録を削除しますか？ 集計も再計算されます。'))return;if(kind==='op'){tomb('ops',id);db.ops=db.ops.filter(x=>x.id!==id)}else if(kind==='ext'){tomb('external',id);db.external=db.external.filter(x=>x.id!==id)}else return;localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('削除を保存中…');clearTimeout(syncTimer);await cloudSave();}
+function renameMaster(kind,old){let n=ask(kind==='device'?'端末名':'キャリア名',old);if(n===null||!n||n===old)return;if(kind==='device'){db.devices=db.devices.map(x=>x===old?n:x);db.sets.forEach(x=>{if(x.device===old)x.device=n});db.ops.forEach(x=>{if(x.device===old)x.device=n})}else{db.carriers=db.carriers.map(x=>x===old?n:x);Object.values(db.sims).forEach(x=>{if(x.carrier===old)x.carrier=n});db.parents.forEach(x=>{if(x.carrier===old)x.carrier=n});db.ops.forEach(x=>{if(x.carrier===old)x.carrier=n;if(x.parentCarrier===old)x.parentCarrier=n});db.external.forEach(x=>{if(x.carrier===old)x.carrier=n;if(x.parentCarrier===old)x.parentCarrier=n})}persist();render()}
+function rateRows(list,key){return list.map(x=>{let a=db.ops.filter(o=>key(o)===x),s=a.filter(o=>o.result==='成功').length;return{x,n:a.length,s,r:a.length?s/a.length*100:0}}).filter(x=>x.n).sort((a,b)=>b.r-a.r)}function barHTML(a,label=x=>x.x){return a.slice(0,7).map(x=>`<div class="barrow"><span>${esc(label(x))}</span><div class="track"><div class="fill" style="width:${x.r}%"></div></div><b>${x.r.toFixed(0)}%</b></div>`).join('')||'<div class="muted">データなし</div>'}
+function renderDaily(){let rows=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);let k=new Date(d-d.getTimezoneOffset()*60000).toISOString().slice(0,10),own=db.ops.filter(o=>o.at.slice(0,10)===k),ext=db.external.filter(o=>o.at.slice(0,10)===k),a=dailyMode==='own'?own:dailyMode==='ext'?ext:[...own,...ext],s=a.filter(o=>o.result==='成功').length;rows.push({k,n:a.length,r:a.length?s/a.length*100:0})}let max=Math.max(1,...rows.map(x=>x.n));dailyChart.innerHTML=rows.map(x=>`<div class="daycol"><b>${x.n}</b><div class="daybar" style="height:${Math.max(4,x.n/max*90)}px"></div><div>${x.k.slice(5)}</div><div>${x.n?x.r.toFixed(0)+'%':'—'}</div></div>`).join('')}
+function statTable(groups,labelFn){let a=Object.entries(groups).map(([k,v])=>({k,n:v.n,s:v.s,r:v.n?v.s/v.n*100:0})).sort((a,b)=>b.n-a.n||b.r-a.r);return '<div class="tablewrap"><table><thead><tr><th>項目</th><th>成功</th><th>試行</th><th>成功率</th></tr></thead><tbody>'+a.slice(0,30).map(x=>`<tr><td>${esc(labelFn?labelFn(x.k):x.k)}</td><td>${x.s}</td><td>${x.n}</td><td><b>${x.r.toFixed(0)}%</b> (${x.s}/${x.n})</td></tr>`).join('')+'</tbody></table></div>'}
+function groupStats(arr,key){let g={};arr.forEach(o=>{let k=key(o);if(!k)return;g[k]??={n:0,s:0};g[k].n++;if(o.result==='成功')g[k].s++});return g}
+function renderAdvancedAnalysis(){let a=db.ops.filter(o=>o.type===analysisType),today=nowLocal().slice(0,10);let pg={};db.parents.forEach(p=>{let x=[...db.ops,...db.external].filter(o=>o.parentId===p.id&&o.type===analysisType&&o.result==='成功').sort((u,v)=>new Date(u.at)-new Date(v.at)),all=[...db.ops,...db.external].filter(o=>o.parentId===p.id&&o.type===analysisType),gaps=[];for(let i=1;i<x.length;i++)gaps.push(hoursBetween(x[i-1].at,x[i].at));pg[p.id]={p,x,all,gaps}});parentAnalysis.innerHTML='<div class="tablewrap"><table><thead><tr><th>親</th><th>成功率</th><th>平均成功間隔</th><th>最短</th><th>今日</th></tr></thead><tbody>'+Object.values(pg).filter(z=>z.all.length).map(z=>`<tr><td>${esc(z.p.name)}</td><td>${z.x.length}/${z.all.length} (${(z.x.length/z.all.length*100).toFixed(0)}%)</td><td>${z.gaps.length?fmtH(z.gaps.reduce((q,w)=>q+w,0)/z.gaps.length):'—'}</td><td>${z.gaps.length?fmtH(Math.min(...z.gaps)):'—'}</td><td>${z.x.filter(o=>(o.at||'').slice(0,10)===today).length}回</td></tr>`).join('')+'</tbody></table></div>';
+let hg=groupStats(a,o=>String(new Date(o.at).getHours()).padStart(2,'0')+'時台');hourAnalysis.innerHTML=statTable(hg);let days=['日','月','火','水','木','金','土'],wh=groupStats(a,o=>days[new Date(o.at).getDay()]+' '+String(new Date(o.at).getHours()).padStart(2,'0')+'時');weekdayHourAnalysis.innerHTML=statTable(wh);let eg=groupStats(a,o=>{let h=attemptElapsed(o);return h<100?'0–99h':h<200?'100–199h':h<300?'200–299h':h<350?'300–349h':h<400?'350–399h':'400h以上'});elapsedAnalysis.innerHTML=statTable(eg);let sg=groupStats(a,o=>'SIM '+o.phone),dg=groupStats(a,o=>'端末 '+o.device);causeAnalysis.innerHTML='<b>SIM別</b>'+statTable(sg)+'<b>端末別</b>'+statTable(dg)}
+function renderRegistered(){if(!window.regType||!window.regRows||!window.regHead)return;let t=regType.value,ph=Object.keys(db.sims),head='',rows='',edit=(kind,id)=>`<button class="btn ghost" onclick="${kind}('${id}')">編集</button>`;
+if(t==='sim'){head='<tr><th>電話番号</th><th>キャリア</th><th>Lite 成功起点</th><th>Lite 失敗から</th><th>本家 成功起点</th><th>本家 失敗から</th><th>状態</th><th>操作</th></tr>';rows=ph.map(p=>`<tr><td>${esc(p)}</td><td>${esc(db.sims[p].carrier)}</td><td><b>${fmtH(serverH(p,'Lite'))}</b></td><td>${fmtH(failH(p,'Lite'))}</td><td><b>${fmtH(serverH(p,'本家'))}</b></td><td>${fmtH(failH(p,'本家'))}</td><td>Lite: ${state(p,'Lite')}<br>本家: ${state(p,'本家')}</td><td>${edit('editSim',p)} <button class="btn danger" onclick="deleteItem('sim','${p}')">削除</button></td></tr>`).join('')}
+else if(t==='deviceTime'){head='<tr><th>端末</th><th>Lite 成功起点</th><th>Lite 失敗から</th><th>本家 成功起点</th><th>本家 失敗から</th></tr>';rows=db.devices.map(d=>`<tr><td><b>${esc(d)}</b></td><td>${fmtH(deviceSuccessH(d,'Lite'))}</td><td>${fmtH(deviceFailH(d,'Lite'))}</td><td>${fmtH(deviceSuccessH(d,'本家'))}</td><td>${fmtH(deviceFailH(d,'本家'))}</td></tr>`).join('')}
+else if(t==='normal'){head='<tr><th>日時</th><th>SIM</th><th>種別</th><th>親</th><th>イベント</th><th>結果</th><th>親収益</th><th>リマインド</th><th>操作</th></tr>';rows=db.ops.slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.at)}</td><td>${esc(x.phone)}</td><td>${x.type}</td><td>${esc(x.parentName||'—')}</td><td>${esc(x.event)}</td><td>${x.result}</td><td>${fmtY(x.parentRevenue||0)}</td><td>${reminderLabel(x)}</td><td>${edit('editOp',x.id)} <button class="btn danger" onclick="deleteRecord('op','${x.id}')">削除</button></td></tr>`).join('')}
+else if(t==='extLite'){head='<tr><th>日時</th><th>こちらの親</th><th>外部アカウント</th><th>イベント</th><th>結果</th><th>元金額</th><th>親収益</th><th>外部還元</th><th>操作</th></tr>';rows=db.external.filter(x=>x.type==='Lite').sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.at)}</td><td>${esc(x.parentName||'—')}</td><td>${esc(x.externalAccount||'未設定')}</td><td>${esc(x.event)}</td><td>${x.result}</td><td>${fmtY(x.externalGross!=null?x.externalGross:(+x.parentRevenue||0)*2)}</td><td>${fmtY(x.parentRevenue||0)}</td><td>${fmtY(x.externalPayout!=null?x.externalPayout:(+x.parentRevenue||0))}</td><td>${edit('editExternal',x.id)} <button class="btn danger" onclick="deleteRecord('ext','${x.id}')">削除</button></td></tr>`).join('')}
+else if(t==='extMain'){head='<tr><th>成功日時</th><th>子SIM</th><th>イベント</th><th>リマインド</th><th>操作</th></tr>';rows=db.external.filter(x=>x.type==='本家').sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.at)}</td><td>${esc(x.phone)}</td><td>${esc(x.event)}</td><td>${reminderLabel(x)}</td><td>${edit('editExternal',x.id)} <button class="btn danger" onclick="deleteRecord('ext','${x.id}')">削除</button></td></tr>`).join('')}
+else if(t==='sets'){head='<tr><th>SIM</th><th>種別</th><th>端末</th><th>セット日時</th><th>セット後経過</th><th>操作</th></tr>';rows=db.sets.map(x=>`<tr><td>${esc(x.phone)}</td><td>${x.type}</td><td>${esc(x.device)}</td><td>${esc(x.at)}</td><td><b>${fmtH(hoursSince(x.at))}</b></td><td>${edit('editSet',x.id)} <button class="btn danger" onclick="deleteItem('set','${x.id}')">削除</button></td></tr>`).join('')}
+else if(t==='revLite'){head='<tr><th>日付</th><th>SIM</th><th>Lite子機収益</th><th>手数料</th><th>手数料後</th><th>操作</th></tr>';rows=db.revenues.filter(r=>+r.liteChild>0).map(r=>`<tr><td>${r.date}</td><td>${esc(r.phone)}</td><td>${fmtY(r.liteChild)}</td><td>${fmtY(fee(r.liteChild))}</td><td><b>${fmtY(net(r.liteChild))}</b></td><td>${edit('editRevenue',r.id)} <button class="btn danger" onclick="deleteItem('rev','${r.id}')">削除</button></td></tr>`).join('')}
+else if(t==='revMain'){head='<tr><th>日付</th><th>SIM</th><th>本家収益</th><th>手数料</th><th>手数料後</th><th>操作</th></tr>';rows=db.revenues.filter(r=>+r.main>0).map(r=>`<tr><td>${r.date}</td><td>${esc(r.phone)}</td><td>${fmtY(r.main)}</td><td>${fmtY(fee(r.main))}</td><td><b>${fmtY(net(r.main))}</b></td><td>${edit('editRevenue',r.id)} <button class="btn danger" onclick="deleteItem('rev','${r.id}')">削除</button></td></tr>`).join('')}
+else if(t==='revParent'){let a=[...db.ops,...db.external].filter(x=>+x.parentRevenue>0);head='<tr><th>日時</th><th>親</th><th>区分</th><th>収益</th><th>手数料</th><th>操作</th></tr>';rows=a.map(x=>`<tr><td>${esc(x.at)}</td><td>${esc(x.parentName||'—')}</td><td>${db.ops.some(o=>o.id===x.id)?'通常':'Lite外部'}</td><td><b>${fmtY(x.parentRevenue)}</b></td><td>¥0</td><td>${db.ops.some(o=>o.id===x.id)?edit('editOp',x.id):edit('editExternal',x.id)}</td></tr>`).join('')}
+else if(t==='payoutRyo'||t==='payoutTetsuya'){let acc=t==='payoutRyo'?'諒':'哲也';head=`<tr><th>日時</th><th>外部アカウント</th><th>こちらの親</th><th>イベント</th><th>還元元金額</th><th>還元額</th><th>操作</th></tr>`;rows=db.external.filter(x=>x.type==='Lite'&&x.externalAccount===acc&&String(x.event||'').trim()!=='相互'&&(+x.externalGross||0)>0).map(x=>`<tr><td>${esc(x.at)}</td><td>${acc}</td><td>${esc(x.parentName||'—')}</td><td>${esc(x.event)}</td><td>${fmtY(x.externalGross||0)}</td><td><b>${fmtY((+x.externalGross||0)/2)}</b></td><td>${edit('editExternal',x.id)}</td></tr>`).join('')}
+else if(t==='parents'){head='<tr><th>親</th><th>キャリア</th><th>作成日</th><th>操作</th></tr>';rows=db.parents.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.carrier)}</td><td>${esc(p.created||'—')}</td><td>${edit('editParentPrompt',p.id)}</td></tr>`).join('')}
+else if(t==='devices'){head='<tr><th>端末</th><th>操作</th></tr>';rows=db.devices.map(x=>`<tr><td>${esc(x)}</td><td><button class="btn ghost" onclick="renameMaster('device','${esc(x)}')">編集</button> <button class="btn danger" onclick="hideMaster('device','${esc(x)}')">削除</button></td></tr>`).join('')}
+else{head='<tr><th>キャリア</th><th>操作</th></tr>';rows=db.carriers.map(x=>`<tr><td>${esc(x)}</td><td><button class="btn ghost" onclick="renameMaster('carrier','${esc(x)}')">編集</button> <button class="btn danger" onclick="hideMaster('carrier','${esc(x)}')">削除</button></td></tr>`).join('')}
+regHead.innerHTML=head;regRows.innerHTML=rows||'<tr><td class="muted">登録データなし</td></tr>'}
+function render(){if(window.analysisSummary)V28initAnalysis();let rems=reminderItems();if(window.reminderRows){let show=rems.filter(x=>x.delta<=1);reminderRows.innerHTML=show.map(x=>`<tr class="${x.delta<0?'overdue':x.delta===0?'dueToday':''}"><td><b>${x.day}日</b></td><td>${esc(x.phone||x.parentName||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.event)}</td><td>${fmtDate(x.due)}</td><td><b>${x.status}</b></td></tr>`).join('')||'<tr><td colspan="6" class="muted">直近の作業リマインドなし</td></tr>';} syncControls();let ph=Object.keys(db.sims),ls=ph.filter(p=>serverH(p,'Lite')>=350&&setH(p,'Lite')==null),ms=ph.filter(p=>serverH(p,'本家')>=350&&setH(p,'本家')==null),lr=ph.filter(p=>state(p,'Lite')==='招待可能'),mr=ph.filter(p=>state(p,'本家')==='招待可能'),d14=active14();kDay14.textContent=d14.filter(x=>x._due).length;kLiteSet.textContent=ls.length;kMainSet.textContent=ms.length;kLiteReady.textContent=lr.length;kMainReady.textContent=mr.length;let mon=nowLocal().slice(0,7),today=nowLocal().slice(0,10);let revMonth=db.revenues.filter(r=>r.date.slice(0,7)===mon).reduce((a,r)=>a+revNet(r),0);let parentMonth=db.ops.filter(o=>(o.at||'').slice(0,7)===mon&&o.result==='成功').reduce((a,o)=>a+(+o.parentRevenue||0),0)+db.external.filter(o=>(o.at||'').slice(0,7)===mon&&o.type==='Lite').reduce((a,o)=>a+((+o.externalGross||0)/2),0);kRev.textContent=fmtY(revMonth+parentMonth);let todayOps=[...db.ops,...db.external].filter(o=>(o.at||'').slice(0,10)===today),todayS=todayOps.filter(o=>o.result==='成功').length,todayRev=db.revenues.filter(r=>r.date===today).reduce((a,r)=>a+revNet(r),0)+db.ops.filter(o=>(o.at||'').slice(0,10)===today&&o.result==='成功').reduce((a,o)=>a+(+o.parentRevenue||0),0)+db.external.filter(o=>(o.at||'').slice(0,10)===today&&o.type==='Lite').reduce((a,o)=>a+((+o.externalGross||0)/2),0);todayChallenges.textContent=todayOps.length;todaySuccesses.textContent=todayS;todayRate.textContent=todayOps.length?(todayS/todayOps.length*100).toFixed(0)+'%':'0%';todayNet.textContent=fmtY(todayRev);let payoutHTML=(period)=>['諒','哲也'].map(acc=>{let v=db.external.filter(x=>x.type==='Lite'&&x.externalAccount===acc&&(x.at||'').slice(0,period.length)===period&&String(x.event||'').trim()!=='相互').reduce((a,x)=>a+externalPartnerPayout(x),0);return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee"><span>${acc}</span><b>${fmtY(v)}</b></div>`}).join('');/*M53_DISABLED_TODAY_PAYOUT*/void payoutHTML(today);/*M53_DISABLED_MONTH_PAYOUT*/void payoutHTML(mon);renderDaily();renderAdvancedAnalysis();/*M53_DISABLED_SIM*/void barHTML(rateRows(ph,o=>o.phone));/*M53_DISABLED_PARENT*/void barHTML(db.parents.map(p=>{let a=[...db.ops.filter(o=>o.type==='Lite'),...db.external.filter(o=>o.type==='Lite')].filter(o=>(o.parentId&&String(o.parentId)===String(p.id))||V33parentKey(o.parentName)===V33parentKey(p.name));let s=a.filter(o=>o.result==='成功').length;return{x:p.id,n:a.length,s,r:a.length?(s/a.length*100):0}}).sort((a,b)=>(b.n>0)-(a.n>0)||b.r-a.r),x=>pinfo(x.x).name);let prRows=(V35canonicalParents(),db.parents.map(p=>{let normal=db.ops.filter(o=>o.result==='成功'&&((o.parentId&&String(o.parentId)===String(p.id))||V33parentKey(o.parentName)===V33parentKey(p.name))).reduce((a,o)=>a+(+o.parentRevenue||0),0);let ext=db.external.filter(o=>o.type==='Lite'&&((o.parentId&&String(o.parentId)===String(p.id))||V33parentKey(o.parentName)===V33parentKey(p.name))).reduce((a,o)=>a+((+o.externalGross||0)/2),0);return{name:p.name,v:normal+ext}})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);parentRevenue.innerHTML=prRows.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.name)}</span><b>${fmtY(x.v)}</b></div>`).join('')||'<div class="muted">データなし</div>'; let ints=ph.map(p=>{let a=ownSuccesses(p,'本家').concat(externalMainSuccesses(p)).sort((a,b)=>new Date(a.at)-new Date(b.at)),g=[];for(let i=1;i<a.length;i++)g.push((new Date(a[i].at)-new Date(a[i-1].at))/864e5);return{name:p,d:g.length?g.reduce((x,y)=>x+y,0)/g.length:null}}).filter(x=>x.d!=null).sort((a,b)=>a.d-b.d);interval.innerHTML=ints.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.name)}</span><b>${x.d.toFixed(1)}日</b></div>`).join('')||'<div class="muted">データなし</div>';let cm={};db.ops.forEach(o=>{let k=o.parentCarrier+' × '+o.carrier;cm[k]??={n:0,s:0};cm[k].n++;if(o.result==='成功')cm[k].s++});compat.innerHTML=Object.entries(cm).slice(0,8).map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span>${esc(k)}</span><b>${(v.s/v.n*100).toFixed(0)}% <small>(${v.s}/${v.n})</small></b></div>`).join('')||'<div class="muted">データなし</div>';
+day14Rows.innerHTML=d14.slice().sort((a,b)=>a._end-b._end).map(o=>`<tr><td><b>${esc(o.phone)}</b></td><td>${esc(o.result)}</td><td>${new Date(o.at).toLocaleString('ja-JP')}</td><td><span class="tag ${o._due?'wait':'set'}">${day14Label(o)}</span></td><td>${fmtDate(o._end)}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">稼働中のLite子端末なし</td></tr>';
+simRows.innerHTML=ph.map(p=>`<tr><td>${esc(p)}</td><td>${esc(db.sims[p].carrier)}</td><td>${fmtH(serverH(p,'Lite'))} <span class="tag wait">${state(p,'Lite')}</span></td><td>${fmtH(failH(p,'Lite'))}</td><td>${fmtH(serverH(p,'本家'))} <span class="tag wait">${state(p,'本家')}</span></td><td>${fmtH(failH(p,'本家'))}</td><td><button class="btn ghost" onclick="editSim('${p}')">編集</button> <button class="btn danger" onclick="deleteItem('sim','${p}')">削除</button></td></tr>`).join('');setRows.innerHTML=db.sets.slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.phone)}</td><td>${x.type}</td><td>${esc(x.device)}</td><td>${fmtH(hoursSince(x.at))}</td><td>${fmtH(serverH(x.phone,x.type))}</td><td>${state(x.phone,x.type)}</td><td><button class="btn ghost" onclick="editSet('${x.id}')">編集</button> <button class="btn danger" onclick="deleteItem('set','${x.id}')">削除</button></td></tr>`).join('');rRows.innerHTML=db.revenues.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(r=>`<tr><td>${r.date}</td><td>${esc(r.phone)}</td><td>${fmtY(r.liteChild)}</td><td>${fmtY(r.main)}</td><td>${fmtY(revFee(r))}</td><td><b>${fmtY(revNet(r))}</b></td><td><button class="btn ghost" onclick="editRevenue('${r.id}')">編集</button> <button class="btn danger" onclick="deleteItem('rev','${r.id}')">削除</button></td></tr>`).join('')||'<tr><td colspan="7" class="muted">収益データなし</td></tr>';
+normalHistoryRows.innerHTML=db.ops.slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.phone||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.event)}</td><td>${esc(x.result)}</td><td>${esc(x.at)}</td><td>${esc(x.parentName||'—')}</td><td>${fmtY(x.parentRevenue||0)}</td><td>${reminderLabel(x)}</td><td><button class="btn ghost" onclick="editOp('${x.id}')">編集</button> <button class="btn danger" onclick="deleteRecord('op','${x.id}')">削除</button></td></tr>`).join('')||'<tr><td colspan="9" class="muted">通常招待履歴なし</td></tr>';
+extLiteHistoryRows.innerHTML=db.external.filter(x=>x.type==='Lite').sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.parentName||'—')}</td><td>${esc(x.externalAccount||'—')}</td><td>${esc(x.event)}</td><td>${esc(x.result)}</td><td>${esc(x.at)}</td><td>${fmtY(x.parentRevenue||0)}</td><td>${fmtY(x.externalPayout||0)}</td><td>${reminderLabel(x)}</td><td><button class="btn ghost" onclick="editExternal('${x.id}')">編集</button> <button class="btn danger" onclick="deleteRecord('ext','${x.id}')">削除</button></td></tr>`).join('')||'<tr><td colspan="9" class="muted">Lite外部履歴なし</td></tr>';
+extMainHistoryRows.innerHTML=db.external.filter(x=>x.type==='本家').sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.phone||'—')}</td><td>${esc(x.event)}</td><td>${esc(x.at)}</td><td>${reminderLabel(x)}</td><td><button class="btn ghost" onclick="editExternal('${x.id}')">編集</button> <button class="btn danger" onclick="deleteRecord('ext','${x.id}')">削除</button></td></tr>`).join('')||'<tr><td colspan="5" class="muted">本家外部履歴なし</td></tr>';parentRows.innerHTML=db.parents.map(p=>`<tr class="editrow"><td><input id="pn${p.id}" value="${esc(p.name)}"></td><td><select id="pc${p.id}">${db.carriers.map(c=>`<option ${c===p.carrier?'selected':''}>${esc(c)}</option>`).join('')}</select></td><td><input id="pd${p.id}" type="date" value="${p.created||''}"></td><td><button class="btn ghost" onclick="saveParent('${p.id}')">保存</button> <button class="btn danger" onclick="hideParent('${p.id}')">削除</button></td></tr>`).join('');deviceList.innerHTML=db.devices.map(x=>`<span class="tag wait" style="margin:2px">${esc(x)} <b onclick="renameMaster('device','${esc(x)}')" style="cursor:pointer">編集</b> <b onclick="hideMaster('device','${esc(x)}')" style="cursor:pointer">×</b></span>`).join('');renderRegistered();carrierList.innerHTML=db.carriers.map(x=>`<span class="tag set" style="margin:2px">${esc(x)} <b onclick="renameMaster('carrier','${esc(x)}')" style="cursor:pointer">編集</b> <b onclick="hideMaster('carrier','${esc(x)}')" style="cursor:pointer">×</b></span>`).join('');feeCalc();toggleParentRevenue();toggleReminderUI()}
+function ref(kind){let title='',rows=[],ph=Object.keys(db.sims);if(kind==='liteSet'){title='Lite セット待ちSIM';rows=ph.filter(p=>serverH(p,'Lite')>=350&&setH(p,'Lite')==null).map(p=>[p,db.sims[p].carrier,fmtH(serverH(p,'Lite')),state(p,'Lite')])}else if(kind==='liteReady'){title='Lite 招待可能SIM';rows=ph.filter(p=>state(p,'Lite')==='招待可能').map(p=>[p,db.sims[p].carrier,fmtH(serverH(p,'Lite')),state(p,'Lite')])}else if(kind==='mainSet'){title='本家 セット待ちSIM';rows=ph.filter(p=>serverH(p,'本家')>=350&&setH(p,'本家')==null).map(p=>[p,db.sims[p].carrier,fmtH(serverH(p,'本家')),state(p,'本家')])}else if(kind==='mainReady'){title='本家 招待可能SIM';rows=ph.filter(p=>state(p,'本家')==='招待可能').map(p=>[p,db.sims[p].carrier,fmtH(serverH(p,'本家')),state(p,'本家')])}else if(kind==='revenue'){title='収益';rows=db.revenues.map(r=>[r.date,r.phone,fmtY(revGross(r)),fmtY(revFee(r)),fmtY(revNet(r))]).concat(V34parentOps().map(o=>[(o.at||'').slice(0,10),o.parentName||'親',fmtY(o.parentRevenue),fmtY(0),fmtY(o.parentRevenue||0)]))}else if(kind==='parentRevenue'){title='親別収益';rows=(V35canonicalParents(),db.parents.map(p=>[p.name,fmtY(V39parentRevenueFor(p))]))}else if(kind==='day14'){title='14日目・終了対象';rows=active14().filter(o=>o._due).map(o=>[o.phone,o.result,new Date(o.at).toLocaleString('ja-JP'),day14Label(o),fmtDate(o._end)])}else if(kind==='day14all'){title='Lite 14日稼働中';rows=active14().sort((a,b)=>a._end-b._end).map(o=>[o.phone,o.result,new Date(o.at).toLocaleString('ja-JP'),day14Label(o),fmtDate(o._end)])}else if(kind==='reminders'){title='作業リマインド一覧';rows=reminderItems().map(x=>[x.day+'日',x.phone||x.parentName||'—',x.type,x.event,fmtDate(x.due),x.status])}else{title='実績';rows=[...db.ops,...db.external].sort((a,b)=>new Date(b.at)-new Date(a.at)).map(o=>[o.phone||'外部',o.type,new Date(o.at).toLocaleString('ja-JP'),o.parentName||'—',o.result])}modalTitle.textContent=title;modalBody.innerHTML=`<div class="tablewrap"><table>${rows.map(r=>'<tr>'+r.map(c=>`<td>${esc(c)}</td>`).join('')+'</tr>').join('')||'<tr><td class="muted">該当データなし</td></tr>'}</table></div>`;modal.classList.add('show')}
+iAt.value=eAt.value=eMainAt.value=setAt.value=nowLocal();rDate.value=nowLocal().slice(0,10);regType.addEventListener('change',renderRegistered);setInterval(()=>{
+ clock.textContent=new Date().toLocaleString('ja-JP');
+ if(document.getElementById('registered').classList.contains('active'))renderRegistered();
+ if(document.getElementById('home').classList.contains('active')){V26renderRecovery();V27renderLower();V28render();V30afterData()}
+ else{V27renderAnalysis();V28initAnalysis()}
+},1000);
+render();V26renderRecovery();V27renderLower();V28render();V40refresh();V42refresh();
+
+let analysisPeriod='day',analysisView='daily';
+function allAnalysisOps(){return [...db.ops,...db.external].filter(o=>o&&o.at&&o.type===analysisType)}
+function analysisFiltered(){let a=allAnalysisOps(),d=(window.anDate&&anDate.value)||nowLocal().slice(0,10),m=(window.anMonth&&anMonth.value)||nowLocal().slice(0,7);if(analysisPeriod==='day')a=a.filter(o=>o.at.slice(0,10)===d);if(analysisPeriod==='month')a=a.filter(o=>o.at.slice(0,7)===m);return a}
+function rateTable(groups,label){let ent=Object.entries(groups).sort((a,b)=>b[1].n-a[1].n);return '<div class="tablewrap"><table><thead><tr><th>'+label+'</th><th>成功</th><th>失敗</th><th>試行</th><th>成功率</th></tr></thead><tbody>'+ent.map(([k,v])=>`<tr><td>${esc(k||'—')}</td><td>${v.s}</td><td>${v.n-v.s}</td><td>${v.n}</td><td><b>${v.n?(v.s/v.n*100).toFixed(1):0}%</b> (${v.s}/${v.n})</td></tr>`).join('')+'</tbody></table></div>'}
+function groupRate(a,key){let g={};a.forEach(o=>{let k=key(o);g[k]??={n:0,s:0};g[k].n++;if(o.result==='成功')g[k].s++});return g}
+function renderAnalysisPage(){if(!window.analysisSummary)return;anType.value=analysisType;if(!anDate.value)anDate.value=nowLocal().slice(0,10);if(!anMonth.value)anMonth.value=nowLocal().slice(0,7);anDate.style.display=analysisPeriod==='day'?'block':'none';anMonth.style.display=analysisPeriod==='month'?'block':'none';[['anDayBtn','day'],['anMonthBtn','month'],['anAllBtn','all']].forEach(([id,v])=>{$(id).className='btn '+(analysisPeriod===v?'':'ghost')});let a=analysisFiltered(),suc=a.filter(o=>o.result==='成功').length,fail=a.filter(o=>o.result==='失敗').length;analysisSummary.innerHTML=`<div class="card kpi cyanline"><div class="muted">対象</div><div class="num">${a.length}</div><small>入力した招待日時で集計</small></div><div class="card kpi greenline"><div class="muted">成功</div><div class="num">${suc}</div><small>${a.length?`成功 ${suc}/${a.length}`:'データなし'}</small></div><div class="card kpi pinkline"><div class="muted">失敗</div><div class="num">${fail}</div><small>${a.length?`失敗 ${fail}/${a.length}`:'データなし'}</small></div><div class="card kpi goldline"><div class="muted">成功率</div><div class="num">${a.length?(suc/a.length*100).toFixed(1):0}%</div><small>母数 ${a.length}件</small></div>`;
+let body='';
+if(analysisView==='daily'){let g=groupRate(a,o=>o.at.slice(0,10));body='<h3>日ごとの結果</h3><div class="muted">日付単位で成功数・失敗数・成功率を確認</div>'+rateTable(g,'日付')}
+else if(analysisView==='parent'){let g=groupRate(a,o=>o.parentName||pinfo(o.parentId).name);body='<h3>親別</h3>'+rateTable(g,'親')+'<div style="margin-top:18px"><h3>親の成功間隔</h3>'+parentIntervalTable(a)+'</div>'}
+else if(analysisView==='sim')body='<h3>SIM別</h3>'+rateTable(groupRate(a,o=>o.phone||'電話番号なし'),'SIM');
+else if(analysisView==='device')body='<h3>端末別</h3>'+rateTable(groupRate(a,o=>o.device||'端末なし'),'端末');
+else if(analysisView==='cross')body='<h3>SIM / 端末通し番号</h3><div class="muted">同じSIMを別端末、同じ端末を別SIMで比較</div>'+rateTable(groupRate(a,o=>(o.phone||'電話番号なし')+' × '+(o.device||'端末なし')),'組み合わせ');
+else if(analysisView==='time')body='<h3>時間帯別</h3>'+rateTable(groupRate(a,o=>String(new Date(o.at).getHours()).padStart(2,'0')+'時台'),'時間帯');
+else if(analysisView==='weekday'){let wd=['日','月','火','水','木','金','土'];body='<h3>曜日 × 時間帯</h3><div class="muted">曜日と実施時刻を同時に比較</div>'+rateTable(groupRate(a,o=>wd[new Date(o.at).getDay()]+'曜 '+String(new Date(o.at).getHours()).padStart(2,'0')+'時台'),'曜日・時間')}
+else body='<h3>成功起点経過時間</h3><div class="muted">途中の失敗ではリセットせず、前回成功から招待時点までの時間</div>'+rateTable(groupRate(a,o=>{let h=+o.simSuccessElapsedAt;if(!Number.isFinite(h))return '成功履歴なし';return h<100?'0–100h':h<200?'100–200h':h<350?'200–350h':'350h以上'}),'経過時間');
+analysisBody.innerHTML=body;document.querySelectorAll('#analysisViews button').forEach(b=>b.className='btn '+(b.dataset.av===analysisView?'':'ghost'))}
+function parentIntervalTable(a){let by={};a.filter(o=>o.result==='成功').forEach(o=>{let k=o.parentName||pinfo(o.parentId).name;(by[k]??=[]).push(o)});let rows=Object.entries(by).map(([k,v])=>{v.sort((x,y)=>new Date(x.at)-new Date(y.at));let gaps=[];for(let i=1;i<v.length;i++)gaps.push(hoursBetween(v[i-1].at,v[i].at));return {k,n:v.length,avg:gaps.length?gaps.reduce((x,y)=>x+y,0)/gaps.length:null,min:gaps.length?Math.min(...gaps):null}});return '<div class="tablewrap"><table><thead><tr><th>親</th><th>成功件数</th><th>平均間隔</th><th>最短間隔</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${esc(r.k)}</td><td>${r.n}</td><td>${r.avg==null?'—':fmtH(r.avg)}</td><td>${r.min==null?'—':fmtH(r.min)}</td></tr>`).join('')+'</tbody></table></div>'}
+document.addEventListener('click',e=>{let b=e.target.closest('#analysisViews button');if(b){analysisView=b.dataset.av;renderAnalysisPage()}});
+function dedupeMasters(){let seen=new Map(),idmap={};db.parents.forEach(p=>{let k=(p.name||'').trim();if(!k)return;if(seen.has(k))idmap[p.id]=seen.get(k).id;else seen.set(k,p)});if(Object.keys(idmap).length){db.ops.forEach(o=>{if(idmap[o.parentId])o.parentId=idmap[o.parentId]});db.external.forEach(o=>{if(idmap[o.parentId])o.parentId=idmap[o.parentId]});db.parents=[...seen.values()]};db.devices=[...new Set(db.devices)];db.carriers=[...new Set(db.carriers)]}
+
+
+function V26el(id){return document.getElementById(id)}
+function V26localDate(d=new Date()){let x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)}
+function V26fmtY(v){return '¥'+Math.round(Number(v)||0).toLocaleString()}
+function V26fee(v){v=Number(v)||0;return v>0&&v<5000?v*.15:0}
+function V26revNet(r){let a=Number(r.liteChild)||0,b=Number(r.main)||0;return a+b-V26fee(a)-V26fee(b)}
+function V26serverH(phone,type){
+ let s=db.sims&&db.sims[phone]; if(!s)return null;
+ let own=(db.ops||[]).filter(o=>o.phone===phone&&o.type===type&&o.result==='成功');
+ let ext=type==='本家'?(db.external||[]).filter(o=>o.phone===phone&&o.type==='本家'&&o.result==='成功'):[];
+ let all=own.concat(ext).sort((a,b)=>new Date(b.at)-new Date(a.at));
+ if(all[0])return Math.max(0,(Date.now()-new Date(all[0].at))/36e5);
+ let b=s.base&&s.base[type]; return b?(Number(b.h)||0)+Math.max(0,(Date.now()-new Date(b.at))/36e5):0;
+}
+function V26lastSet(phone,type){
+ let a=(db.sets||[]).filter(x=>x.phone===phone&&x.type===type).sort((u,v)=>new Date(v.at)-new Date(u.at));
+ return a[0]||null;
+}
+function V26state(phone,type){
+ let sh=V26serverH(phone,type), st=V26lastSet(phone,type);
+ if(sh==null)return '未登録';
+ if(sh<350)return '保存中';
+ if(!st)return 'セット待ち';
+ return Math.max(0,(Date.now()-new Date(st.at))/36e5)>=50?'招待可能':'セット後待機';
+}
+function V26active14(){
+ let latest={};
+ (db.ops||[]).filter(o=>o.type==='Lite'&&o.phone&&o.at).forEach(o=>{if(!latest[o.phone]||new Date(o.at)>new Date(latest[o.phone].at))latest[o.phone]=o});
+ let rev=(db.revenues||[]);
+ let today=new Date(V26localDate()+'T00:00:00');
+ return Object.values(latest).filter(o=>!rev.some(r=>r.phone===o.phone&&Number(r.liteChild)>0&&new Date((r.date||'')+'T23:59:59')>=new Date(o.at))).map(o=>{
+   let inv=new Date(o.at.slice(0,10)+'T00:00:00'), end=new Date(inv); end.setDate(end.getDate()+14);
+   let day=Math.floor((today-inv)/86400000);
+   return {...o,_end:end,_day:day,_due:today>=end}
+ }).filter(o=>o._day>=0);
+}
+function V26renderRecovery(){
+ try{
+  const ph=Object.keys(db.sims||{});
+  const liteSet=ph.filter(p=>V26serverH(p,'Lite')>=350&&!V26lastSet(p,'Lite'));
+  const mainSet=ph.filter(p=>V26serverH(p,'本家')>=350&&!V26lastSet(p,'本家'));
+  const liteReady=ph.filter(p=>V26state(p,'Lite')==='招待可能');
+  const mainReady=ph.filter(p=>V26state(p,'本家')==='招待可能');
+  let d14=V26active14();
+  let today=V26localDate(), mon=today.slice(0,7);
+  let revMonth=(db.revenues||[]).filter(r=>(r.date||'').slice(0,7)===mon).reduce((a,r)=>a+V26revNet(r),0);
+  let parentMonth=[...(db.ops||[]),...(db.external||[])].filter(o=>(o.at||'').slice(0,7)===mon).reduce((a,o)=>a+(Number(o.parentRevenue)||0),0);
+  let vals={kRev:V26fmtY(revMonth+parentMonth),kDay14:d14.filter(x=>x._due).length,kLiteSet:liteSet.length,kMainSet:mainSet.length,kLiteReady:liteReady.length,kMainReady:mainReady.length};
+  Object.entries(vals).forEach(([id,v])=>{let e=V26el(id);if(e)e.textContent=v});
+  let body=V26el('day14Rows');
+  if(body)body.innerHTML=d14.slice().sort((a,b)=>a._end-b._end).map(o=>`<tr><td><b>${esc(o.phone)}</b></td><td>${esc(o.result)}</td><td>${new Date(o.at).toLocaleString('ja-JP')}</td><td><span class="tag wait">${o._day===0?'招待日':o._day+'日目'}</span></td><td>${o._end.toLocaleDateString('ja-JP')}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">稼働中のLite子端末なし</td></tr>';
+  let sr=V26el('simRows');
+  if(sr)sr.innerHTML=ph.map(p=>`<tr><td>${esc(p)}</td><td>${esc((db.sims[p]||{}).carrier||'—')}</td><td>${fmtH(V26serverH(p,'Lite'))} <span class="tag wait">${V26state(p,'Lite')}</span></td><td>${fmtH(failH(p,'Lite'))}</td><td>${fmtH(V26serverH(p,'本家'))} <span class="tag wait">${V26state(p,'本家')}</span></td><td>${fmtH(failH(p,'本家'))}</td><td><button class="btn ghost" onclick="editSim('${p}')">編集</button> <button class="btn danger" onclick="deleteItem('sim','${p}')">削除</button></td></tr>`).join('');
+  let nh=V26el('normalHistoryRows');
+  if(nh)nh.innerHTML=(db.ops||[]).slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).map(x=>`<tr><td>${esc(x.phone||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.event)}</td><td>${esc(x.result)}</td><td>${esc(x.at)}</td><td>${esc(x.parentName||'—')}</td><td>${V26fmtY(x.parentRevenue||0)}</td><td>${reminderLabel(x)}</td><td><button class="btn ghost" onclick="editOp('${x.id}')">編集</button> <button class="btn danger" onclick="deleteRecord('op','${x.id}')">削除</button></td></tr>`).join('');
+  setSyncStatus(`V26 復旧完了：SIM ${ph.length} / 通常招待 ${(db.ops||[]).length} / 25日 ${(db.ops||[]).filter(o=>(o.at||'').slice(0,10)==='2026-09-25').length}件`);
+ }catch(e){console.error('V26 recovery render',e);setSyncStatus('V26 表示エラー：'+e.message,false)}
+}
+
+
+function V27date(v){return (v||'').slice(0,10)}
+function V27month(v){return (v||'').slice(0,7)}
+function V27pct(a,b){return b?Math.round(a/b*1000)/10:0}
+function V27todayOps(){let t=V26localDate();return (db.ops||[]).filter(o=>V27date(o.at)===t)}
+function V27extReturn(o){return externalPartnerPayout(o)}
+function V27renderLower(){
+ try{
+  let today=V26localDate(), mon=today.slice(0,7), ops=V27todayOps(), ok=ops.filter(o=>o.result==='成功');
+  let todayParent=ops.reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+  let todayRev=(db.revenues||[]).filter(r=>r.date===today).reduce((s,r)=>s+V26revNet(r),0);
+  let cards=[...document.querySelectorAll('#home .card')];
+  // 本日の結果は既存IDが無いので見出しから安全に直接更新
+  let h=[...document.querySelectorAll('#home h2,#home h3')].find(x=>x.textContent.includes('本日の結果'));
+  if(h){let box=h.parentElement; let nums=box.querySelectorAll('b,.big,.num,strong'); if(nums.length>=4){nums[0].textContent=ops.length;nums[1].textContent=ok.length;nums[2].textContent=V26fmtY(todayParent+todayRev);nums[3].textContent=V27pct(ok.length,ops.length)+'%'}}
+  // テキスト構造が単純な場合も置換
+  if(h){let box=h.parentElement; let walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT); let arr=[]; while(walker.nextNode())arr.push(walker.currentNode); 
+    let labels=['チャレンジ数','成功数','本日の収支','成功率'];
+    labels.forEach((lab,i)=>{let n=arr.findIndex(x=>x.nodeValue.trim()===lab);if(n>=0){for(let j=n+1;j<arr.length;j++){if(arr[j].nodeValue.trim()!==''){arr[j].nodeValue=i===0?String(ops.length):i===1?String(ok.length):i===2?V26fmtY(todayParent+todayRev):V27pct(ok.length,ops.length)+'%';break}}}})
+  }
+  // 外部還元：諒/哲也を日/月で集計
+  let ex=db.external||[];
+  let names=['諒','哲也'];
+  let vals={};
+  names.forEach(n=>{vals[n]={day:ex.filter(o=>o.externalAccount===n&&V27date(o.at)===today).reduce((s,o)=>s+V27extReturn(o),0),month:ex.filter(o=>o.externalAccount===n&&V27month(o.at)===mon).reduce((s,o)=>s+V27extReturn(o),0)}})
+  if(h){let box=h.parentElement; [...box.querySelectorAll('*')].forEach(el=>{
+    let tx=el.textContent.trim();
+    if(tx==='本日の外部還元')el.nextElementSibling&&(el.nextElementSibling.textContent=`諒 ${V26fmtY(vals['諒'].day)} / 哲也 ${V26fmtY(vals['哲也'].day)}`);
+    if(tx==='今月の外部還元')el.nextElementSibling&&(el.nextElementSibling.textContent=`諒 ${V26fmtY(vals['諒'].month)} / 哲也 ${V26fmtY(vals['哲也'].month)}`);
+  })}
+ }catch(e){console.error('V27 lower',e)}
+}
+function V27analysisData(){
+ let period=(typeof analysisPeriod!=='undefined'?analysisPeriod:'day'), date=(typeof analysisDate!=='undefined'?analysisDate:V26localDate()), month=(typeof analysisMonth!=='undefined'?analysisMonth:V26localDate().slice(0,7));
+ let a=(db.ops||[]).filter(o=>period==='all'||(period==='month'?V27month(o.at)===month:V27date(o.at)===date));
+ return a;
+}
+function V27renderAnalysis(){
+ try{
+  let root=document.getElementById('analysis'); if(!root||!root.classList.contains('active'))return;
+  let a=V27analysisData(), ok=a.filter(o=>o.result==='成功');
+  // 既存分析画面の「試行/成功/成功率」カードを実データで上書き
+  [...root.querySelectorAll('.card')].forEach(c=>{
+    let t=c.textContent;
+    let v=c.querySelector('.big,.num,strong,b');
+    if(!v)return;
+    if(/試行|チャレンジ|招待数/.test(t))v.textContent=a.length;
+    else if(/成功数/.test(t))v.textContent=ok.length;
+    else if(/成功率/.test(t))v.textContent=`${V27pct(ok.length,a.length)}% (${ok.length}/${a.length})`;
+  });
+  // 親/SIM/端末/時間帯の表があれば、見出し名から実データ集計を投入
+  function grp(keyfn){
+    let m={};a.forEach(o=>{let k=keyfn(o)||'未設定';(m[k]||(m[k]={n:0,s:0}));m[k].n++;if(o.result==='成功')m[k].s++});
+    return Object.entries(m).sort((x,y)=>y[1].n-x[1].n);
+  }
+  let groups={
+   '親別':grp(o=>o.parentName),
+   'SIM別':grp(o=>o.phone),
+   '端末別':grp(o=>o.device),
+   'SIM / 端末通し番号':grp(o=>(o.phone||'—')+' × '+(o.device||'—')),
+   '時間帯':grp(o=>{let h=Number((o.at||'').slice(11,13));return Number.isFinite(h)?String(h).padStart(2,'0')+':00–'+String((h+1)%24).padStart(2,'0')+':00':'未設定'})
+  };
+  [...root.querySelectorAll('h2,h3,h4')].forEach(h=>{
+    let key=Object.keys(groups).find(k=>h.textContent.includes(k)); if(!key)return;
+    let sec=h.closest('.card,.panel,section,div'); if(!sec)return;
+    let tb=sec.querySelector('tbody'); if(tb)tb.innerHTML=groups[key].map(([k,v])=>`<tr><td>${esc(k)}</td><td>${v.s}</td><td>${v.n}</td><td>${V27pct(v.s,v.n)}% (${v.s}/${v.n})</td></tr>`).join('');
+  });
+ }catch(e){console.error('V27 analysis',e)}
+}
+const V27oldRenderRecovery=V26renderRecovery;
+V26renderRecovery=function(){V27oldRenderRecovery();V27renderLower();V27renderAnalysis()}
+
+
+/* V28: recovered DB is the single source for dashboard lower section + analysis */
+function V28date(v){return String(v||'').slice(0,10)}
+function V28month(v){return String(v||'').slice(0,7)}
+function V28money(v){return V26fmtY(Number(v)||0)}
+function V28payout(o){return Number(o.externalPayout)||((Number(o.parentRevenue)||0)/2)}
+function V28render(){
+ try{
+  const today=V26localDate(), mon=today.slice(0,7);
+  const all=[...(db.ops||[]),...(db.external||[])];
+  const to=all.filter(o=>V28date(o.at)===today), suc=to.filter(o=>o.result==='成功');
+  const todayChild=(db.revenues||[]).filter(r=>V28date(r.date)===today).reduce((s,r)=>s+V26revNet(r),0);
+  const todayParent=to.reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+  set('todayChallenges',to.length); set('todaySuccesses',suc.length);
+  set('todayRate',to.length?(suc.length/to.length*100).toFixed(1)+'%':'0%');
+  set('todayNet',V28money(todayChild+todayParent));
+  function payouts(period){
+    return ['諒','哲也'].map(n=>{
+      const v=(db.external||[]).filter(o=>o.type==='Lite'&&o.externalAccount===n&&String(o.at||'').slice(0,period.length)===period)
+        .reduce((s,o)=>s+V28payout(o),0);
+      return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee"><span>${n}</span><b>${V28money(v)}</b></div>`
+    }).join('');
+  }
+  const td=document.getElementById('todayExternalPayouts'), md=document.getElementById('M55_legacy_monthExternalPayouts_disabled');
+  if(td)td.innerHTML=payouts(today); if(md)md.innerHTML=payouts(mon);
+
+  const rr=document.getElementById('reminderRows');
+  if(rr){
+    const items=reminderItems();
+    rr.innerHTML=items.filter(x=>x.delta<=1).map(x=>`<tr class="${x.delta<0?'overdue':x.delta===0?'dueToday':''}"><td><b>${x.day}日</b></td><td>${esc(x.phone||x.parentName||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.event)}</td><td>${fmtDate(x.due)}</td><td><b>${x.status}</b></td></tr>`).join('')||'<tr><td colspan="6" class="muted">直近の作業リマインドなし</td></tr>';
+  }
+ }catch(e){console.error('V28 dashboard',e)}
+}
+function V28initAnalysis(){
+ try{
+   const dates=[...(db.ops||[]),...(db.external||[])].map(o=>V28date(o.at)).filter(Boolean).sort();
+   const latest=dates[dates.length-1]||V26localDate();
+   if(window.anDate && !anDate.dataset.v28){anDate.value=latest;anDate.dataset.v28='1'}
+   if(window.anMonth && !anMonth.dataset.v28){anMonth.value=latest.slice(0,7);anMonth.dataset.v28='1'}
+   renderAnalysisPage();
+ }catch(e){console.error('V28 analysis',e)}
+}
+
+
+/* V29: reminder and today's result use current db after cloud load */
+function V29days(o){
+  const raw=o.reminders ?? o.reminderDays ?? o.reminder ?? [];
+  if(Array.isArray(raw)) return raw.map(Number).filter(x=>[5,7,10,14].includes(x));
+  if(typeof raw==='string') return raw.split(/[,/ ]+/).map(Number).filter(x=>[5,7,10,14].includes(x));
+  return [];
+}
+function V29addDays(ds,n){
+  const d=new Date(String(ds).slice(0,10)+'T00:00:00'); d.setDate(d.getDate()+n);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function V29reminders(){
+ const today=V26localDate(), out=[];
+ [...(db.ops||[]),...(db.external||[])].forEach(o=>{
+   V29days(o).forEach(day=>{
+     const due=V29addDays(o.at,day);
+     const delta=Math.round((new Date(due+'T00:00:00')-new Date(today+'T00:00:00'))/86400000);
+     if(delta<=1) out.push({day,due,delta,phone:o.phone||o.childPhone||'',type:o.type||o.system||'',event:o.event||'',status:delta<0?'期限超過':delta===0?'今日':'明日'});
+   });
+ });
+ return out.sort((a,b)=>a.due.localeCompare(b.due));
+}
+function V29renderReminder(){
+ const rr=document.getElementById('reminderRows'); if(!rr)return;
+ const a=V29reminders();
+ rr.innerHTML=a.length?a.map(x=>`<tr><td><b>${x.day}日</b></td><td>${esc(x.phone||'—')}</td><td>${esc(x.type||'—')}</td><td>${esc(x.event||'—')}</td><td>${x.due}</td><td><b>${x.status}</b></td></tr>`).join(''):'<tr><td colspan="6" class="muted">直近の作業リマインドなし</td></tr>';
+}
+function V29renderToday(){
+ const today=V26localDate();
+ const a=[...(db.ops||[]),...(db.external||[])].filter(o=>V28date(o.at)===today);
+ const s=a.filter(o=>o.result==='成功');
+ const set=(id,v)=>{let e=document.getElementById(id);if(e)e.textContent=v};
+ set('todayChallenges',a.length); set('todaySuccesses',s.length);
+ set('todayRate',a.length?(s.length/a.length*100).toFixed(1)+'%':'0%');
+ const pr=a.reduce((z,o)=>z+(Number(o.parentRevenue)||0),0);
+ const cr=(db.revenues||[]).filter(r=>V28date(r.date)===today).reduce((z,r)=>z+V26revNet(r),0);
+ set('todayNet',V28money(pr+cr));
+}
+function V29afterData(){V29renderToday();V29renderReminder();V28initAnalysis();}
+
+
+/* V30: reminder means DAILY work from day 1 through configured final day */
+function V30dayDiff(base,today){
+  const a=new Date(String(base).slice(0,10)+'T00:00:00');
+  const b=new Date(String(today).slice(0,10)+'T00:00:00');
+  return Math.round((b-a)/86400000);
+}
+function V30dailyReminders(){
+  const today=V26localDate(), out=[];
+  [...(db.ops||[]),...(db.external||[])].forEach(o=>{
+    const elapsed=V30dayDiff(o.at,today); // invitation next day = day 1
+    if(elapsed<1)return;
+    V29days(o).forEach(total=>{
+      if(elapsed<=total){
+        out.push({
+          total, current:elapsed,
+          phone:o.phone||o.childPhone||o.parentName||'—',
+          type:o.type||o.system||'—', event:o.event||'—',
+          end:V29addDays(o.at,total),
+          final:elapsed===total
+        });
+      }
+    });
+  });
+  return out.sort((a,b)=>a.total-b.total||a.end.localeCompare(b.end)||String(a.phone).localeCompare(String(b.phone)));
+}
+function V30renderReminder(){
+ const rr=document.getElementById('reminderRows'); if(!rr)return;
+ const a=V30dailyReminders();
+ if(!a.length){rr.innerHTML='<tr><td colspan="6" class="muted">本日の作業リマインドなし</td></tr>';return}
+ rr.innerHTML=a.map(x=>`<tr>
+   <td><b>${x.total}日</b></td>
+   <td>${esc(x.phone)}</td>
+   <td>${esc(x.type)}</td>
+   <td>${esc(x.event)}</td>
+   <td><b>${x.current}/${x.total}日目</b><br><span class="muted">終了 ${x.end}</span></td>
+   <td>${x.final?'<b style="color:#d60045">本日終了</b>':'今日作業'}</td>
+ </tr>`).join('');
+}
+function V30afterData(){V29renderToday();V30renderReminder();V28initAnalysis();}
+
+
+/* V32: reminder target is child SIM / external account, never parent-name fallback */
+function V32target(o){
+  const phone=o.phone||o.childPhone||o.simPhone||'';
+  if(phone) return {key:'sim:'+phone,label:phone,sub:''};
+  const acct=o.externalAccount||o.account||'';
+  if(acct) return {key:'ext:'+acct,label:acct,sub:o.parentName?('親 '+o.parentName):''};
+  return null;
+}
+function V32dailyReminders(){
+  const today=V26localDate(), map=new Map();
+  [...(db.ops||[]),...(db.external||[])].forEach(o=>{
+    const target=V32target(o); if(!target)return;
+    const elapsed=V30dayDiff(o.at,today);
+    if(elapsed<1)return;
+    V29days(o).forEach(total=>{
+      if(elapsed>total)return;
+      const type=o.type||o.system||'—', event=o.event||'—';
+      const key=[target.key,type,event,total].join('|');
+      const row={total,current:elapsed,target:target.label,sub:target.sub,type,event,
+        end:V29addDays(o.at,total),final:elapsed===total};
+      const prev=map.get(key);
+      // 同じ対象・種類・イベント・期間は、より新しい招待を1件だけ採用
+      if(!prev || row.current<prev.current) map.set(key,row);
+    });
+  });
+  return [...map.values()].sort((a,b)=>a.total-b.total||a.end.localeCompare(b.end)||a.target.localeCompare(b.target));
+}
+function V32renderReminder(){
+ const rr=document.getElementById('reminderRows'); if(!rr)return;
+ const a=V32dailyReminders();
+ if(!a.length){rr.innerHTML='<tr><td colspan="6" class="muted">本日の作業リマインドなし</td></tr>';return}
+ rr.innerHTML=a.map(x=>`<tr>
+  <td><b>${x.total}日</b></td>
+  <td><b>${esc(x.target)}</b>${x.sub?`<br><span class="muted">${esc(x.sub)}</span>`:''}</td>
+  <td>${esc(x.type)}</td><td>${esc(x.event)}</td>
+  <td><b>${x.current}/${x.total}日目</b><br><span class="muted">終了 ${x.end}</span></td>
+  <td>${x.final?'<b style="color:#d60045">本日終了</b>':'今日作業'}</td>
+ </tr>`).join('');
+}
+function V32afterData(){V29renderToday();V32renderReminder();V28initAnalysis();}
+
+
+/* V33: parent master canonicalization by normalized name, with reference remap */
+function V33parentName(p){return String((p&&typeof p==='object')?(p.name||p.parentName||''):p||'').trim();}
+function V33parentKey(n){return String(n||'').trim().replace(/\s+/g,'').toLowerCase();}
+function V33fixParents(){
+ const src=Array.isArray(db.parents)?db.parents:Object.values(db.parents||{});
+ const canonical=[], byName=new Map(), idMap=new Map();
+ src.forEach((p,i)=>{
+   const name=V33parentName(p); if(!name)return;
+   const key=V33parentKey(name), oldId=(p&&typeof p==='object')?(p.id||p.parentId||''):'';
+   let c=byName.get(key);
+   if(!c){
+     c=(p&&typeof p==='object')?{...p}:{name};
+     c.name=name;
+     if(!c.id)c.id='parent_'+key;
+     byName.set(key,c); canonical.push(c);
+   }else if(p&&typeof p==='object'){
+     // preserve useful master fields if the canonical row lacks them
+     ['carrier','createdAt','accountCreatedAt'].forEach(k=>{if(!c[k]&&p[k])c[k]=p[k]});
+   }
+   if(oldId)idMap.set(String(oldId),String(c.id));
+ });
+ const remap=o=>{
+   if(!o||typeof o!=='object')return;
+   if(o.parentId&&idMap.has(String(o.parentId)))o.parentId=idMap.get(String(o.parentId));
+   if(o.parentName){
+     const c=byName.get(V33parentKey(o.parentName));
+     if(c){o.parentId=c.id;o.parentName=c.name;}
+   }
+ };
+ ['ops','external','revenues','deviceSets'].forEach(k=>(db[k]||[]).forEach(remap));
+ db.parents=canonical;
+ return canonical.length;
+}
+function V33afterData(){
+ const n=V33fixParents();
+ V29renderToday();V32renderReminder();V28initAnalysis();
+ try{renderSettings();}catch(e){}
+ return n;
+}
+
+
+/* V34: 親収益は「通常招待の成功時に入力した親収益」だけ。外部還元は絶対に混ぜない */
+function V34parentOps(){return (db.ops||[]).filter(o=>o.result==='成功' && Number(o.parentRevenue)>0);}
+function V34parentRevenueFor(parent){
+ const key=V33parentKey(parent&&parent.name);
+ return V34parentOps().filter(o=>{
+   if(parent&&o.parentId&&parent.id&&String(o.parentId)===String(parent.id))return true;
+   return V33parentKey(o.parentName)===key;
+ }).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+}
+function V34renderParentRevenue(){
+ const el=document.getElementById('parentRevenue'); if(!el)return;
+ const rows=(db.parents||[]).map(p=>({name:p.name,v:V34parentRevenueFor(p)}))
+   .filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+ el.innerHTML=rows.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.name)}</span><b>${V26fmtY(x.v)}</b></div>`).join('')
+   ||'<div class="muted">データなし</div>';
+}
+function V34renderMoney(){
+ const today=V26localDate(), mon=today.slice(0,7);
+ const parentMonth=V34parentOps().filter(o=>V28month(o.at)===mon).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+ const childMonth=(db.revenues||[]).filter(r=>V28month(r.date)===mon).reduce((s,r)=>s+V26revNet(r),0);
+ const k=document.getElementById('kRev'); if(k)k.textContent=V26fmtY(parentMonth+childMonth);
+ const todayParent=V34parentOps().filter(o=>V28date(o.at)===today).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+ const todayChild=(db.revenues||[]).filter(r=>V28date(r.date)===today).reduce((s,r)=>s+V26revNet(r),0);
+ const tn=document.getElementById('todayNet'); if(tn)tn.textContent=V26fmtY(todayParent+todayChild);
+}
+function V34afterData(){V40refresh();V42refresh();V34renderParentRevenue();V34renderMoney();}
+
+
+/* V35: 親は「名前」で完全に一意化。全画面・全集計が同じ親マスタを参照 */
+function V35canonicalParents(){
+ const arr=Array.isArray(db.parents)?db.parents:Object.values(db.parents||{});
+ const by=new Map(), idmap=new Map();
+ for(const p0 of arr){
+   const p=(p0&&typeof p0==='object')?p0:{name:String(p0||'')};
+   const name=String(p.name||p.parentName||'').trim();
+   const key=name.replace(/\s+/g,'').toLowerCase(); if(!key)continue;
+   let c=by.get(key);
+   if(!c){
+     c={...p,name,id:p.id||('parent_'+key)};
+     by.set(key,c);
+   }else{
+     ['carrier','createdAt','accountCreatedAt'].forEach(k=>{if(!c[k]&&p[k])c[k]=p[k]});
+   }
+   if(p.id)idmap.set(String(p.id),String(c.id));
+   if(p.parentId)idmap.set(String(p.parentId),String(c.id));
+ }
+ const list=[...by.values()];
+ const byName=new Map(list.map(p=>[String(p.name).trim().replace(/\s+/g,'').toLowerCase(),p]));
+ function fix(o){
+   if(!o||typeof o!=='object')return;
+   if(o.parentId&&idmap.has(String(o.parentId)))o.parentId=idmap.get(String(o.parentId));
+   const k=String(o.parentName||'').trim().replace(/\s+/g,'').toLowerCase();
+   if(k&&byName.has(k)){const p=byName.get(k);o.parentId=p.id;o.parentName=p.name;}
+ }
+ ['ops','external','revenues','deviceSets'].forEach(k=>(db[k]||[]).forEach(fix));
+ db.parents=list;
+ return list;
+}
+function V35parentOptions(){
+ const ps=V35canonicalParents();
+ return ps.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
+}
+function V35afterData(){
+ V35canonicalParents();
+ V40refresh();V42refresh();
+ // 既存の親selectも重複のない親マスタから再構築
+ document.querySelectorAll('select').forEach(s=>{
+   if(!/parent/i.test(s.id||s.name||''))return;
+   const val=s.value, first=[...s.options].find(o=>!o.value);
+   s.innerHTML=(first?`<option value="">${esc(first.textContent)}</option>`:'')+V35parentOptions();
+   if([...s.options].some(o=>o.value===val))s.value=val;
+ });
+}
+
+
+/* V36: 外部収支を復元。Lite外部は入力した全額の50%を外部還元として計上 */
+function V36externalAccount(o){return String(o.externalAccount||o.account||o.externalName||o.partner||'').trim();}
+function V36externalReturn(o){return externalPartnerPayout(o)}
+function V36externalRows(){
+ return (db.external||[]).map(o=>({...o,_acct:V36externalAccount(o),_ret:V36externalReturn(o)}))
+   .filter(o=>o._ret>0);
+}
+function V36externalSum(account,period){
+ return V36externalRows().filter(o=>{
+   if(account && o._acct!==account)return false;
+   const d=V28date(o.at||o.date);
+   return period.length===7?d.slice(0,7)===period:d===period;
+ }).reduce((s,o)=>s+o._ret,0);
+}
+function V36renderExternal(){
+ const today=V26localDate(), mon=today.slice(0,7);
+ const vals={
+   extTodayRyo:V36externalSum('諒',today), extTodayTetsuya:V36externalSum('哲也',today),
+   extMonthRyo:V36externalSum('諒',mon), extMonthTetsuya:V36externalSum('哲也',mon)
+ };
+ for(const [id,v] of Object.entries(vals)){const e=document.getElementById(id);if(e)e.textContent=V26fmtY(v)}
+ // fallback: locate cards by visible labels if legacy IDs differ
+ document.querySelectorAll('.card,.mini,.stat').forEach(c=>{
+   const t=c.textContent||'';
+   const set=(label,v)=>{if(t.includes(label)){const e=c.querySelector('.num,.value,b,strong');if(e)e.textContent=V26fmtY(v)}};
+   set('本日 外部還元（諒）',vals.extTodayRyo); set('本日 外部還元（哲也）',vals.extTodayTetsuya);
+   set('今月 外部還元（諒）',vals.extMonthRyo); set('今月 外部還元（哲也）',vals.extMonthTetsuya);
+ });
+}
+function V36afterData(){V40refresh();V42refresh();V36renderExternal();}
+
+
+/* V37: Lite外部は入力総額の50%を親収益へ加算。ただし外部「相互」は親収益へ入れない */
+function V37externalParentRevenueFor(parent){
+ const key=V33parentKey(parent&&parent.name);
+ return (db.external||[]).filter(o=>{
+   if(String(o.type||o.system||'Lite').includes('本家'))return false;
+   const same=(parent&&o.parentId&&parent.id&&String(o.parentId)===String(parent.id))
+     || V33parentKey(o.parentName)===key;
+   return same;
+ }).reduce((s,o)=>{
+   const gross=Number(o.externalGross||o.amount||o.revenue||o.fullAmount||0);
+   return s+(gross>0?gross*0.5:0);
+ },0);
+}
+function V37parentRevenueFor(parent){
+ return V34parentRevenueFor(parent)+V37externalParentRevenueFor(parent);
+}
+function V37renderParentRevenue(){
+ const el=document.getElementById('parentRevenue'); if(!el)return;
+ const rows=(db.parents||[]).map(p=>({name:p.name,v:V37parentRevenueFor(p)}))
+   .filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+ el.innerHTML=rows.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.name)}</span><b>${V26fmtY(x.v)}</b></div>`).join('')
+   ||'<div class="muted">データなし</div>';
+}
+function V37renderMoney(){
+ const today=V26localDate(), mon=today.slice(0,7);
+ const normal=V34parentOps().filter(o=>V28month(o.at)===mon).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+ const ext=(db.external||[]).filter(o=>!String(o.type||o.system||'Lite').includes('本家') && V28month(o.at)===mon)
+   .reduce((s,o)=>s+(Number(o.externalGross||0)*0.5),0);
+ const child=(db.revenues||[]).filter(r=>V28month(r.date)===mon).reduce((s,r)=>s+V26revNet(r),0);
+ const k=document.getElementById('kRev'); if(k)k.textContent=V26fmtY(normal+ext+child);
+}
+function V37afterData(){V40refresh();V42refresh();V37renderParentRevenue();V37renderMoney();}
+
+
+/* V38: 外部「相互」は当方親に50%加算、相手側の外部還元は0 */
+function V38externalReturn(o){
+ if(String(o.event||'').trim()==='相互') return 0;
+ const explicit=Number(o.externalPayout||o.externalReturn||o.returnAmount||0);
+ if(explicit>0)return explicit;
+ const full=Number(o.externalGross||o.amount||o.revenue||o.fullAmount||0);
+ return full>0?full*0.5:0;
+}
+function V38externalRows(){
+ return (db.external||[]).map(o=>({...o,_acct:V36externalAccount(o),_ret:V38externalReturn(o)}))
+   .filter(o=>o._ret>0);
+}
+function V38externalSum(account,period){
+ return V38externalRows().filter(o=>{
+   if(account && o._acct!==account)return false;
+   const d=V28date(o.at||o.date);
+   return period.length===7?d.slice(0,7)===period:d===period;
+ }).reduce((s,o)=>s+o._ret,0);
+}
+function V38renderExternal(){
+ const today=V26localDate(), mon=today.slice(0,7);
+ const vals={extTodayRyo:V38externalSum('諒',today),extTodayTetsuya:V38externalSum('哲也',today),
+ extMonthRyo:V38externalSum('諒',mon),extMonthTetsuya:V38externalSum('哲也',mon)};
+ for(const [id,v] of Object.entries(vals)){const e=document.getElementById(id);if(e)e.textContent=V26fmtY(v)}
+}
+function V38afterData(){V40refresh();V42refresh();V38renderExternal();}
+
+
+/* V39: 親収益の確定ルール
+   通常成功 = parentRevenue 100%
+   Lite外部 = externalGross 50%を当方親
+   外部相互 = 当方親50%、相手0%
+*/
+function V39normalParentRevenue(parent){
+ const key=V33parentKey(parent&&parent.name);
+ return (db.ops||[]).filter(o=>{
+   if(o.result!=='成功')return false;
+   return (o.parentId&&parent.id&&String(o.parentId)===String(parent.id))
+     || V33parentKey(o.parentName)===key;
+ }).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);
+}
+function V39externalParentRevenue(parent){
+ const key=V33parentKey(parent&&parent.name);
+ return (db.external||[]).filter(o=>{
+   if(String(o.type||o.system||'Lite').includes('本家'))return false;
+   return (o.parentId&&parent.id&&String(o.parentId)===String(parent.id))
+     || V33parentKey(o.parentName)===key;
+ }).reduce((s,o)=>s+(Number(o.externalGross)||0)*0.5,0);
+}
+function V39parentRevenueFor(parent){return V39normalParentRevenue(parent)+V39externalParentRevenue(parent);}
+function V39partnerReturn(o){
+ if(String(o.event||'').trim()==='相互')return 0;
+ return (Number(o.externalGross)||0)*0.5;
+}
+function V39renderParentRevenue(){
+ const el=document.getElementById('parentRevenue'); if(!el)return;
+ const rows=(db.parents||[]).map(p=>({
+   name:p.name,
+   normal:V39normalParentRevenue(p),
+   external:V39externalParentRevenue(p),
+   total:V39parentRevenueFor(p)
+ })).filter(x=>x.total>0).sort((a,b)=>b.total-a.total);
+ el.innerHTML=rows.map(x=>`<div style="display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px;border-bottom:1px solid #eee">
+ <span>${esc(x.name)}</span><b>${V26fmtY(x.total)}</b>
+ <small class="muted">通常 ${V26fmtY(x.normal)} / 外部 ${V26fmtY(x.external)}</small><span></span>
+ </div>`).join('')||'<div class="muted">データなし</div>';
+}
+function V39afterData(){V40refresh();V42refresh();V39renderParentRevenue();}
+
+
+/* V40: 単一の後処理。親マスタを先に一意化してから親別収益を1親1行で描画 */
+function V40refresh(){
+ try{V35canonicalParents();}catch(e){}
+ try{V39renderParentRevenue();}catch(e){}
+ try{V37renderMoney();}catch(e){}
+ try{V38renderExternal();}catch(e){}
+ try{V32renderReminder();}catch(e){}
+}
+
+
+/* V41 verified display layer */
+function V41parentKeyName(x){return String(x||'').trim().replace(/\s+/g,'').toLowerCase();}
+function V41uniqueParents(){try{V35canonicalParents();}catch(e){} return db.parents||[];}
+function V41sameParent(o,p){return (o.parentId&&p.id&&String(o.parentId)===String(p.id))||V41parentKeyName(o.parentName)===V41parentKeyName(p.name);}
+function V41normalParent(p){return (db.ops||[]).filter(o=>o.result==='成功'&&V41sameParent(o,p)).reduce((s,o)=>s+(Number(o.parentRevenue)||0),0);}
+function V41externalParent(p){return (db.external||[]).filter(o=>String(o.type||o.system||'Lite')==='Lite'&&V41sameParent(o,p)).reduce((s,o)=>s+(Number(o.externalGross)||0)*.5,0);}
+function V41parentTotal(p){return V41normalParent(p)+V41externalParent(p);}
+function V41renderParentRevenue(){
+ const e=document.getElementById('parentRevenue');if(!e)return;
+ const rows=V41uniqueParents().map(p=>({p,n:V41normalParent(p),x:V41externalParent(p),t:V41parentTotal(p)})).filter(x=>x.t>0).sort((a,b)=>b.t-a.t);
+ e.innerHTML=rows.map(x=>`<div style="display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.p.name)}</span><b>${V26fmtY(x.t)}</b><small class="muted">通常 ${V26fmtY(x.n)} ＋ 外部 ${V26fmtY(x.x)}</small><span></span></div>`).join('')||'<div class="muted">データなし</div>';
+}
+function V41parentLiteRate(){
+ const e=document.getElementById('parentRate');if(!e)return;
+ const all=[...(db.ops||[]).filter(o=>o.type==='Lite'),...(db.external||[]).filter(o=>String(o.type||o.system||'Lite')==='Lite')];
+ const rows=V41uniqueParents().map(p=>{const a=all.filter(o=>V41sameParent(o,p)),s=a.filter(o=>o.result==='成功').length;return{name:p.name,n:a.length,s};}).filter(x=>x.n).sort((a,b)=>(b.s/b.n)-(a.s/a.n)||b.n-a.n);
+ e.innerHTML=rows.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px;border-bottom:1px solid #eee"><span>${esc(x.name)}</span><b>${(x.s/x.n*100).toFixed(1)}% <small>(${x.s}/${x.n})</small></b></div>`).join('')||'<div class="muted">データなし</div>';
+}
+function V41partnerPayout(o){return externalPartnerPayout(o)}
+function V41payoutHTML(period){
+ const isMonth=period.length===7,g={};
+ (db.external||[]).forEach(o=>{const d=V28date(o.at||o.date);if((isMonth?d.slice(0,7):d)!==period)return;const v=V41partnerPayout(o);if(!v)return;const a=String(o.externalAccount||'未設定');g[a]=(g[a]||0)+v;});
+ return Object.entries(g).map(([a,v])=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span>${esc(a)}</span><b>${V26fmtY(v)}</b></div>`).join('')||'<div class="muted">なし</div>';
+}
+function V41renderExternalPayouts(){}
+function V41prefillDeviceNo(){
+ if(!window.iPhone||!window.iType||!window.iDeviceNo)return;
+ const s=(db.sets||[]).filter(x=>x.phone===iPhone.value.trim()&&x.type===iType.value).sort((a,b)=>new Date(b.at)-new Date(a.at))[0];
+ if(s&&s.deviceNo){iDeviceNo.value=s.deviceNo;if(window.iDevice)iDevice.value=s.device;}
+}
+function V41refresh(){
+ try{V35canonicalParents();}catch(e){}
+ V41renderParentRevenue();V41parentLiteRate();V41renderDeviceStatus();
+}
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='iDeviceNo')V41renderDeviceStatus()});
+document.addEventListener('change',e=>{if(e.target&&['iPhone','iType'].includes(e.target.id)){V41prefillDeviceNo();V41renderDeviceStatus();}});
+
+
+/* V42: 実際に見えている外部還元カードを最終上書き */
+function V42externalTotals(period){
+ const month=period.length===7, out={};
+ (db.external||[]).forEach(o=>{
+   const d=V28date(o.at||o.date);
+   if((month?d.slice(0,7):d)!==period)return;
+   if(String(o.event||'').trim()==='相互')return; // 相互は相手還元なし
+   const gross=Number(o.externalGross)||0;
+   if(!gross)return;
+   const acct=String(o.externalAccount||'未設定');
+   out[acct]=(out[acct]||0)+gross*.5;
+ });
+ return out;
+}
+function V42money(v){return '¥'+Math.round(v||0).toLocaleString('ja-JP')}
+function V42setCardByText(needle,value){
+ document.querySelectorAll('.card,.stat,.mini,.kpi,[class*="card"]').forEach(c=>{
+   if(!(c.textContent||'').includes(needle))return;
+   const candidates=[...c.querySelectorAll('.num,.value,.big,b,strong,[class*="value"],[class*="amount"]')];
+   const target=candidates.find(x=>/¥|円|[\d,]+/.test(x.textContent||''))||candidates[0];
+   if(target)target.textContent=V42money(value);
+ });
+}
+function V42renderExternal(){
+ const td=V26localDate(), mo=td.slice(0,7), T=V42externalTotals(td), M=V42externalTotals(mo);
+ const tr=T['諒']||0,tt=T['哲也']||0,mr=M['諒']||0,mt=M['哲也']||0;
+ [['extTodayRyo',tr],['extTodayTetsuya',tt],['extMonthRyo',mr],['extMonthTetsuya',mt]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.textContent=V42money(v)});
+ V42setCardByText('本日 外部還元（諒）',tr);V42setCardByText('本日 外部還元（哲也）',tt);
+ V42setCardByText('今月 外部還元（諒）',mr);V42setCardByText('今月 外部還元（哲也）',mt);
+ V42setCardByText('今月の外部還元',mr+mt);V42setCardByText('今月 外部還元',mr+mt);
+}
+function V42refresh(){V42refresh();V42renderExternal();setTimeout(V42renderExternal,0);}
+
+
+/* V45 definitive dashboard correction */
+function V45partnerReturn(o){return externalPartnerPayout(o)}
+function V45renderExternalPayout(){
+ const today=V26localDate(), mon=today.slice(0,7);
+ const box=(period)=>['諒','哲也'].map(acc=>{
+   const v=(db.external||[]).filter(o=>o.type==='Lite'&&o.externalAccount===acc&&(o.at||'').slice(0,period.length)===period)
+     .reduce((s,o)=>s+V45partnerReturn(o),0);
+   return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee"><span>${acc}</span><b>${fmtY(v)}</b></div>`;
+ }).join('');
+ const t=document.getElementById('todayExternalPayouts');
+ const m=document.getElementById('M54monthExternalPayouts');
+ if(t)t.innerHTML=box(today);
+ if(m)m.innerHTML=box(mon);
+}
+function V45renderParentLite(){
+ const target=document.getElementById('parentRate');
+ if(!target)return;
+ V35canonicalParents();
+ const rows=(db.parents||[]).map(p=>{
+   const a=[...(db.ops||[]).filter(o=>o.type==='Lite'),...(db.external||[]).filter(o=>o.type==='Lite')]
+    .filter(o=>(o.parentId&&String(o.parentId)===String(p.id))||V33parentKey(o.parentName)===V33parentKey(p.name));
+   const s=a.filter(o=>o.result==='成功').length,n=a.length;
+   return {x:p.id,n,s,r:n?s/n*100:0};
+ }).sort((a,b)=>(b.n>0)-(a.n>0)||b.r-a.r);
+ target.innerHTML=barHTML(rows,x=>pinfo(x.x).name);
+}
+function V45dashboard(){
+ V45renderExternalPayout();
+ V45renderParentLite();
+}
+window.addEventListener('load',()=>{setTimeout(V45dashboard,100);setTimeout(V45dashboard,800)});
+setInterval(V45dashboard,1500);
+
+function externalPartnerPayout(o){
+  if(String(o.event||'').trim()==='相互') return 0;
+  return (Number(o.externalGross)||0)/2;
+}
+
+/* V47: 外部還元はこの処理だけを最終表示に使用 */
+function V47payout(o){
+  return String(o.event||'').trim()==='相互' ? 0 : (Number(o.externalGross)||0)/2;
+}
+function V47payoutHTML(period){
+  return ['諒','哲也'].map(acc=>{
+    const v=(db.external||[]).filter(o=>
+      o.type==='Lite' &&
+      o.externalAccount===acc &&
+      String(o.at||'').slice(0,period.length)===period
+    ).reduce((s,o)=>s+V47payout(o),0);
+    return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee"><span>${acc}</span><b>${fmtY(v)}</b></div>`;
+  }).join('');
+}
+function V47forcePayout(){}
+
+
+/* ===== MTKC V53 CANONICAL ANALYTICS =====
+   成功率・外部還元はここだけを正本とする
+*/
+function M53_parentKey(v){
+  return String(v||'').trim().replace(/\s+/g,'').toLowerCase();
+}
+function M53_parentMaster(){
+  const src=(typeof V35canonicalParents==='function'?V35canonicalParents():(db.parents||[]))||[];
+  const seen=new Set();
+  return src.filter(p=>{
+    const k=M53_parentKey(p.name);
+    if(!k||seen.has(k)) return false;
+    seen.add(k); return true;
+  });
+}
+function M53_parentLiteRows(){
+  const hist=[...(db.ops||[]).filter(o=>o.type==='Lite'),...(db.external||[]).filter(o=>o.type==='Lite')];
+  return M53_parentMaster().map(p=>{
+    const a=hist.filter(o=>
+      (o.parentId&&p.id&&String(o.parentId)===String(p.id)) ||
+      M53_parentKey(o.parentName)===M53_parentKey(p.name)
+    );
+    const s=a.filter(o=>o.result==='成功').length;
+    return {name:p.name,n:a.length,s:s,r:a.length?s/a.length*100:0};
+  });
+}
+function M53_simLiteRows(){
+  const map=new Map();
+  (db.ops||[]).filter(o=>o.type==='Lite'&&o.phone).forEach(o=>{
+    const k=String(o.phone).trim();
+    if(!map.has(k)) map.set(k,{phone:k,n:0,s:0});
+    const x=map.get(k); x.n++; if(o.result==='成功')x.s++;
+  });
+  return [...map.values()].map(x=>({...x,r:x.n?x.s/x.n*100:0}));
+}
+function M53_partnerPayout(o){
+  if(!o || o.type!=='Lite') return 0;
+  if(String(o.event||'').trim()==='相互') return 0;
+  return (Number(o.externalGross)||0)/2;
+}
+function M53_payout(period,account){
+  return (db.external||[])
+    .filter(o=>o.type==='Lite'&&o.externalAccount===account&&String(o.at||'').slice(0,period.length)===period)
+    .reduce((s,o)=>s+M53_partnerPayout(o),0);
+}
+function M53_rateHTML(rows,key){
+  return rows
+   .slice()
+   .sort((a,b)=>(b.n>0)-(a.n>0)||b.r-a.r||String(a[key]).localeCompare(String(b[key]),'ja'))
+   .map(x=>`<div style="display:flex;justify-content:space-between;gap:8px;padding:4px 0">
+      <span>${esc(x[key])}</span>
+      <b>${x.n?Math.round(x.r)+'%':'—'} <small style="font-weight:500;color:#777">(${x.s}/${x.n})</small></b>
+    </div>`).join('');
+}
+function M53_payoutHTML(period){
+  return ['諒','哲也'].map(a=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee">
+    <span>${a}</span><b>¥${Math.round(M53_payout(period,a)).toLocaleString('ja-JP')}</b>
+  </div>`).join('');
+}
+function M53_renderAnalytics(){
+  const p=document.getElementById('parentRate');
+  const s=document.getElementById('simRate');
+  const t=document.getElementById('todayExternalPayouts');
+  const m=document.getElementById('M54monthExternalPayouts');
+  const today=V26localDate(), month=today.slice(0,7);
+  if(p)p.innerHTML=M53_rateHTML(M53_parentLiteRows(),'name');
+  if(s)s.innerHTML=M53_rateHTML(M53_simLiteRows(),'phone');
+  if(t)t.innerHTML=M53_payoutHTML(today);
+  if(m)m.innerHTML=M53_payoutHTML(month);
+}
+
+
+function M56_removeLegacyPayoutBlocks(){
+  document.querySelectorAll('#monthExternalPayouts,#M55_legacy_monthExternalPayouts_disabled').forEach(el=>{
+    const parent=el.parentElement;
+    if(parent && parent.id!=='M54monthPayoutBlock') parent.remove();
+    else el.remove();
+  });
+  document.querySelectorAll('h3').forEach(h3=>{
+    if(h3.textContent.trim()==='今月の外部還元' && !h3.closest('#M54monthPayoutBlock')){
+      const box=h3.parentElement;
+      if(box) box.remove();
+    }
+  });
+}
+function M56_render(){
+  M56_removeLegacyPayoutBlocks();
+  M53_renderAnalytics();
+}
+
+
+/* ===== V57 PHYSICAL DEVICE HISTORY ===== */
+function V57_deviceNo(o){return String(o.deviceNo||o.deviceNumber||o.terminalNo||'').trim()}
+function V57_allInviteOps(){
+ return [...(db.ops||[]),...(db.external||[])].filter(o=>o.at);
+}
+function V57_elapsedBefore(list,idx,type,keyfn,key){
+ const cur=list[idx], t=new Date(cur.at).getTime();
+ let prev=null;
+ for(let i=idx-1;i>=0;i--){
+   const x=list[i];
+   if(x.type===type && keyfn(x)===key && x.result==='成功'){
+     prev=new Date(x.at).getTime(); break;
+   }
+ }
+ return prev==null?null:Math.max(0,(t-prev)/3600000);
+}
+function V57_historyRows(mode,key){
+ const all=V57_allInviteOps().slice().sort((a,b)=>new Date(a.at)-new Date(b.at));
+ return all.map((o,i)=>{
+   const deviceNo=V57_deviceNo(o);
+   const phone=String(o.phone||'').trim();
+   const match=mode==='sim'?phone===key:deviceNo===key;
+   if(!match)return null;
+   const elapsed=V57_elapsedBefore(all,i,o.type,
+      mode==='sim'?(x=>String(x.phone||'').trim()):(x=>V57_deviceNo(x)),key);
+   return {at:o.at,phone,deviceNo,device:o.device||o.deviceName||'',type:o.type||'',event:o.event||'',result:o.result||'',elapsed};
+ }).filter(Boolean).reverse();
+}
+function V57_historyHTML(rows){
+ if(!rows.length)return '<div class="muted">履歴なし</div>';
+ return `<div style="overflow:auto"><table><thead><tr><th>日時</th><th>SIM</th><th>端末No.</th><th>機種</th><th>種別</th><th>イベント</th><th>結果</th><th>前回成功から</th></tr></thead><tbody>${
+ rows.map(x=>`<tr><td>${esc(String(x.at).replace('T',' '))}</td><td>${esc(x.phone||'—')}</td><td>${esc(x.deviceNo||'—')}</td><td>${esc(x.device||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.event)}</td><td>${esc(x.result)}</td><td>${x.elapsed==null?'—':x.elapsed.toFixed(1)+'h'}</td></tr>`).join('')
+ }</tbody></table></div>`;
+}
+function V57_renderHistory(){
+ const mode=document.getElementById('v57HistoryMode')?.value||'sim';
+ const key=(document.getElementById('v57HistoryKey')?.value||'').trim();
+ const out=document.getElementById('v57HistoryOut');
+ if(out)out.innerHTML=key?V57_historyHTML(V57_historyRows(mode,key)):'<div class="muted">SIMまたは端末通し番号を入力してください</div>';
+}
+
+</script><script>
+window.addEventListener('load',function(){
+  
+  
+  
+});
+
+</script><script>
+window.addEventListener('load',function(){
+  setTimeout(M53_renderAnalytics,3500);
+});
+</script><script>
+window.addEventListener('load',function(){
+  M56_render();
+  setTimeout(M56_render,1200);
+  setTimeout(M56_render,3500);
+  const obs=new MutationObserver(()=>M56_removeLegacyPayoutBlocks());
+  obs.observe(document.body,{childList:true,subtree:true});
+});
+</script>
+<script>
+window.addEventListener('load',function(){
+ const analysis=document.getElementById('analysis')||document.querySelector('[data-page="analysis"]')||document.querySelector('.analysis');
+ if(analysis && !document.getElementById('v57HistoryCard')){
+   const box=document.createElement('div');
+   box.id='v57HistoryCard'; box.className='card';
+   box.innerHTML=`<h3>履歴検索（SIM / 端末）</h3>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+    <select id="v57HistoryMode"><option value="sim">SIMから見る</option><option value="device">端末通し番号から見る</option></select>
+    <input id="v57HistoryKey" placeholder="電話番号 または 端末通し番号">
+    <button type="button" onclick="V57_renderHistory()">履歴表示</button>
+   </div><div id="v57HistoryOut" class="muted">SIMまたは端末通し番号を入力してください</div>`;
+   analysis.appendChild(box);
+ }
+});
+</script>
+</body></html>
+<style>
+#parentRate{max-height:520px;overflow-y:auto;padding-right:4px}
+#simRate{max-height:520px;overflow-y:auto;padding-right:4px}
+</style>
+<style>
+.nav button,.quick button,button,select,input{pointer-events:auto!important}
+.page.active{position:relative;z-index:1}
+</style>
