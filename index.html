@@ -81,7 +81,8 @@ if(!r.ok)throw new Error(await r.text());
 localStorage.setItem('mtkc_final_v1',JSON.stringify(db));render();setSyncStatus('クラウド保存済み：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件')
 }catch(e){console.error(e);setSyncStatus('復旧データ保持中（クラウド保存失敗）',false)}finally{syncing=false}}
 function persist(){localStorage.setItem('mtkc_final_v1',JSON.stringify(db));setSyncStatus('保存中…');clearTimeout(syncTimer);syncTimer=setTimeout(cloudSave,180)}
-function nowLocal(){let d=new Date();d=new Date(d-d.getTimezoneOffset()*60000);return d.toISOString().slice(0,16)}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fmtH(v){if(v==null)return '—';let sec=Math.max(0,Math.floor(v*3600)),h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),ss=sec%60;return h+'時間 '+String(m).padStart(2,'0')+'分 '+String(ss).padStart(2,'0')+'秒'}function fmtY(v){return '¥'+Math.round(v||0).toLocaleString()}function hoursSince(t){return t?Math.max(0,(Date.now()-new Date(t))/36e5):0}
+function nowLocal(){let d=new Date();d=new Date(d-d.getTimezoneOffset()*60000);return d.toISOString().slice(0,16)}function remove(el){if(el&&el.remove)el.remove();}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fmtH(v){if(v==null)return '—';let sec=Math.max(0,Math.floor(v*3600)),h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),ss=sec%60;return h+'時間 '+String(m).padStart(2,'0')+'分 '+String(ss).padStart(2,'0')+'秒'}function fmtY(v){return '¥'+Math.round(v||0).toLocaleString()}function hoursSince(t){return t?Math.max(0,(Date.now()-new Date(t))/36e5):0}
 function login(){const loginEl=document.getElementById('login'),appEl=document.getElementById('app'),uidEl=document.getElementById('uid'),upwEl=document.getElementById('upw');if(uidEl.value==='owner'&&upwEl.value==='mtkc'){loginEl.style.display='none';appEl.style.display='grid';render();V26renderRecovery();V40refresh();V42refresh();cloudLoad()}else alert('IDまたはパスワードが違います')}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));function show(p){
  const page=document.getElementById(p);
@@ -886,12 +887,11 @@ function V42setCardByText(needle,value){
  });
 }
 function V42renderExternal(){
- const td=V26localDate(), mo=td.slice(0,7), T=V42externalTotals(td), M=V42externalTotals(mo);
- const tr=T['諒']||0,tt=T['哲也']||0,mr=M['諒']||0,mt=M['哲也']||0;
- [['extTodayRyo',tr],['extTodayTetsuya',tt],['extMonthRyo',mr],['extMonthTetsuya',mt]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.textContent=V42money(v)});
- V42setCardByText('本日 外部還元（諒）',tr);V42setCardByText('本日 外部還元（哲也）',tt);
- V42setCardByText('今月 外部還元（諒）',mr);V42setCardByText('今月 外部還元（哲也）',mt);
- V42setCardByText('今月の外部還元',mr+mt);V42setCardByText('今月 外部還元',mr+mt);
+ const td=V26localDate(), mo=td.slice(0,7);
+ const t=document.getElementById('todayExternalPayouts');
+ const m=document.getElementById('M54monthExternalPayouts');
+ if(t)t.innerHTML=M53_payoutHTML(td);
+ if(m)m.innerHTML=M53_payoutHTML(mo);
 }
 function V42refresh(){V42renderExternal();setTimeout(V42renderExternal,0);}
 
@@ -927,7 +927,7 @@ function V45dashboard(){
  V45renderParentLite();
 }
 window.addEventListener('load',()=>{setTimeout(V45dashboard,100);setTimeout(V45dashboard,800)});
-setInterval(V45dashboard,1500);
+/* disabled: legacy competing renderer */
 
 function externalPartnerPayout(o){
   if(String(o.event||'').trim()==='相互') return 0;
@@ -1099,8 +1099,7 @@ window.addEventListener('load',function(){
   M56_render();
   setTimeout(M56_render,1200);
   setTimeout(M56_render,3500);
-  const obs=new MutationObserver(()=>M56_removeLegacyPayoutBlocks());
-  obs.observe(document.body,{childList:true,subtree:true});
+  /* legacy mutation observer removed: it caused visible re-render flicker */
 });
 </script>
 <script>
