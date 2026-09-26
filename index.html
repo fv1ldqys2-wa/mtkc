@@ -57,6 +57,54 @@ function setSyncStatus(t,ok=true){syncStatus.textContent=t;syncStatus.style.colo
 function mergeById(remote,local){let m=new Map();(remote||[]).forEach(x=>m.set(x.id||JSON.stringify(x),x));(local||[]).forEach(x=>m.set(x.id||JSON.stringify(x),x));return [...m.values()]}
 function mergeDB(remote,local){remote=normalizeDB(remote);local=normalizeDB(local);let deleted={};for(let k of ['parents','sims','ops','sets','external','revenues','devices','carriers'])deleted[k]=[...new Set([...(remote.deleted[k]||[]),...(local.deleted[k]||[])])];let sims={...(remote.sims||{}),...(local.sims||{})};deleted.sims.forEach(k=>delete sims[k]);return {parents:mergeById(remote.parents,local.parents).filter(x=>!deleted.parents.includes(x.id)),carriers:[...new Set([...(remote.carriers||[]),...(local.carriers||[])])].filter(x=>!deleted.carriers.includes(x)),devices:[...new Set([...(remote.devices||[]),...(local.devices||[])])].filter(x=>!deleted.devices.includes(x)),sims,ops:mergeById(remote.ops,local.ops).filter(x=>!deleted.ops.includes(x.id)),sets:mergeById(remote.sets,local.sets).filter(x=>!deleted.sets.includes(x.id)),external:mergeById(remote.external,local.external).filter(x=>!deleted.external.includes(x.id)),revenues:mergeById(remote.revenues,local.revenues).filter(x=>!deleted.revenues.includes(x.id)),deleted}}
 function hasUserData(x){return Object.keys(x.sims||{}).length+(x.ops||[]).length+(x.sets||[]).length+(x.external||[]).length+(x.revenues||[]).length>0}
+function recoveryScore(x){
+ try{
+  x=normalizeDB(x);
+  return [(x.ops||[]).length,Object.keys(x.sims||{}).length,(x.external||[]).length,(x.revenues||[]).length];
+ }catch(e){return [0,0,0,0]}
+}
+function scoreGreater(a,b){
+ for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]>b[i]}
+ return false;
+}
+function allLocalRecoveryCandidates(){
+ const out=[];
+ try{
+  for(let i=0;i<localStorage.length;i++){
+   const key=localStorage.key(i);
+   try{
+    let x=JSON.parse(localStorage.getItem(key)||'null');
+    if(x&&x.data&&typeof x.data==='object')x=x.data;
+    if(x&&typeof x==='object'&&hasUserData(normalizeDB(x)))out.push({source:'local:'+key,data:x});
+   }catch(e){}
+  }
+ }catch(e){}
+ return out;
+}
+async function allCloudRecoveryCandidates(){
+ try{
+  const r=await fetch(SUPABASE_URL+'/rest/v1/mtkc_state?select=id,data,updated_at&order=updated_at.desc&limit=1000',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY},cache:'no-store'});
+  if(!r.ok)throw new Error(await r.text());
+  const rows=await r.json();
+  return (rows||[]).filter(x=>x&&x.data).map(x=>({source:'cloud:'+x.id,data:x.data,updated_at:x.updated_at}));
+ }catch(e){console.error('recovery cloud scan failed',e);return []}
+}
+async function recoverRichestAvailable(){
+ let best={source:'current',data:db}, bestScore=recoveryScore(db);
+ const candidates=[...allLocalRecoveryCandidates(),...(await allCloudRecoveryCandidates())];
+ for(const cand of candidates){
+  const s=recoveryScore(cand.data);
+  if(scoreGreater(s,bestScore)){best=cand;bestScore=s}
+ }
+ const curScore=recoveryScore(db);
+ if(scoreGreater(bestScore,curScore)){
+  db=applyDeletedOnly(mergeDB(db,best.data));
+  localStorage.setItem('mtkc_final_v1',JSON.stringify(db));
+  localStorage.setItem('mtkc_recovered_source',JSON.stringify({source:best.source,score:bestScore,at:new Date().toISOString()}));
+  return {recovered:true,source:best.source,score:recoveryScore(db)};
+ }
+ return {recovered:false,source:'current',score:curScore};
+}
 function recoverLocalBackups(){
  let merged=normalizeDB(RECOVERY_SNAPSHOT), keys=['mtkc_final_v1','mtkc_cloud_backup_v31','mtkc_cloud_backup_before_v25_save','mtkc_recovery_original_v25'];
  for(const k of keys){try{const x=JSON.parse(localStorage.getItem(k)||'null');if(x&&hasUserData(x))merged=mergeDB(merged,x)}catch(e){}}
@@ -72,9 +120,11 @@ async function cloudLoad(){try{
  }else{
    db=local;
  }
+ const rec=await recoverRichestAvailable();
  localStorage.setItem('mtkc_final_v1',JSON.stringify(db));
  render();V26renderRecovery();V27renderLower();V28render();V40refresh();V42refresh();
- setSyncStatus('データ読込済み：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件');
+ setSyncStatus((rec.recovered?'復旧データ反映：':'データ読込済み：')+'SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件');
+ if(rec.recovered){await cloudSave()}
 }catch(e){
  console.error(e);V40refresh();V42refresh();
  setSyncStatus('端末データ保持中（クラウド読込失敗）',false);
