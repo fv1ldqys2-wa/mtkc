@@ -56,16 +56,20 @@ function hasUserData(x){return Object.keys(x.sims||{}).length+(x.ops||[]).length
 async function fetchCloud(){let r=await fetch(SUPABASE_URL+'/rest/v1/mtkc_state?id=eq.1&select=data,updated_at',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY},cache:'no-store'});if(!r.ok)throw new Error(await r.text());let a=await r.json();return a.length?a[0]:null}
 async function cloudLoad(){try{
  let row=await fetchCloud();
+ let local=normalizeDB(JSON.parse(localStorage.getItem('mtkc_final_v1')||'{}'));
  if(row&&row.data){
    localStorage.setItem('mtkc_cloud_backup_v31',JSON.stringify(row.data));
-   db=applyDeletedOnly(mergeDB(RECOVERY_SNAPSHOT,row.data));
+   db=applyDeletedOnly(mergeDB(mergeDB(RECOVERY_SNAPSHOT,row.data),local));
    localStorage.setItem('mtkc_final_v1',JSON.stringify(db));
+ }else if(hasUserData(local)){
+   db=applyDeletedOnly(mergeDB(RECOVERY_SNAPSHOT,local));
  }
  render();V26renderRecovery();V27renderLower();V28render();V40refresh();V42refresh();
- setSyncStatus('クラウド最新反映：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件');
+ setSyncStatus('クラウド＋端末データ統合：SIM '+Object.keys(db.sims||{}).length+' / 通常招待 '+(db.ops||[]).length+'件');
+ if(row&&row.data&&hasUserData(db)){clearTimeout(syncTimer);syncTimer=setTimeout(cloudSave,250)}
 }catch(e){
  console.error(e);V40refresh();V42refresh();
- setSyncStatus('復旧データ表示中（クラウド読込失敗）',false);
+ setSyncStatus('端末データ保持中（クラウド読込失敗）',false);
 }}
 async function cloudSave(){if(syncing)return;syncing=true;try{
 let current=applyDeletedOnly(db);
