@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YOU ME mobile APN設定</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#f5f6f8}
+body{margin:0;padding:24px}
+.card{max-width:520px;margin:0 auto;background:#fff;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.07)}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:#6b7280;font-size:13px;margin-bottom:20px}
+.row{border:1px solid #e5e7eb;border-radius:14px;padding:14px;margin:10px 0}
+.label{font-size:12px;color:#6b7280;font-weight:800;margin-bottom:6px}
+.valwrap{display:flex;align-items:center;gap:10px}
+.value{font-size:19px;font-weight:900;flex:1;word-break:break-all}
+.copy{border:0;border-radius:11px;padding:10px 14px;background:#111827;color:#fff;font-weight:800;cursor:pointer}
+.auth{font-size:18px;font-weight:900}
+.open{width:100%;border:0;border-radius:14px;padding:15px;margin-top:18px;background:#16a34a;color:#fff;font-size:17px;font-weight:900;cursor:pointer}
+.note{font-size:12px;color:#6b7280;margin-top:10px;line-height:1.5}
+.toast{height:20px;text-align:center;font-size:12px;color:#047857;font-weight:800;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>YOU ME mobile APN設定</h1>
+  <div class="sub">コピーするのは3項目だけ</div>
+  <div class="row"><div class="label">APN</div><div class="valwrap"><div class="value" id="apn">youme.tokyo</div><button class="copy" onclick="copyText('apn','APN')">コピー</button></div></div>
+  <div class="row"><div class="label">ユーザー名</div><div class="valwrap"><div class="value" id="user">user</div><button class="copy" onclick="copyText('user','ユーザー名')">コピー</button></div></div>
+  <div class="row"><div class="label">パスワード</div><div class="valwrap"><div class="value" id="pass">0</div><button class="copy" onclick="copyText('pass','パスワード')">コピー</button></div></div>
+  <div class="row"><div class="label">認証タイプ</div><div class="auth">CHAP または PAP</div></div>
+  <button class="open" onclick="openApn()">APN設定画面を開く</button>
+  <div class="note">※端末やブラウザによってはAPN設定画面を直接開けない場合があります。その場合は「設定 → モバイルネットワーク → アクセスポイント名」から開いてください。</div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+async function copyText(id,label){
+  const t=document.getElementById(id).textContent.trim();
+  try{await navigator.clipboard.writeText(t);show(label+'をコピーしました')}
+  catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();show(label+'をコピーしました')}
+}
+function show(t){const el=document.getElementById('toast');el.textContent=t;clearTimeout(window.__t);window.__t=setTimeout(()=>el.textContent='',1600)}
+function openApn(){location.href='intent:#Intent;action=android.settings.APN_SETTINGS;end'}
+</script>
+</body>
+</html>
