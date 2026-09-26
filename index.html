@@ -1212,7 +1212,7 @@ window.addEventListener('load',function(){
 .M79eventgrid{display:grid;grid-template-columns:repeat(3,minmax(110px,1fr));gap:10px;margin-top:12px}.M79event{border:1px solid #e5e7eb;border-radius:13px;background:#fff;padding:12px;text-align:left;cursor:pointer}.M79event b{font-size:17px}.M79event .count{float:right;font-size:22px;font-weight:900}
 .M79results{display:grid;grid-template-columns:repeat(6,minmax(95px,1fr));gap:10px}.M79result{border:1px solid #e5e7eb;border-radius:12px;padding:10px}.M79result .n{font-size:20px;font-weight:900;margin-top:3px}.M79dates{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.M79date{border:1px solid #d1d5db;background:#fff;border-radius:9px;padding:7px 9px;font-weight:800;cursor:pointer}.M79date.active{background:#111827;color:#fff}
 .M79carriergrid{display:grid;grid-template-columns:repeat(3,minmax(110px,1fr));gap:8px;margin-bottom:12px}.M79carrier{border:1px solid #e5e7eb;background:#fff;border-radius:11px;padding:10px 7px;font-weight:800;cursor:pointer}
-.M79field{border:1px solid #e5e7eb;border-radius:12px;padding:11px;margin:8px 0}.M79lab{font-size:11px;color:#6b7280;font-weight:800;margin-bottom:5px}.M79row{display:flex;align-items:center;gap:9px}.M79value{font-size:17px;font-weight:900;flex:1;word-break:break-all}.M79copy{border:0;border-radius:9px;padding:8px 11px;background:#111827;color:#fff;font-weight:800;cursor:pointer}
+.M79field{border:1px solid #e5e7eb;border-radius:12px;padding:11px;margin:8px 0}.M79lab{font-size:11px;color:#6b7280;font-weight:800;margin-bottom:5px}.M79row{display:flex;align-items:center;gap:9px}.M79value{font-size:17px;font-weight:900;flex:1;word-break:break-all}.M79copy{border:0;border-radius:9px;padding:8px 11px;background:#111827;color:#fff;font-weight:800;cursor:pointer}.M80apnqr{margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:14px;background:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.M80apnqr img{width:165px;height:165px;object-fit:contain;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:6px}.M80apnqrtext{font-size:12px;color:#6b7280;line-height:1.6;flex:1;min-width:180px}.M80apnqrtitle{font-size:15px;font-weight:900;color:#111827;margin-bottom:4px}
 .M79wifigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}.M79wifiitem{border:1px solid #e5e7eb;border-radius:13px;padding:12px}.M79wifiitem img{width:150px;height:150px;display:block;margin:0 auto 8px}.M79ssid{font-size:15px;font-weight:900;word-break:break-all}.M79actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
 .M79suggestwrap{position:relative}.M79suggest{position:absolute;left:0;right:0;top:100%;z-index:9999;background:#fff;border:1px solid #d1d5db;border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.12);max-height:240px;overflow:auto;margin-top:4px;display:none}.M79suggest button{width:100%;border:0;border-bottom:1px solid #f0f1f3;background:#fff;padding:12px 13px;text-align:left;font-size:16px;font-weight:800;cursor:pointer}
 @media(max-width:760px){.M79daygrid{grid-template-columns:repeat(4,1fr)}.M79results{grid-template-columns:repeat(2,1fr)}.M79carriergrid{grid-template-columns:repeat(2,1fr)}}
@@ -1276,7 +1276,12 @@ function apnField(label,v){
 }
 function showAPN(i){
  const x=APN[i],box=document.getElementById('M79APNDetail');if(!x||!box)return;
- box.innerHTML='<h3>'+E(x[0])+'</h3>'+apnField('APN',x[1])+apnField('ユーザー名',x[2])+apnField('パスワード',x[3])+'<div class="M79field"><div class="M79lab">認証タイプ</div><div class="M79value">'+E(x[4])+'</div></div><div class="M79sub"><b>APN設定画面：</b>設定 → ネットワークとインターネット → モバイルネットワーク → アクセスポイント名（APN）</div>';
+ const carrierUrl=APN_URL+'?carrier='+encodeURIComponent(x[0]);
+ box.innerHTML='<h3>'+E(x[0])+'</h3>'+
+   '<div class="M80apnqr"><img src="'+QR(carrierUrl)+'" alt="'+E(x[0])+' APN QR"><div class="M80apnqrtext"><div class="M80apnqrtitle">'+E(x[0])+' 用QRコード</div>このQRをAPN設定する端末で読み取ると、<b>'+E(x[0])+'</b> の設定画面を直接開きます。開いた画面からAPN・ユーザー名・パスワードをコピーできます。</div></div>'+
+   apnField('APN',x[1])+apnField('ユーザー名',x[2])+apnField('パスワード',x[3])+
+   '<div class="M79field"><div class="M79lab">認証タイプ</div><div class="M79value">'+E(x[4])+'</div></div>'+
+   '<div class="M79sub"><b>APN設定画面：</b>設定 → ネットワークとインターネット → モバイルネットワーク → アクセスポイント名（APN）</div>';
  box.querySelectorAll('[data-v]').forEach(y=>y.onclick=()=>copy(y.dataset.v,y.dataset.l));
 }
 function wifiLauncher(){
