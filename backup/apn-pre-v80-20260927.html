@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MTKC Android APN設定</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#f5f6f8}
+body{margin:0;padding:18px}
+.wrap{max-width:760px;margin:0 auto}
+.card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+h1{font-size:24px;margin:0 0 6px}.sub{font-size:13px;color:#6b7280;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+.carrier{border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:11px 8px;font-weight:800;cursor:pointer}
+.carrier.active{background:#111827;color:#fff;border-color:#111827}
+.field{border:1px solid #e5e7eb;border-radius:13px;padding:12px;margin:9px 0}
+.lab{font-size:11px;color:#6b7280;font-weight:800;margin-bottom:5px}
+.row{display:flex;align-items:center;gap:10px}.value{font-size:18px;font-weight:900;flex:1;word-break:break-all}
+.copy{border:0;border-radius:10px;padding:9px 12px;background:#111827;color:#fff;font-weight:800;cursor:pointer}
+.auth{font-size:17px;font-weight:900}.note{font-size:12px;line-height:1.6;color:#6b7280;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:800;display:none}
+@media(max-width:620px){.grid{grid-template-columns:repeat(2,minmax(100px,1fr))}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<h1>Android APN設定</h1>
+<div class="sub">回線を選択 → APN・ユーザー名・パスワードをコピー。認証タイプは表示のみ。</div>
+<div class="grid" id="grid"></div>
+<div id="detail"></div>
+<div class="note">APN設定画面は端末によって直接開けないため、設定 → ネットワークとインターネット → モバイルネットワーク → アクセスポイント名（APN）から開いてください。</div>
+</div></div>
+<div id="toast" class="toast"></div>
+<script>
+const DATA=[
+{name:'docomo',apn:'spmode.ne.jp',user:'不要',pass:'不要',auth:'なし / 未設定'},
+{name:'SoftBank',apn:'application',user:'不要',pass:'不要',auth:'—'},
+{name:'Y!mobile',apn:'application',user:'不要',pass:'不要',auth:'—'},
+{name:'LINEMO',apn:'application',user:'不要',pass:'不要',auth:'—'},
+{name:'UQ mobile',apn:'uqmobile.jp',user:'不要',pass:'不要',auth:'—'},
+{name:'IIJmio',apn:'iijmio.jp',user:'mio@iij',pass:'iij',auth:'PAP または CHAP'},
+{name:'NUROモバイル',apn:'so-net.jp',user:'nuro',pass:'nuro',auth:'PAP または CHAP'},
+{name:'exciteモバイル',apn:'vmobile.jp',user:'不要',pass:'不要',auth:'PAP または CHAP',note:'基本はユーザー名・パスワード不要。必要な場合はユーザー名 bb@excite.co.jp / パスワード excite。'},
+{name:'YOUME mobile',apn:'youme.tokyo',user:'user',pass:'0000',auth:'CHAP または PAP'},
+{name:'ANAモバイル',apn:'anamobile.ana.co.jp',user:'anamobile',pass:'anamobile',auth:'—'},
+{name:'mineo',apn:'mineo.jp',user:'mineo@k-opti.com',pass:'mineo',auth:'CHAP'},
+{name:'LIBMO',apn:'libmo.jp',user:'user@libmo',pass:'libmo',auth:'PAP または CHAP'},
+{name:'QTモバイル',apn:'vmobile.jp',user:'qtnet@bbiq.jp',pass:'bbiq',auth:'PAP または CHAP'},
+{name:'イオンモバイル',apn:'i-aeonmobile.com',user:'user',pass:'0000',auth:'CHAP'},
+{name:'楽天プリペイドSIM',apn:'mobile.rakuten.co.jp',user:'不要',pass:'不要',auth:'CHAP'}
+];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';clearTimeout(window.__t);window.__t=setTimeout(()=>e.style.display='none',1200)}
+function fallback(v){const ta=document.createElement('textarea');ta.value=v;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}
+async function copy(v,label){if(!v||v==='不要'||v==='—')return;try{await navigator.clipboard.writeText(v)}catch(e){fallback(v)}toast(label+'をコピーしました')}
+function field(label,value,copyable){return '<div class="field"><div class="lab">'+esc(label)+'</div><div class="row"><div class="value">'+esc(value)+'</div>'+(copyable&&value!=='不要'&&value!=='—'?'<button class="copy" data-copy="'+esc(value)+'" data-label="'+esc(label)+'">コピー</button>':'<span style="font-size:12px;color:#6b7280;font-weight:800">'+(value==='不要'?'入力不要':'')+'</span>')+'</div></div>'}
+function show(i){const x=DATA[i];document.querySelectorAll('.carrier').forEach((b,n)=>b.classList.toggle('active',n===i));document.getElementById('detail').innerHTML='<h2 style="font-size:20px;margin:8px 0">'+esc(x.name)+'</h2>'+field('APN',x.apn,true)+field('ユーザー名',x.user,true)+field('パスワード',x.pass,true)+'<div class="field"><div class="lab">認証タイプ</div><div class="auth">'+esc(x.auth)+'</div></div>'+(x.note?'<div class="note">'+esc(x.note)+'</div>':'');document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy,b.dataset.label))}
+document.getElementById('grid').innerHTML=DATA.map((x,i)=>'<button class="carrier" onclick="show('+i+')">'+esc(x.name)+'</button>').join('');
+show(0);
+</script>
+</body>
+</html>
