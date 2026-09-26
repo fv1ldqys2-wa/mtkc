@@ -56,7 +56,9 @@ async function copy(v,label){if(!v||v==='不要'||v==='—')return;try{await nav
 function field(label,value,copyable){return '<div class="field"><div class="lab">'+esc(label)+'</div><div class="row"><div class="value">'+esc(value)+'</div>'+(copyable&&value!=='不要'&&value!=='—'?'<button class="copy" data-copy="'+esc(value)+'" data-label="'+esc(label)+'">コピー</button>':'<span style="font-size:12px;color:#6b7280;font-weight:800">'+(value==='不要'?'入力不要':'')+'</span>')+'</div></div>'}
 function show(i){const x=DATA[i];document.querySelectorAll('.carrier').forEach((b,n)=>b.classList.toggle('active',n===i));document.getElementById('detail').innerHTML='<h2 style="font-size:20px;margin:8px 0">'+esc(x.name)+'</h2>'+field('APN',x.apn,true)+field('ユーザー名',x.user,true)+field('パスワード',x.pass,true)+'<div class="field"><div class="lab">認証タイプ</div><div class="auth">'+esc(x.auth)+'</div></div>'+(x.note?'<div class="note">'+esc(x.note)+'</div>':'');document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy,b.dataset.label))}
 document.getElementById('grid').innerHTML=DATA.map((x,i)=>'<button class="carrier" onclick="show('+i+')">'+esc(x.name)+'</button>').join('');
-show(0);
+const __carrier=new URLSearchParams(location.search).get('carrier');
+const __idx=Math.max(0,DATA.findIndex(x=>x.name===__carrier));
+show(__idx);
 </script>
 </body>
 </html>
