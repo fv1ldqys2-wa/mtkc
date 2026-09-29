@@ -1,7 +1,7 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MTKC Operations Dashboard V84</title><style>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MTKC Operations Dashboard V85</title><style>
 *{box-sizing:border-box}body{margin:0;background:#f6f7f9;color:#171a22;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#fff 0,#fff2f6 50%,#eefcff 100%)}.loginbox{width:min(420px,90vw);background:#fff;padding:34px;border-radius:26px;box-shadow:0 20px 70px #0001}.brand{font-weight:900;font-size:28px;letter-spacing:-1px}.brand small{display:block;font-size:10px;letter-spacing:2px;color:#7a7f8b}.loginbox input{width:100%;padding:14px;margin:8px 0;border:1px solid #dfe2e8;border-radius:12px;font-size:16px}.btn{border:0;border-radius:12px;background:#111827;color:#fff;padding:12px 18px;font-weight:800;cursor:pointer}.btn.pink{background:#fe2c55}.btn.cyan{background:#25f4ee;color:#111}.btn.ghost{background:#fff;color:#111;border:1px solid #d9dde5}.btn.danger{background:#fff0f2;color:#d7193f;border:1px solid #ffc5d0}.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}.side{background:#11151d;color:#fff;padding:22px 14px}.side .brand{padding:0 10px 18px}.nav button{width:100%;border:0;background:transparent;color:#aeb4c0;text-align:left;padding:13px;border-radius:11px;margin:3px 0;font-weight:700;cursor:pointer}.nav button.active,.nav button:hover{background:#252b36;color:#fff}.main{padding:24px;overflow:hidden}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.title{font-size:24px;font-weight:900}.muted{color:#7a808c;font-size:13px}.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.card{background:#fff;border:1px solid #e7e9ee;border-radius:18px;padding:18px;box-shadow:0 4px 16px #1111;position:relative}.kpi .num{font-size:32px;font-weight:900;margin-top:8px}.pinkline{border-top:4px solid #fe2c55}.cyanline{border-top:4px solid #25f4ee}.goldline{border-top:4px solid #f2b84b}.greenline{border-top:4px solid #44c38b}.ref{position:absolute;right:12px;top:12px;border:0;background:#f1f3f6;border-radius:9px;padding:6px 9px;font-size:12px;font-weight:800;cursor:pointer}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.toolbar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.formsec{background:#fff;border-radius:18px;padding:18px;margin:12px 0;border:1px solid #e5e7eb}.formsec.sim{border-left:6px solid #25f4ee}.formsec.device{border-left:6px solid #f2b84b}.formsec.parent{border-left:6px solid #b58cff}.formsec.op{border-left:6px solid #fe2c55}.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}input,select{width:100%;padding:11px;border:1px solid #d9dde5;border-radius:10px;background:#fff;font-size:14px}.actions{display:flex;gap:8px;margin-top:14px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid #eceef2;text-align:left;white-space:nowrap}th{color:#707684;font-size:11px}.tag{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.ok{background:#dcfff1;color:#08754b}.wait{background:#fff3d7;color:#956300}.set{background:#e7fbff;color:#087a83}.barrow{display:grid;grid-template-columns:100px 1fr 55px;gap:8px;align-items:center;margin:10px 0}.track{height:12px;background:#eef0f3;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#25f4ee,#fe2c55);border-radius:9px}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:5vh 3vw}.modal.show{display:block}.modalbox{background:#fff;border-radius:20px;padding:20px;max-width:1100px;margin:auto;max-height:90vh;overflow:auto}.modaltop{display:flex;justify-content:space-between;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap}.bigchoice{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{padding:24px;border-radius:18px;border:1px solid #e1e4ea;background:#fff;cursor:pointer}.choice b{font-size:18px}.daily{display:flex;align-items:end;gap:8px;height:150px;padding-top:10px}.daycol{flex:1;text-align:center;font-size:10px}.daybar{background:linear-gradient(#fe2c55,#25f4ee);border-radius:7px 7px 0 0;min-height:4px}.search{display:flex;gap:8px}.search input{max-width:360px}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:5;padding:8px}.side .brand{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.main{padding:14px}.grid{grid-template-columns:1fr 1fr}.two,.three,.formgrid{grid-template-columns:1fr}.bigchoice{grid-template-columns:1fr}.title{font-size:20px}}
 
-.modebar{display:flex;gap:10px;margin:10px 0 18px}.modebtn{flex:1;padding:16px;border:2px solid #e1e4ea;background:#fff;border-radius:14px;font-weight:900;cursor:pointer}.modebtn.active{border-color:#fe2c55;background:#fff2f5}.hidden{display:none!important}.stepnote{font-weight:900;font-size:14px;margin-bottom:10px}.net{font-weight:900;color:#08754b}.editrow input,.editrow select{min-width:120px}.feeBox{margin-top:12px;padding:12px;border-radius:12px;background:#f7f8fa}.sectiontitle{font-size:17px;font-weight:900;margin-bottom:4px}.remindchecks{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.remindchecks label{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#f7f8fa;border:1px solid #e2e5ea;border-radius:10px;margin:0}.remindchecks input{width:auto}.dueToday{background:#fff7e6}.overdue{background:#fff0f2}</style></head><body data-build="V84-20260929">
+.modebar{display:flex;gap:10px;margin:10px 0 18px}.modebtn{flex:1;padding:16px;border:2px solid #e1e4ea;background:#fff;border-radius:14px;font-weight:900;cursor:pointer}.modebtn.active{border-color:#fe2c55;background:#fff2f5}.hidden{display:none!important}.stepnote{font-weight:900;font-size:14px;margin-bottom:10px}.net{font-weight:900;color:#08754b}.editrow input,.editrow select{min-width:120px}.feeBox{margin-top:12px;padding:12px;border-radius:12px;background:#f7f8fa}.sectiontitle{font-size:17px;font-weight:900;margin-bottom:4px}.remindchecks{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.remindchecks label{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#f7f8fa;border:1px solid #e2e5ea;border-radius:10px;margin:0}.remindchecks input{width:auto}.dueToday{background:#fff7e6}.overdue{background:#fff0f2}</style></head><body data-build="V85-20260929">
 <div id="MTKCV79_LEGACY_COMPAT" style="display:none!important" aria-hidden="true">
   <select id="setDevice"></select>
   <select id="setType"><option>Lite</option><option>本家</option></select>
@@ -22,7 +22,7 @@ var setRows=document.getElementById('setRows');
 </script>
 
 <div id="login" class="login"><div class="loginbox"><div class="brand">MTKC<small>OPERATIONS DASHBOARD</small></div><h2>ログイン</h2><input id="uid" value="owner" placeholder="ID"><input id="upw" value="mtkc" type="password" placeholder="パスワード"><button class="btn pink" style="width:100%;margin-top:8px" onclick="login()">ログイン</button><div class="muted" style="margin-top:10px">owner / mtkc</div></div></div>
-<div id="app" class="app" style="display:none"><aside class="side"><div class="brand">MTKC<small>OPERATIONS DASHBOARD</small></div><div class="nav"><button class="active" data-p="home">ダッシュボード</button><button data-p="analysis">分析</button><button data-p="invite">招待登録</button><button data-p="revenue">収益入力</button><button data-p="registered">登録済み一覧</button><button data-p="sim">途中から登録</button><button data-p="masters">設定</button></div></aside><main class="main"><div class="top"><div><div class="title">MTKC Operations Dashboard <small style="font-size:11px;color:#888">V84 MUTUAL PAYOUT</small></div><div class="muted">招待可否は端末通し番号400h基準／SIM経過時間は分析用に保持</div></div><div style="text-align:right"><div id="syncStatus" class="muted">復旧データ読込済み：SIM 115 / 通常招待 22件</div><div id="clock" class="muted"></div></div></div>
+<div id="app" class="app" style="display:none"><aside class="side"><div class="brand">MTKC<small>OPERATIONS DASHBOARD</small></div><div class="nav"><button class="active" data-p="home">ダッシュボード</button><button data-p="analysis">分析</button><button data-p="invite">招待登録</button><button data-p="revenue">収益入力</button><button data-p="registered">登録済み一覧</button><button data-p="sim">途中から登録</button><button data-p="masters">設定</button></div></aside><main class="main"><div class="top"><div><div class="title">MTKC Operations Dashboard <small style="font-size:11px;color:#888">V85 MONEY TOTALS</small></div><div class="muted">招待可否は端末通し番号400h基準／SIM経過時間は分析用に保持</div></div><div style="text-align:right"><div id="syncStatus" class="muted">復旧データ読込済み：SIM 115 / 通常招待 22件</div><div id="clock" class="muted"></div></div></div>
 <section id="home" class="page active"><div class="grid">
 <div class="card kpi pinkline"><button class="ref" onclick="ref('revenue')">参照</button><div class="muted">今月収益（手数料後）</div><div class="num" id="kRev">¥0</div></div>
 <div class="card kpi goldline"><button class="ref" onclick="ref('day14')">参照</button><div class="muted">14日目・終了対象</div><div class="num" id="kDay14">0</div><div class="muted">Lite子端末・今日上がり</div></div>
@@ -1405,7 +1405,7 @@ else{all();setTimeout(all,300);setTimeout(all,1200)}
 .M83date.active{background:#111827;color:#fff;border-color:#111827}
 .M83histhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .M83older{display:flex;align-items:center;gap:7px}.M83older input{max-width:160px}
-.M83pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#f3f4f6}
+.M83pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#f3f4f6}.M85totals{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr));gap:8px;margin:10px 0 12px}.M85total{border:1px solid #e5e7eb;border-radius:11px;padding:9px 10px;background:#fafafa}.M85total .v{font-size:17px;font-weight:900;margin-top:2px}.M85refsub{display:block;font-size:11px;color:#6b7280;font-weight:700;margin-top:3px}@media(max-width:680px){.M85totals{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.M83refbtn,.M83mode{flex:1}.M83histhead{align-items:flex-start}}
 </style>
 <script id="MTKCV83_HISTORY_PATCH">
@@ -1524,19 +1524,44 @@ else{all();setTimeout(all,300);setTimeout(all,1200)}
   }
   function M83NormalTable(rows,withEdit){
     if(!rows.length)return '<div class="muted">この日の通常招待はありません。</div>';
-    return '<div class="tablewrap"><table><thead><tr><th>時刻</th><th>SIM</th><th>種別</th><th>イベント</th><th>結果</th><th>親</th><th>端末通し番号</th><th>親収益</th>'+(withEdit?'<th></th>':'')+'</tr></thead><tbody>'+
+    var parentTotal=rows.reduce(function(s,x){return s+(Number(x.parentRevenue)||0)},0);
+    var success=rows.filter(function(x){return x.result==='成功'}).length;
+    return '<div class="M85totals">'+
+      '<div class="M85total"><div class="muted">件数</div><div class="v">'+rows.length+'件</div></div>'+
+      '<div class="M85total"><div class="muted">成功</div><div class="v">'+success+'件</div></div>'+
+      '<div class="M85total"><div class="muted">親収益合計</div><div class="v">'+M83Y(parentTotal)+'</div></div>'+
+      '</div>'+
+      '<div class="tablewrap"><table><thead><tr><th>時刻</th><th>SIM</th><th>種別</th><th>イベント</th><th>結果</th><th>親</th><th>端末通し番号</th><th>親収益</th>'+(withEdit?'<th></th>':'')+'</tr></thead><tbody>'+
       rows.map(function(x){
         return '<tr><td>'+M83E(M83Time(x.at))+'</td><td><b>'+M83E(x.phone||'—')+'</b></td><td>'+M83E(x.type||'—')+'</td><td>'+M83E(x.event||'—')+'</td><td>'+M83E(x.result||'—')+'</td><td>'+M83E(x.parentName||'—')+'</td><td>'+M83E(x.deviceNo||'—')+'</td><td>'+M83Y(x.parentRevenue||0)+'</td>'+(withEdit?'<td><button class="btn ghost M83editOp" data-id="'+M83E(x.id)+'">編集</button></td>':'')+'</tr>';
       }).join('')+'</tbody></table></div>';
   }
   function M83ExternalTable(rows,withEdit){
     if(!rows.length)return '<div class="muted">この日の外部招待はありません。</div>';
-    return '<div class="tablewrap"><table><thead><tr><th>時刻</th><th>種別</th><th>対象</th><th>親</th><th>外部</th><th>イベント</th><th>結果</th><th>元金額</th><th>外部還元</th>'+(withEdit?'<th></th>':'')+'</tr></thead><tbody>'+
+    var grossTotal=0,ownTotal=0,payoutTotal=0,success=0;
+    rows.forEach(function(x){
+      if(x.result==='成功'||x.type==='本家')success++;
+      if(x.type!=='Lite')return;
+      var gross=x.externalGross!=null?Number(x.externalGross)||0:(Number(x.parentRevenue)||0)*2;
+      var own=x.parentRevenue!=null?Number(x.parentRevenue)||0:gross/2;
+      var mutual=String(x.event||'').trim()==='相互';
+      var payout=mutual?0:(x.externalPayout!=null?Number(x.externalPayout)||0:own);
+      grossTotal+=gross;ownTotal+=own;payoutTotal+=payout;
+    });
+    return '<div class="M85totals">'+
+      '<div class="M85total"><div class="muted">件数</div><div class="v">'+rows.length+'件</div></div>'+
+      '<div class="M85total"><div class="muted">元金額合計</div><div class="v">'+M83Y(grossTotal)+'</div></div>'+
+      '<div class="M85total"><div class="muted">こちらの親収益合計</div><div class="v">'+M83Y(ownTotal)+'</div></div>'+
+      '<div class="M85total"><div class="muted">外部還元合計</div><div class="v">'+M83Y(payoutTotal)+'</div></div>'+
+      '</div>'+
+      '<div class="tablewrap"><table><thead><tr><th>時刻</th><th>種別</th><th>対象</th><th>親</th><th>外部</th><th>イベント</th><th>結果</th><th>元金額</th><th>こちらの親収益</th><th>外部還元</th>'+(withEdit?'<th></th>':'')+'</tr></thead><tbody>'+
       rows.map(function(x){
         var target=x.type==='本家'?(x.phone||'—'):(x.externalAccount||'—');
-        var gross=x.type==='Lite'?(x.externalGross!=null?x.externalGross:(Number(x.parentRevenue)||0)*2):0;
-        var mutual=String(x.event||'').trim()==='相互';var payout=x.type==='Lite'?(mutual?0:(x.externalPayout!=null?x.externalPayout:(Number(x.parentRevenue)||0))):0;
-        return '<tr><td>'+M83E(M83Time(x.at))+'</td><td>'+M83E(x.type||'—')+'</td><td><b>'+M83E(target)+'</b></td><td>'+M83E(x.parentName||'—')+'</td><td>'+M83E(x.externalAccount||'—')+'</td><td>'+M83E(x.event||'—')+'</td><td>'+M83E(x.result||'成功')+'</td><td>'+(x.type==='Lite'?M83Y(gross):'—')+'</td><td>'+(x.type==='Lite'?(mutual?'対象外':M83Y(payout)):'—')+'</td>'+(withEdit?'<td><button class="btn ghost M83editExt" data-id="'+M83E(x.id)+'">編集</button></td>':'')+'</tr>';
+        var gross=x.type==='Lite'?(x.externalGross!=null?Number(x.externalGross)||0:(Number(x.parentRevenue)||0)*2):0;
+        var own=x.type==='Lite'?(x.parentRevenue!=null?Number(x.parentRevenue)||0:gross/2):0;
+        var mutual=String(x.event||'').trim()==='相互';
+        var payout=x.type==='Lite'?(mutual?0:(x.externalPayout!=null?Number(x.externalPayout)||0:own)):0;
+        return '<tr><td>'+M83E(M83Time(x.at))+'</td><td>'+M83E(x.type||'—')+'</td><td><b>'+M83E(target)+'</b></td><td>'+M83E(x.parentName||'—')+'</td><td>'+M83E(x.externalAccount||'—')+'</td><td>'+M83E(x.event||'—')+'</td><td>'+M83E(x.result||'成功')+'</td><td>'+(x.type==='Lite'?M83Y(gross):'—')+'</td><td>'+(x.type==='Lite'?M83Y(own):'—')+'</td><td>'+(x.type==='Lite'?(mutual?'対象外':M83Y(payout)):'—')+'</td>'+(withEdit?'<td><button class="btn ghost M83editExt" data-id="'+M83E(x.id)+'">編集</button></td>':'')+'</tr>';
       }).join('')+'</tbody></table></div>';
   }
 
@@ -1549,10 +1574,13 @@ else{all();setTimeout(all,300);setTimeout(all,1200)}
     var card=document.getElementById('M79Results');if(!card)return;
     var active=card.querySelector('.M79date.active');
     var date=active&&active.dataset?active.dataset.date:M83Today();
-    var n=M83NormalRows(date).length,e=M83ExternalRows(date).length;
+    var nr=M83NormalRows(date),er=M83ExternalRows(date),n=nr.length,e=er.length;
+    var normalMoney=nr.reduce(function(s,x){return s+(Number(x.parentRevenue)||0)},0);
+    var extOwn=er.filter(function(x){return x.type==='Lite'}).reduce(function(s,x){var g=x.externalGross!=null?Number(x.externalGross)||0:(Number(x.parentRevenue)||0)*2;return s+(x.parentRevenue!=null?Number(x.parentRevenue)||0:g/2)},0);
+    var extPay=er.filter(function(x){return x.type==='Lite'&&String(x.event||'').trim()!=='相互'}).reduce(function(s,x){var g=x.externalGross!=null?Number(x.externalGross)||0:(Number(x.parentRevenue)||0)*2;var own=x.parentRevenue!=null?Number(x.parentRevenue)||0:g/2;return s+(x.externalPayout!=null?Number(x.externalPayout)||0:own)},0);
     var row=document.getElementById('M83ResultRefs');
     if(!row){row=document.createElement('div');row.id='M83ResultRefs';row.className='M83refrow';card.appendChild(row)}
-    row.innerHTML='<button class="M83refbtn" type="button" data-kind="normal">通常を参照 <b>'+n+'件</b></button><button class="M83refbtn" type="button" data-kind="external">外部を参照 <b>'+e+'件</b></button>';
+    row.innerHTML='<button class="M83refbtn" type="button" data-kind="normal">通常を参照 <b>'+n+'件</b><span class="M85refsub">親収益 '+M83Y(normalMoney)+'</span></button><button class="M83refbtn" type="button" data-kind="external">外部を参照 <b>'+e+'件</b><span class="M85refsub">こちら '+M83Y(extOwn)+' ／ 外部還元 '+M83Y(extPay)+'</span></button>';
     row.querySelectorAll('[data-kind]').forEach(function(b){b.onclick=function(){M83OpenDayResult(b.dataset.kind,date)}});
     card.querySelectorAll('.M79date').forEach(function(b){
       if(b.dataset.m83==='1')return;b.dataset.m83='1';
