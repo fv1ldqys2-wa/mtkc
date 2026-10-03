@@ -1709,6 +1709,30 @@ else{all();setTimeout(all,300);setTimeout(all,1200)}
 })();
 </script>
 
+
+<script id="MTKCV86_REMOVE_CAMPAIGN">
+(function(){
+  function removeCampaign(){
+    try{
+      var x=document.getElementById('MTKCV79Campaign');
+      if(x)x.remove();
+      document.querySelectorAll('.card').forEach(function(card){
+        var t=(card.textContent||'').replace(/\s+/g,' ');
+        if(t.includes('期間限定paypayキャンペーン'))card.remove();
+      });
+    }catch(e){console.error('V86 remove campaign',e)}
+  }
+  try{
+    if(typeof render==='function'&&!render.__v86){
+      var oldRender=render;
+      var wrapped=function(){var r=oldRender.apply(this,arguments);setTimeout(removeCampaign,0);return r};
+      wrapped.__v86=true;render=wrapped;
+    }
+  }catch(e){}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(removeCampaign,50)});
+  else setTimeout(removeCampaign,50);
+})();
+</script>
 </body></html>
 <style>
 #parentRate{max-height:520px;overflow-y:auto;padding-right:4px}
